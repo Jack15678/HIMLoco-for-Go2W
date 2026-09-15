@@ -197,7 +197,7 @@ def gym_run(args):
                 feet=env.rigid_body_states.view(n,env.num_bodies,13)[:,env.feet_indices,:3].cpu().numpy().copy()
                 feet[:,:,1]-=offsets[:,1,None]
                 footforce=np.linalg.norm(env.contact_forces[:,env.feet_indices].cpu().numpy(),axis=-1)
-                indices=np.clip(np.rint((feet[:,:,:2]+EXTENT)/HS).astype(int),0,len(raw)-1)
+                indices=np.clip(np.floor((feet[:,:,:2]+EXTENT)/HS).astype(int),0,len(raw)-1)
                 target_feet=active[indices[:,:,0],indices[:,:,1]] & (footforce>1.)
                 entered=target_feet.any(1)
                 bounded_xy=np.clip(root[:,:2],-EXTENT+.2,EXTENT-.2)

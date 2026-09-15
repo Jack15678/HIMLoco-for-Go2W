@@ -117,6 +117,7 @@ def summarize(rows, scene, end_reason):
     if hit.any():
         out['target_contact_x_range'] = [float(rows['target_contact_x'][hit,0].min()), float(rows['target_contact_x'][hit,1].max())]
     out['terrain_coverage'] = 'flat' if scene == 'flat' else ('contacted; inspect contact span' if hit.any() else 'not_entered')
+    out['target_contact_definition']='Loaded wheel (>1N net force) center projects inside a target cell, using floor indexing. Contact span is wheel-center x, not the exact collision point; touching the first edge is not traversal.'
     out['response_time_definition']='90% is first directional crossing; stable is within +/-10% of nonzero target for >=1s. Null means not reached for nonzero targets, not applicable for zero targets.'
     for start, end, target in schedule(scene):
         mask = (t > start+1e-8) & (t <= end+1e-8)
