@@ -1,19 +1,18 @@
 """Real Gym rollout consistency gate; never calls learn/update or saves a model.
 
 python legged_gym/scripts/check_s10_rollout_consistency.py --task s10 --headless \
-    --num_envs 512 --evidence /evidence --output /output/consistency.json
+    --num_envs 512 --evidence /evidence --output /output/consistency.json \
+    --source-commit <full SHA verified on the host before the read-only mount>
 The evidence directory contains read-only config.json and model_1000.pt.
 """
 import argparse
 import copy
 import json
 from pathlib import Path
-import subprocess
 import sys
 
 import isaacgym  # Must precede torch.
 import torch
-from legged_gym import LEGGED_GYM_ROOT_DIR
 from legged_gym.envs import S10RoughCfg
 from legged_gym.utils import get_args, task_registry
 from legged_gym.utils.helpers import class_to_dict
@@ -26,14 +25,15 @@ def main():
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument('--evidence', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--source-commit', required=True)
     check, remaining = parser.parse_known_args()
     sys.argv = [sys.argv[0]] + remaining
     args = get_args()
     assert args.task == 's10' and args.num_envs == 512 and args.headless
     assert not args.resume and args.max_iterations is None
-    root = Path(LEGGED_GYM_ROOT_DIR)
-    assert not subprocess.check_output(['git', 'status', '--porcelain'], cwd=root, text=True).strip()
-    commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip()
+    # The runtime image has no git. The host verifies a clean checkout, then mounts it read-only.
+    commit = check.source_commit
+    assert len(commit) == 40 and all(c in '0123456789abcdef' for c in commit)
     saved = json.loads((check.evidence / 'config.json').read_text())
     cfg, _ = task_registry.get_cfgs('s10')
     restore_config(cfg, saved['env'])
