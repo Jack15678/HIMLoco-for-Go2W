@@ -94,9 +94,9 @@ class HIMPPO:
         self.transition.actions_log_prob = self.actor_critic.get_actions_log_prob(self.transition.actions).detach()
         self.transition.action_mean = self.actor_critic.action_mean.detach()
         self.transition.action_sigma = self.actor_critic.action_std.detach()
-        # need to record obs and critic_obs before env.step()
-        self.transition.observations = obs
-        self.transition.critic_observations = critic_obs
+        # Snapshot before env.step(): resets may modify the environment buffers in place.
+        self.transition.observations = obs.clone()
+        self.transition.critic_observations = critic_obs.clone()
         return self.transition.actions
     
     def process_env_step(self, rewards, dones, infos, next_critic_obs):
