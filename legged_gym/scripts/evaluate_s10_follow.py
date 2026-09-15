@@ -11,7 +11,10 @@ from s10_eval_protocol import (VERSION, SCENES, HS, VS, EXTENT, geometry, ground
 
 class Video:
     def __init__(self, path, scene, source):
+        import matplotlib
+        from PIL import ImageFont
         self.scene, self.source = scene, source
+        self.font=ImageFont.truetype(str(Path(matplotlib.get_data_path())/'fonts/ttf/DejaVuSans.ttf'),17)
         self.process = subprocess.Popen(['ffmpeg','-y','-loglevel','error','-f','rawvideo',
             '-pixel_format','rgb24','-video_size','960x640','-framerate','20','-i','-',
             '-an','-c:v','libx264','-pix_fmt','yuv420p','-crf','23','-movflags','+faststart',str(path)],
@@ -21,10 +24,10 @@ class Video:
         from PIL import Image, ImageDraw
         im = Image.fromarray(np.asarray(rgb,dtype=np.uint8))
         draw = ImageDraw.Draw(im)
-        draw.rectangle((0,0,960,58),fill='black')
-        draw.text((10,5), f'{self.source} | {self.scene} | fixed trial 0 | {t:6.2f} s', fill='white')
-        draw.text((10,23), f'cmd vx {cmd[0]:+.2f} yaw {cmd[2]:+.2f} | actual vx {actual[0]:+.2f} yaw {actual[2]:+.2f}',fill='white')
-        draw.text((10,41), 'Camera follows position with fixed world direction. No resets.',fill='white')
+        draw.rectangle((0,0,960,70),fill='black')
+        draw.text((10,3), f'{self.source} | {self.scene} | fixed trial 0 | {t:6.2f} s', fill='white',font=self.font)
+        draw.text((10,25), f'cmd vx {cmd[0]:+.2f} yaw {cmd[2]:+.2f} | actual vx {actual[0]:+.2f} yaw {actual[2]:+.2f}',fill='white',font=self.font)
+        draw.text((10,47), 'Camera follows position with fixed world direction. No resets.',fill='white',font=self.font)
         self.process.stdin.write(np.asarray(im).tobytes())
 
     def close(self):
@@ -152,7 +155,7 @@ def gym_run(args):
     env.gym.set_actor_root_state_tensor(env.sim,gymtorch.unwrap_tensor(env.root_states))
     env.commands[:]=0;env.actions[:]=0;env.obs_buf[:]=0;env.privileged_obs_buf[:]=0
     write_json(args.output/'initial_states.json',dict(seeds=[None] if n==1 else list(range(n)),perturbations=perturb.tolist(),root=env.root_states.tolist(),dof=env.dof_pos.tolist(),warmup_steps=0))
-    camera_params=gymapi.CameraProperties();camera_params.width=960;camera_params.height=640
+    camera_params=gymapi.CameraProperties();camera_params.width=960;camera_params.height=640;camera_params.horizontal_fov=60
     camera=env.gym.create_camera_sensor(env.envs[0],camera_params);assert camera>=0
     video=Video(args.output/'representative.mp4',args.scene,'Isaac Gym actual geometry')
     rows=[empty_rows() for _ in range(n)]; alive=np.ones(n,bool);reason=['completed']*n
@@ -216,7 +219,7 @@ def gym_run(args):
                         alive[i]=False;reason[i]='out_of_bounds'
                 if (step*8+sub)%20==0 and len(rows[0]['time']) and rows[0]['time'][-1]==t:
                     p=root[0,:3]
-                    env.gym.set_camera_location(camera,env.envs[0],gymapi.Vec3(*(p+[-2.5,-2.5,1.6])),gymapi.Vec3(*p))
+                    env.gym.set_camera_location(camera,env.envs[0],gymapi.Vec3(*(p+[-2.,-2.,1.2])),gymapi.Vec3(*p))
                     env.gym.step_graphics(env.sim);env.gym.render_all_camera_sensors(env.sim)
                     rgb=env.gym.get_camera_image(env.sim,env.envs[0],camera,gymapi.IMAGE_COLOR).reshape(640,960,4)[:,:,:3]
                     video.frame(rgb,t,cmd,vel[0])
@@ -244,7 +247,7 @@ def mujoco_run(args):
     kp,kd,limits=map(np.asarray,(cfg['p_gains'],cfg['d_gains'],cfg['torque_limits']))
     history=np.zeros((6,57),np.float32);action=np.zeros(16,np.float32)
     velocity,force=np.zeros(6),np.zeros(6);rows=empty_rows();reason='completed'
-    camera=mujoco.MjvCamera();camera.distance=3.9;camera.azimuth=225;camera.elevation=-24
+    camera=mujoco.MjvCamera();camera.distance=2.9;camera.azimuth=225;camera.elevation=-24
     model.vis.global_.offwidth=960;model.vis.global_.offheight=640
     visual=mujoco.MjvOption();visual.geomgroup[1]=0
     video=Video(args.output/'representative.mp4','flat','MuJoCo physics')
