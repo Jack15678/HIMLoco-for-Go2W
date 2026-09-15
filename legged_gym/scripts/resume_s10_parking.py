@@ -8,6 +8,7 @@ import traceback
 
 import isaacgym
 import torch
+from legged_gym.envs import S10RoughCfg
 from legged_gym.utils import get_args, task_registry
 from legged_gym.utils.helpers import class_to_dict, set_seed
 from legged_gym.scripts.evaluate_s10 import restore_config
