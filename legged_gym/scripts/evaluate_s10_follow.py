@@ -212,7 +212,7 @@ def gym_run(args):
                     span=[float(contact_x.min()),float(contact_x.max())] if len(contact_x) else [0.,0.]
                     values=dict(time=t,command=cmd,observed_command=observed[i],velocity=vel[i],position=root[i,:3],heading=yaw,tilt=tilt[i],clearance=clear[i],base_contact=base[i],saturated=sat[i],target_contact=entered[i],target_contact_x=span,qpos=np.r_[root[i,:3],root[i,[6,3,4,5]],q[i]],qvel=np.r_[root[i,7:10],ang[i].cpu().numpy(),dq[i]])
                     assert all(np.isfinite(v).all() for v in values.values())
-                    for k,v in values.items(): rows[i][k].append(np.array(v).copy())
+                    for k,value in values.items(): rows[i][k].append(np.array(value).copy())
                     if base[i]>1. or tilt[i]>np.deg2rad(45.) or clear[i]<.2:
                         alive[i]=False;reason[i]='fall_or_base_contact'
                     elif np.abs(root[i,:2]).max()>EXTENT-1.:
@@ -277,7 +277,7 @@ def mujoco_run(args):
                 t=(step*8+sub+1)*.0025;vel=velocity[[3,4,2]].copy()
                 values=dict(time=t,command=cmd,observed_command=observed,velocity=vel,position=data.qpos[:3],heading=np.arctan2(rotation[1,0],rotation[0,0]),tilt=tilt,clearance=data.qpos[2],base_contact=contact,saturated=np.abs(tau)>=.99*limits,target_contact=False,target_contact_x=[0.,0.],qpos=data.qpos,qvel=data.qvel)
                 assert all(np.isfinite(v).all() for v in values.values())
-                for k,v in values.items(): rows[k].append(np.array(v).copy())
+                for k,value in values.items(): rows[k].append(np.array(value).copy())
                 if (step*8+sub)%20==0:
                     camera.lookat[:]=data.qpos[:3];renderer.update_scene(data,camera,scene_option=visual)
                     video.frame(renderer.render(),t,cmd,vel)
