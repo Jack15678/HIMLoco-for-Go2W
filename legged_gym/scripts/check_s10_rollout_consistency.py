@@ -26,6 +26,8 @@ def main():
     parser.add_argument('--evidence', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--source-commit', required=True)
+    parser.add_argument('--checkpoint', type=int, default=1000)
+    parser.add_argument('--direct-velocity', action='store_true')
     check, remaining = parser.parse_known_args()
     sys.argv = [sys.argv[0]] + remaining
     args = get_args()
@@ -37,19 +39,30 @@ def main():
     saved = json.loads((check.evidence / 'config.json').read_text())
     cfg, _ = task_registry.get_cfgs('s10')
     restore_config(cfg, saved['env'])
+    if check.direct_velocity:
+        cfg.commands.heading_command = False
     env, _ = task_registry.make_env('s10', args=args, env_cfg=cfg)
     try:
         expected = copy.deepcopy(saved['env'])
         expected['env']['num_envs'] = 512
-        assert class_to_dict(cfg) == expected, 'Only environment count may differ'
+        if check.direct_velocity:
+            expected['commands']['heading_command'] = False
+        assert class_to_dict(cfg) == expected, 'Unexpected environment recipe change'
         assert abs(env.sim_params.dt - .0025) < 1e-9 and cfg.control.decimation == 8
         assert abs(env.dt - .02) < 1e-9
         assert cfg.control.delay_stride == 2
         assert saved['train']['policy']['init_noise_std'] == [.3, .3, .3, .6] * 4
         runner = HIMOnPolicyRunner(env, saved['train'], log_dir=None, device=args.rl_device)
-        checkpoint = check.evidence / 'model_1000.pt'
+        checkpoint = check.evidence / f'model_{check.checkpoint}.pt'
         runner.load(str(checkpoint), load_optimizer=True)
-        assert runner.current_learning_iteration == 1000 and runner.num_steps_per_env == 48
+        assert runner.current_learning_iteration == check.checkpoint and runner.num_steps_per_env == 48
+        source = torch.load(checkpoint, map_location='cpu')
+        equal_state(runner.alg.actor_critic.state_dict(), source['model_state_dict'])
+        equal_state(runner.alg.optimizer.state_dict(), source['optimizer_state_dict'])
+        equal_state(runner.alg.actor_critic.estimator.optimizer.state_dict(), source['estimator_optimizer_state_dict'])
+        assert runner.tot_timesteps == check.checkpoint * 4096 * 48
+        assert runner.alg.learning_rate == source['optimizer_state_dict']['param_groups'][0]['lr']
+        assert runner.alg.actor_critic.estimator.learning_rate == source['estimator_optimizer_state_dict']['param_groups'][0]['lr']
         alg, actor = runner.alg, runner.alg.actor_critic
         before = {k: v.clone() for k, v in actor.state_dict().items()}
         optimizers = dict(ppo=alg.optimizer, him=actor.estimator.optimizer)
@@ -125,19 +138,25 @@ def main():
                             ratio_max_abs_error=float((ratio[mask] - 1).abs().max()),
                             observation_max_abs_error=float(obs_error[mask].max()))
 
+            command_checks = None
+            if check.direct_velocity:
+                from legged_gym.scripts.check_s10_direct_velocity import check_commands
+                command_checks = check_commands(env)
             equal_state(actor.state_dict(), before)
             optimizer_steps = {}
             for key, optimizer in optimizers.items():
                 equal_state(optimizer.state_dict(), optimizer_before[key])
                 old_steps = sorted({float(s['step']) for s in optimizer_before[key]['state'].values()})
                 new_steps = sorted({float(s['step']) for s in optimizer.state.values()})
+                assert old_steps == new_steps == [20. * check.checkpoint]
                 optimizer_steps[key] = dict(before=old_steps, after=new_steps, added=counters[key + '_step'])
             assert not any(counters.values())
             result = dict(status='passed', source_commit=commit, checkpoint=str(checkpoint),
                           checkpoint_iteration=runner.current_learning_iteration,
-                          checkpoint_use='Read-only diagnosis, not initialization for future scratch training',
+                          checkpoint_use='Read-only zero-update gate; full model and both optimizers equal source',
+                          command_checks=command_checks,
                           num_envs=env.num_envs, policy_steps=runner.num_steps_per_env,
-                          setup='Original training config except 512 envs; runner reset and random episode ages; no forced reset or warmup',
+                          setup='Original recipe with 512 envs and optional direct yaw; natural resets during rollout; command plumbing checked afterwards',
                           all_samples=metrics(torch.ones_like(terminal)), terminal=metrics(terminal),
                           nonterminal=metrics(~terminal), raw_env_observation_rewritten_samples=int(changed.sum()),
                           saved_observation_changed_samples=int((obs_error != 0).any(-1).sum()),

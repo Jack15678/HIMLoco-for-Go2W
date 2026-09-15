@@ -3,6 +3,9 @@ from legged_gym.envs.go2w.go2w_config import GO2WRoughCfg, GO2WRoughCfgPPO
 
 
 class S10RoughCfg(GO2WRoughCfg):
+    class commands(GO2WRoughCfg.commands):
+        heading_command = False  # Sample yaw rate directly; actor input remains vx/vy/yaw rate.
+
     class init_state(GO2WRoughCfg.init_state):
         pos = [0., 0., 0.45]
         default_joint_angles = {
