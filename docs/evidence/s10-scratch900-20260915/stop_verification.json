@@ -1,0 +1,28 @@
+{
+  "container": "him-s10-scratch1000-20260915",
+  "state": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 137,
+    "Error": "",
+    "StartedAt": "2026-09-15T08:32:50.965634526Z",
+    "FinishedAt": "2026-09-15T11:13:03.10246836Z"
+  },
+  "last_logged_iteration": 902,
+  "checkpoint_mtime_utc": "2026-09-15T11:12:20.522511+00:00",
+  "requested_stop": {
+    "requested_iteration": 900,
+    "status": "checkpoint_verified_stop_requested",
+    "target": "/workspace/him/logs/S10_HIM/Sep15_08-33-31_scratch_1000_20260915/model_900.pt",
+    "armed_utc": "2026-09-15T11:05:45.561161+00:00",
+    "checkpoint_iteration": 900,
+    "timesteps": 176947200,
+    "signal": "SIGKILL",
+    "stop_requested_utc": "2026-09-15T11:12:20.554660+00:00"
+  }
+}
