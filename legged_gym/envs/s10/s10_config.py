@@ -37,5 +37,6 @@ class S10RoughCfg(GO2WRoughCfg):
 class S10RoughCfgPPO(GO2WRoughCfgPPO):
     class runner(GO2WRoughCfgPPO.runner):
         experiment_name = 'S10_HIM'
+        save_interval = 100
         max_iterations = None  # A new run requires an explicit approved budget.
         resume = False

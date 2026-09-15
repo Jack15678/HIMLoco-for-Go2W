@@ -53,6 +53,8 @@ def train(args, headless=True):
         json.dump({'env': class_to_dict(env_cfg), 'train': class_to_dict(train_cfg),
                    'interface_version': 2, 'initialization': 'resume' if args.resume else args.initialization,
                    'dof_names': env.dof_names}, file, indent=2)
+    if args.task == 's10' and not args.resume:
+        ppo_runner.save(os.path.join(ppo_runner.log_dir, 'model_0.pt'))
     ppo_runner.learn(num_learning_iterations=train_cfg.runner.max_iterations, init_at_random_ep_len=True)
 
 if __name__ == '__main__':
