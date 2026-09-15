@@ -30,6 +30,7 @@
 
 import os
 import copy
+import json
 import torch
 import numpy as np
 import random
@@ -167,6 +168,7 @@ def get_args():
         {"name": "--num_envs", "type": int, "help": "Number of environments to create. Overrides config file if provided."},
         {"name": "--seed", "type": int, "help": "Random seed. Overrides config file if provided."},
         {"name": "--max_iterations", "type": int, "help": "Maximum number of training iterations. Overrides config file if provided."},
+        {"name": "--initialization", "type": str, "help": "Explicit initialization for a new S10 run; scratch is supported, warm start requires separate adaptation."},
     ]
     # parse arguments
     args = gymutil.parse_arguments(
@@ -180,7 +182,7 @@ def get_args():
     #     args.sim_device += f":{args.sim_device_id}"
     return args
 
-def export_policy_as_jit(actor_critic, path):
+def export_policy_as_jit(actor_critic, path, env=None):
     if hasattr(actor_critic, 'estimator'):
         # assumes LSTM: TODO add GRU
         exporter = PolicyExporterHIM(actor_critic)
@@ -191,6 +193,22 @@ def export_policy_as_jit(actor_critic, path):
         model = copy.deepcopy(actor_critic.actor).to('cpu')
         traced_script_module = torch.jit.script(model)
         traced_script_module.save(path)
+
+    if env is not None:
+        metadata = dict(
+            robot=env.cfg.asset.name, interface_version=2, reset_history='zero',
+            dof_names=env.dof_names, wheel_indices=env.wheel_indices.tolist(),
+            default_dof_pos=env.default_dof_pos[0].tolist(),
+            p_gains=env.p_gains.tolist(), d_gains=env.d_gains.tolist(),
+            action_scale=env.action_scale.tolist(), vel_scale=env.cfg.control.vel_scale,
+            torque_limits=env.torque_limits.tolist(), dof_vel_limits=env.dof_vel_limits.tolist(),
+            commands_scale=env.commands_scale.tolist(), obs_scales=class_to_dict(env.obs_scales),
+            clip_actions=env.cfg.normalization.clip_actions,
+            clip_observations=env.cfg.normalization.clip_observations,
+            sim_dt=env.sim_params.dt, decimation=env.cfg.control.decimation,
+            self_collisions=env.cfg.asset.self_collisions, initial_position=env.cfg.init_state.pos)
+        with open(os.path.join(path, 'policy.json'), 'w') as file:
+            json.dump(metadata, file, indent=2)
 
 # class PolicyExporterLSTM(torch.nn.Module):
 #     def __init__(self, actor_critic):

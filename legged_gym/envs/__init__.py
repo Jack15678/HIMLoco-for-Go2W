@@ -38,3 +38,6 @@ import os
 from legged_gym.utils.task_registry import task_registry
 
 task_registry.register( "go2w",Go2w,GO2WRoughCfg(),GO2WRoughCfgPPO())
+
+from .s10.s10_config import S10RoughCfg, S10RoughCfgPPO
+task_registry.register("s10", LeggedRobot, S10RoughCfg(), S10RoughCfgPPO())

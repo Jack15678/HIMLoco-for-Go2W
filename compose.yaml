@@ -1,0 +1,19 @@
+services:
+  him:
+    image: him-gym:py38-torch201-cu118
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    gpus: all
+    shm_size: 8gb
+    working_dir: /workspace/him
+    volumes:
+      - .:/workspace/him
+      - /data/him-runtime/isaacgym:/opt/isaacgym
+      - /data/him-runtime/torch_extensions:/root/.cache/torch_extensions
+    entrypoint:
+      - /bin/bash
+      - -c
+      - 'pip install --no-deps -e /opt/isaacgym/python -e /workspace/him/rsl_rl -e /workspace/him >/dev/null && exec "$@"'
+      - --
+    command: [python, legged_gym/scripts/check_zero_ppo.py, --task, s10, --num_envs, '2', --headless, --strict]

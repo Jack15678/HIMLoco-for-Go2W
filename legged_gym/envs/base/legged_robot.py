@@ -187,11 +187,22 @@ class LeggedRobot(BaseTask):
         self._resample_commands(env_ids)
 
         # reset buffers
+        # A new episode starts with one fresh frame and five zero history frames.
+        self.obs_buf[env_ids] = 0.
+        self.actions[env_ids] = 0.
         self.last_actions[env_ids] = 0.
         self.last_last_actions[env_ids] = 0.
         self.last_dof_vel[env_ids] = 0.
         self.feet_air_time[env_ids] = 0.
         self.reset_buf[env_ids] = 1
+        self.base_lin_vel[env_ids] = quat_rotate_inverse(self.base_quat[env_ids], self.root_states[env_ids, 7:10])
+        self.base_ang_vel[env_ids] = quat_rotate_inverse(self.base_quat[env_ids], self.root_states[env_ids, 10:13])
+        self.projected_gravity[env_ids] = quat_rotate_inverse(self.base_quat[env_ids], self.gravity_vec[env_ids])
+        if self.cfg.commands.heading_command:
+            forward = quat_apply(self.base_quat[env_ids], self.forward_vec[env_ids])
+            heading = torch.atan2(forward[:, 1], forward[:, 0])
+            self.commands[env_ids, 2] = torch.clip(0.5 * wrap_to_pi(self.commands[env_ids, 3] - heading), -2., 2.)
+        self.disturbance[env_ids] = 0.
 
         # update height measurements
         if self.cfg.terrain.measure_heights:
@@ -246,7 +257,6 @@ class LeggedRobot(BaseTask):
         """
         self.dof_err = self.dof_pos - self.default_dof_pos 
         self.dof_err[:,self.wheel_indices] = 0 
-        self.dof_pos[:,self.wheel_indices] = 0 
 
         current_obs = torch.cat((   self.base_ang_vel  * self.obs_scales.ang_vel,
                                     self.projected_gravity,
@@ -279,7 +289,6 @@ class LeggedRobot(BaseTask):
 
         self.dof_err = self.dof_pos - self.default_dof_pos 
         self.dof_err[:,self.wheel_indices] = 0 
-        self.dof_pos[:,self.wheel_indices] = 0 
 
         current_obs = torch.cat((   self.base_ang_vel  * self.obs_scales.ang_vel,
                                     self.projected_gravity,
@@ -311,7 +320,6 @@ class LeggedRobot(BaseTask):
         """
         self.dof_err = self.dof_pos - self.default_dof_pos 
         self.dof_err[:,self.wheel_indices] = 0 
-        self.dof_pos[:,self.wheel_indices] = 0 
 
         current_obs = torch.cat((   self.base_ang_vel  * self.obs_scales.ang_vel,
                                     self.projected_gravity,
@@ -424,6 +432,11 @@ class LeggedRobot(BaseTask):
         Returns:
             [numpy.array]: Modified DOF properties
         """
+        # All control modes below send explicit torques; disable imported drives.
+        # Preview 4 imports continuous S10 wheels with FLT_MAX stiffness.
+        props['driveMode'].fill(gymapi.DOF_MODE_EFFORT)
+        props['stiffness'].fill(0.)
+        props['damping'].fill(0.)
         if env_id==0:
             self.dof_pos_limits = torch.zeros(self.num_dof, 2, dtype=torch.float, device=self.device, requires_grad=False)
             self.dof_vel_limits = torch.zeros(self.num_dof, dtype=torch.float, device=self.device, requires_grad=False)
@@ -519,7 +532,7 @@ class LeggedRobot(BaseTask):
         #pd controller
         dof_err = self.default_dof_pos - self.dof_pos 
         dof_err[:,self.wheel_indices] =  0 #
-        actions_scaled = actions * self.cfg.control.action_scale 
+        actions_scaled = actions * self.action_scale
         actions_scaled[:, self.wheel_indices] = 0 
         vel_ref = torch.zeros_like(actions_scaled)
         vel_tmp = actions * self.cfg.control.vel_scale 
@@ -733,6 +746,10 @@ class LeggedRobot(BaseTask):
                 if self.cfg.control.control_type in ["P", "V"]:
                     print(f"PD gain of joint {name} were not defined, setting them to zero")
         self.default_dof_pos = self.default_dof_pos.unsqueeze(0)
+        scale = self.cfg.control.action_scale
+        self.action_scale = torch.tensor(
+            [scale[name] for name in self.dof_names] if isinstance(scale, dict) else [scale] * self.num_dof,
+            dtype=torch.float, device=self.device)
         
         
         #randomize kp, kd, motor strength
@@ -1227,9 +1244,10 @@ class LeggedRobot(BaseTask):
         return torch.sum(torch.square(self.torques), dim=1)
 
     def _reward_dof_vel(self):
-        # Penalize dof velocities
-        self.dof_vel[:,self.wheel_indices] = 0
-        return torch.sum(torch.square(self.dof_vel), dim=1)
+        # Exclude wheel speed from this penalty, without changing Gym state.
+        squared_vel = torch.square(self.dof_vel)
+        squared_vel[:, self.wheel_indices] = 0.
+        return torch.sum(squared_vel, dim=1)
     
     def _reward_dof_acc(self):
         # Penalize dof accelerations
@@ -1259,4 +1277,3 @@ class LeggedRobot(BaseTask):
         dof_err = self.dof_pos - self.default_dof_pos
         dof_err[:,self.wheel_indices] = 0
         return torch.sum(torch.abs(dof_err), dim=1) * (torch.norm(self.commands[:, :2], dim=1) > 0.1)
-    

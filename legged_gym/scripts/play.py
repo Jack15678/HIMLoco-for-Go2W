@@ -60,17 +60,17 @@ def play(args, x_vel=1.0, y_vel=0.0, yaw_vel=0.0):
     env.commands[:, 1] = y_vel
     env.commands[:, 2] = yaw_vel
 
-    obs = env.get_observations()
     # load policy
     train_cfg.runner.resume = True
     ppo_runner, train_cfg = task_registry.make_alg_runner(env=env, name=args.task, args=args, train_cfg=train_cfg)
     policy = ppo_runner.get_inference_policy(device=env.device)
+    obs = env.get_observations()  # Runner construction resets and replaces the history buffer.
 
 
     # export policy as a jit module (used to run it from C++)
     if EXPORT_POLICY:
         path = os.path.join(LEGGED_GYM_ROOT_DIR, 'logs', train_cfg.runner.experiment_name, 'exported', 'policies')
-        export_policy_as_jit(ppo_runner.alg.actor_critic, path)
+        export_policy_as_jit(ppo_runner.alg.actor_critic, path, env=env)
         print('Exported policy as jit script to: ', path)
 
     logger = Logger(env.dt)
@@ -85,10 +85,11 @@ def play(args, x_vel=1.0, y_vel=0.0, yaw_vel=0.0):
 
     for i in range(10*int(env.max_episode_length)):
     
-        actions = policy(obs.detach())
         env.commands[:, 0] = x_vel
         env.commands[:, 1] = y_vel
         env.commands[:, 2] = yaw_vel
+        obs[:, 6:9] = env.commands[:, :3] * env.commands_scale
+        actions = policy(obs.detach())
         obs, _, rews, dones, infos, _, _ = env.step(actions.detach())
 
         if RECORD_FRAMES:
@@ -103,7 +104,7 @@ def play(args, x_vel=1.0, y_vel=0.0, yaw_vel=0.0):
         if i < stop_state_log:
             logger.log_states(
                 {
-                    'dof_pos_target': actions[robot_index, joint_index].item() * env.cfg.control.action_scale + env.default_dof_pos[robot_index, joint_index].item(),
+                    'dof_pos_target': actions[robot_index, joint_index].item() * env.action_scale[joint_index].item() + env.default_dof_pos[0, joint_index].item(),
                     'dof_pos': env.dof_pos[robot_index, joint_index].item(),
                     'dof_vel': env.dof_vel[robot_index, joint_index].item(),
                     'dof_torque': env.torques[robot_index, joint_index].item(),

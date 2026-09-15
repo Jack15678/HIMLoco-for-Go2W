@@ -54,6 +54,7 @@ Thumbs.db
 legged_gym/logs
 logs
 runs
+artifacts/
 
 # other
 *.egg-info

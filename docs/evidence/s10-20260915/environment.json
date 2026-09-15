@@ -1,0 +1,176 @@
+{
+  "python": "3.8.20 (default, Sep 27 2024, 06:05:23) \n[GCC 12.2.0]",
+  "packages": {
+    "pip": "25.0.1",
+    "torch": "2.0.1+cu118",
+    "torchvision": "0.15.2+cu118",
+    "isaacgym": "1.0rc4",
+    "rsl-rl": "1.0.2",
+    "legged-gym": "1.0.0",
+    "numpy": "1.23.5",
+    "scipy": "1.10.1",
+    "matplotlib": "3.7.5",
+    "tensorboard": "2.14.0",
+    "mujoco": "3.2.3",
+    "ninja": "1.11.1.4",
+    "PyYAML": "6.0.2"
+  },
+  "mapping": [
+    {
+      "name": "fl_hipx_joint",
+      "him_index": 0,
+      "sdk_index": 0,
+      "mujoco_joint_id": 1,
+      "mujoco_motor_id": 0,
+      "qpos_address": 7,
+      "qvel_address": 6
+    },
+    {
+      "name": "fl_hipy_joint",
+      "him_index": 1,
+      "sdk_index": 1,
+      "mujoco_joint_id": 2,
+      "mujoco_motor_id": 1,
+      "qpos_address": 8,
+      "qvel_address": 7
+    },
+    {
+      "name": "fl_knee_joint",
+      "him_index": 2,
+      "sdk_index": 2,
+      "mujoco_joint_id": 3,
+      "mujoco_motor_id": 2,
+      "qpos_address": 9,
+      "qvel_address": 8
+    },
+    {
+      "name": "fl_wheel_joint",
+      "him_index": 3,
+      "sdk_index": 3,
+      "mujoco_joint_id": 4,
+      "mujoco_motor_id": 3,
+      "qpos_address": 10,
+      "qvel_address": 9
+    },
+    {
+      "name": "fr_hipx_joint",
+      "him_index": 4,
+      "sdk_index": 4,
+      "mujoco_joint_id": 5,
+      "mujoco_motor_id": 4,
+      "qpos_address": 11,
+      "qvel_address": 10
+    },
+    {
+      "name": "fr_hipy_joint",
+      "him_index": 5,
+      "sdk_index": 5,
+      "mujoco_joint_id": 6,
+      "mujoco_motor_id": 5,
+      "qpos_address": 12,
+      "qvel_address": 11
+    },
+    {
+      "name": "fr_knee_joint",
+      "him_index": 6,
+      "sdk_index": 6,
+      "mujoco_joint_id": 7,
+      "mujoco_motor_id": 6,
+      "qpos_address": 13,
+      "qvel_address": 12
+    },
+    {
+      "name": "fr_wheel_joint",
+      "him_index": 7,
+      "sdk_index": 7,
+      "mujoco_joint_id": 8,
+      "mujoco_motor_id": 7,
+      "qpos_address": 14,
+      "qvel_address": 13
+    },
+    {
+      "name": "hl_hipx_joint",
+      "him_index": 8,
+      "sdk_index": 8,
+      "mujoco_joint_id": 9,
+      "mujoco_motor_id": 8,
+      "qpos_address": 15,
+      "qvel_address": 14
+    },
+    {
+      "name": "hl_hipy_joint",
+      "him_index": 9,
+      "sdk_index": 9,
+      "mujoco_joint_id": 10,
+      "mujoco_motor_id": 9,
+      "qpos_address": 16,
+      "qvel_address": 15
+    },
+    {
+      "name": "hl_knee_joint",
+      "him_index": 10,
+      "sdk_index": 10,
+      "mujoco_joint_id": 11,
+      "mujoco_motor_id": 10,
+      "qpos_address": 17,
+      "qvel_address": 16
+    },
+    {
+      "name": "hl_wheel_joint",
+      "him_index": 11,
+      "sdk_index": 11,
+      "mujoco_joint_id": 12,
+      "mujoco_motor_id": 11,
+      "qpos_address": 18,
+      "qvel_address": 17
+    },
+    {
+      "name": "hr_hipx_joint",
+      "him_index": 12,
+      "sdk_index": 12,
+      "mujoco_joint_id": 13,
+      "mujoco_motor_id": 12,
+      "qpos_address": 19,
+      "qvel_address": 18
+    },
+    {
+      "name": "hr_hipy_joint",
+      "him_index": 13,
+      "sdk_index": 13,
+      "mujoco_joint_id": 14,
+      "mujoco_motor_id": 13,
+      "qpos_address": 20,
+      "qvel_address": 19
+    },
+    {
+      "name": "hr_knee_joint",
+      "him_index": 14,
+      "sdk_index": 14,
+      "mujoco_joint_id": 15,
+      "mujoco_motor_id": 14,
+      "qpos_address": 21,
+      "qvel_address": 20
+    },
+    {
+      "name": "hr_wheel_joint",
+      "him_index": 15,
+      "sdk_index": 15,
+      "mujoco_joint_id": 16,
+      "mujoco_motor_id": 15,
+      "qpos_address": 22,
+      "qvel_address": 21
+    }
+  ],
+  "zero_budget_guard_passed": true,
+  "pip_check": "No broken requirements found.",
+  "image": {
+    "Id": "sha256:5b046b36ca01bb17012bd472c0ee99b3c75cb6c72eb5335cc497c1e62b53f27c",
+    "RepoTags": [
+      "him-gym:py38-torch201-cu118"
+    ],
+    "Created": "2026-09-15T15:52:10.651910613+08:00",
+    "Size": 2776435860
+  },
+  "gpu": "NVIDIA GeForce RTX 4090, 580.173.02, 23028 MiB",
+  "data_free_gib": 31.666736602783203
+}

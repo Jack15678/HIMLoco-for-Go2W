@@ -80,7 +80,8 @@ class HIMEstimator(nn.Module):
                 param_group['lr'] = self.learning_rate
                 
         vel = next_critic_obs[:, self.num_one_step_obs:self.num_one_step_obs+3].detach()
-        next_obs = next_critic_obs.detach()[:, 3:self.num_one_step_obs+3]
+        # Go2W/S10 frames put commands at 6:9; retain proprioception and append true velocity.
+        next_obs = torch.cat((next_critic_obs[:, :6], next_critic_obs[:, 9:self.num_one_step_obs+3]), dim=-1).detach()
 
         z_s = self.encoder(obs_history)
         z_t = self.target(next_obs)

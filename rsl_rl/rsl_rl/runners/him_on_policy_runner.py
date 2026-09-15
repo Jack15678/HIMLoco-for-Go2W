@@ -144,11 +144,11 @@ class HIMOnPolicyRunner:
             learn_time = stop - start
             if self.log_dir is not None:
                 self.log(locals())
-            if it % self.save_interval == 0:
-                self.save(os.path.join(self.log_dir, 'model_{}.pt'.format(it)))
+            self.current_learning_iteration = it + 1
+            if self.current_learning_iteration % self.save_interval == 0:
+                self.save(os.path.join(self.log_dir, 'model_{}.pt'.format(self.current_learning_iteration)))
             ep_infos.clear()
         
-        self.current_learning_iteration += num_learning_iterations
         self.save(os.path.join(self.log_dir, 'model_{}.pt'.format(self.current_learning_iteration)))
 
     def log(self, locs, width=80, pad=35):
@@ -188,7 +188,7 @@ class HIMOnPolicyRunner:
             self.writer.add_scalar('Train/mean_reward/time', statistics.mean(locs['rewbuffer']), self.tot_time)
             self.writer.add_scalar('Train/mean_episode_length/time', statistics.mean(locs['lenbuffer']), self.tot_time)
 
-        str = f" \033[1m Learning iteration {locs['it']}/{self.current_learning_iteration + locs['num_learning_iterations']} \033[0m "
+        str = f" \033[1m Learning iteration {locs['it'] + 1}/{locs['tot_iter']} \033[0m "
 
         if len(locs['rewbuffer']) > 0:
             log_string = (f"""{'#' * width}\n"""
@@ -223,7 +223,7 @@ class HIMOnPolicyRunner:
                        f"""{'Iteration time:':>{pad}} {iteration_time:.2f}s\n"""
                        f"""{'Total time:':>{pad}} {self.tot_time:.2f}s\n"""
                        f"""{'ETA:':>{pad}} {self.tot_time / (locs['it'] + 1) * (
-                               locs['num_learning_iterations'] - locs['it']):.1f}s\n""")
+                               locs['tot_iter'] - locs['it'] - 1):.1f}s\n""")
         print(log_string)
 
     def save(self, path, infos=None):
@@ -232,6 +232,8 @@ class HIMOnPolicyRunner:
             'optimizer_state_dict': self.alg.optimizer.state_dict(),
             'estimator_optimizer_state_dict': self.alg.actor_critic.estimator.optimizer.state_dict(),
             'iter': self.current_learning_iteration,
+            'tot_timesteps': self.tot_timesteps,
+            'tot_time': self.tot_time,
             'infos': infos,
             }, path)
 
@@ -241,7 +243,11 @@ class HIMOnPolicyRunner:
         if load_optimizer:
             self.alg.optimizer.load_state_dict(loaded_dict['optimizer_state_dict'])
             self.alg.actor_critic.estimator.optimizer.load_state_dict(loaded_dict['estimator_optimizer_state_dict'])
+            self.alg.learning_rate = self.alg.optimizer.param_groups[0]['lr']
+            self.alg.actor_critic.estimator.learning_rate = self.alg.actor_critic.estimator.optimizer.param_groups[0]['lr']
         self.current_learning_iteration = loaded_dict['iter']
+        self.tot_timesteps = loaded_dict.get('tot_timesteps', 0)
+        self.tot_time = loaded_dict.get('tot_time', 0.)
         return loaded_dict['infos']
 
     def get_inference_policy(self, device=None):
