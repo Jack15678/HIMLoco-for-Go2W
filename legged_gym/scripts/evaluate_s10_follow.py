@@ -59,7 +59,7 @@ def finish(out, rows, scene, reason):
 
 def empty_rows():
     return {k:[] for k in ['time','command','observed_command','velocity','position','heading',
-        'tilt','clearance','base_contact','saturated','target_contact','qpos','qvel']}
+        'tilt','clearance','base_contact','saturated','target_contact','target_contact_x','qpos','qvel']}
 
 
 def gym_run(args):
@@ -125,6 +125,10 @@ def gym_run(args):
     sim.up_axis=gymapi.UP_AXIS_Z;sim.use_gpu_pipeline=True
     sim.physx.use_gpu=True
     env=EvaluationRobot(cfg,sim,gymapi.SIM_PHYSX,'cuda:0',True)
+    if args.scene!='flat':
+        profile_x=np.linspace(0,12,121)
+        meta['actual_mesh_profile_x']=profile_x.tolist()
+        meta['actual_mesh_profile_height']=mesh_ground(env.eval_vertices,np.c_[profile_x,np.zeros_like(profile_x)]).tolist()
     checkpoint=torch.load(args.run/f'model_{args.iteration}.pt',map_location='cpu')
     assert checkpoint['iter']==args.iteration and checkpoint['tot_timesteps']==args.iteration*4096*48
     actor=HIMActorCritic(342,262,57,16,**saved['train']['policy']).to(env.device).eval()
@@ -191,7 +195,8 @@ def gym_run(args):
                 feet[:,:,1]-=offsets[:,1,None]
                 footforce=np.linalg.norm(env.contact_forces[:,env.feet_indices].cpu().numpy(),axis=-1)
                 indices=np.clip(np.rint((feet[:,:,:2]+EXTENT)/HS).astype(int),0,len(raw)-1)
-                entered=(active[indices[:,:,0],indices[:,:,1]] & (footforce>1.)).any(1)
+                target_feet=active[indices[:,:,0],indices[:,:,1]] & (footforce>1.)
+                entered=target_feet.any(1)
                 bounded_xy=np.clip(root[:,:2],-EXTENT+.2,EXTENT-.2)
                 clear=root[:,2]-(mesh_ground(env.eval_vertices,bounded_xy) if args.scene!='flat' else 0.)
                 sat=np.abs(tau.cpu().numpy())>=.99*limits
@@ -200,7 +205,9 @@ def gym_run(args):
                 for i in range(n):
                     if not alive[i]: continue
                     x,y,z,w=root[i,3:7];yaw=np.arctan2(2*(w*z+x*y),1-2*(y*y+z*z))
-                    values=dict(time=t,command=cmd,observed_command=observed[i],velocity=vel[i],position=root[i,:3],heading=yaw,tilt=tilt[i],clearance=clear[i],base_contact=base[i],saturated=sat[i],target_contact=entered[i],qpos=np.r_[root[i,:3],root[i,[6,3,4,5]],q[i]],qvel=np.r_[root[i,7:10],ang[i].cpu().numpy(),dq[i]])
+                    contact_x=feet[i,target_feet[i],0]
+                    span=[float(contact_x.min()),float(contact_x.max())] if len(contact_x) else [0.,0.]
+                    values=dict(time=t,command=cmd,observed_command=observed[i],velocity=vel[i],position=root[i,:3],heading=yaw,tilt=tilt[i],clearance=clear[i],base_contact=base[i],saturated=sat[i],target_contact=entered[i],target_contact_x=span,qpos=np.r_[root[i,:3],root[i,[6,3,4,5]],q[i]],qvel=np.r_[root[i,7:10],ang[i].cpu().numpy(),dq[i]])
                     assert all(np.isfinite(v).all() for v in values.values())
                     for k,v in values.items(): rows[i][k].append(np.array(v).copy())
                     if base[i]>1. or tilt[i]>np.deg2rad(45.) or clear[i]<.2:
@@ -265,7 +272,7 @@ def mujoco_run(args):
                         mujoco.mj_contactForce(model,data,ci,force);contact=max(contact,float(np.linalg.norm(force[:3])))
                 rotation=data.xmat[base].reshape(3,3);tilt=np.arccos(np.clip(rotation[2,2],-1,1))
                 t=(step*8+sub+1)*.0025;vel=velocity[[3,4,2]].copy()
-                values=dict(time=t,command=cmd,observed_command=observed,velocity=vel,position=data.qpos[:3],heading=np.arctan2(rotation[1,0],rotation[0,0]),tilt=tilt,clearance=data.qpos[2],base_contact=contact,saturated=np.abs(tau)>=.99*limits,target_contact=False,qpos=data.qpos,qvel=data.qvel)
+                values=dict(time=t,command=cmd,observed_command=observed,velocity=vel,position=data.qpos[:3],heading=np.arctan2(rotation[1,0],rotation[0,0]),tilt=tilt,clearance=data.qpos[2],base_contact=contact,saturated=np.abs(tau)>=.99*limits,target_contact=False,target_contact_x=[0.,0.],qpos=data.qpos,qvel=data.qvel)
                 assert all(np.isfinite(v).all() for v in values.values())
                 for k,v in values.items(): rows[k].append(np.array(v).copy())
                 if (step*8+sub)%20==0:

@@ -115,8 +115,9 @@ def summarize(rows, scene, end_reason):
                target_contact_x_range=None, segments=[])
     hit = rows['target_contact'].astype(bool)
     if hit.any():
-        out['target_contact_x_range'] = [float(rows['position'][hit,0].min()), float(rows['position'][hit,0].max())]
-    out['terrain_coverage'] = 'flat' if scene == 'flat' else ('entered' if hit.any() else 'not_entered')
+        out['target_contact_x_range'] = [float(rows['target_contact_x'][hit,0].min()), float(rows['target_contact_x'][hit,1].max())]
+    out['terrain_coverage'] = 'flat' if scene == 'flat' else ('contacted; inspect contact span' if hit.any() else 'not_entered')
+    out['response_time_definition']='90% is first directional crossing; stable is within +/-10% of nonzero target for >=1s. Null means not reached for nonzero targets, not applicable for zero targets.'
     for start, end, target in schedule(scene):
         mask = (t > start+1e-8) & (t <= end+1e-8)
         if not mask.any():
