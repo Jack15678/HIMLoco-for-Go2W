@@ -60,6 +60,9 @@ def main():
     torch.testing.assert_close(env._reward_parking_lin_vel(),expected)
     torch.testing.assert_close(env._reward_parking_ang_vel(),2*expected)
     torch.testing.assert_close(env._reward_parking_wheel_vel(),2*expected)
+    env.dof_pos[:]=.1
+    torch.testing.assert_close(env._reward_stand_still(),1.2*expected)
+    env.dof_pos[:]=0
     assert (env._reward_dof_vel()==0).all() and (env.dof_vel[:,env.wheel_indices]==2).all()
     env.commands[:]=0;env.dof_vel[:]=0
     action=torch.zeros(10,16);action[:,env.wheel_indices]=.2
