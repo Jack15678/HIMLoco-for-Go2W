@@ -129,7 +129,10 @@ class HIMActorCritic(nn.Module):
         print(f'Estimator: {self.estimator.encoder}')
 
         # Action noise
-        self.std = nn.Parameter(init_noise_std * torch.ones(num_actions))
+        initial_std = torch.as_tensor(init_noise_std, dtype=torch.float32)
+        if initial_std.shape not in [torch.Size([]), torch.Size([num_actions])] or not torch.isfinite(initial_std).all() or not (initial_std > 0).all():
+            raise ValueError('init_noise_std must be a positive finite scalar or one value per action')
+        self.std = nn.Parameter(initial_std * torch.ones(num_actions))
         self.distribution = None
         # disable args validation for speedup
         Normal.set_default_validate_args = False

@@ -121,6 +121,7 @@ class HIMPPO:
         mean_surrogate_loss = 0
         mean_estimation_loss = 0
         mean_swap_loss = 0
+        kl_means, clip_fractions, learning_rates = [], [], []
         
         generator = self.storage.mini_batch_generator(self.num_mini_batches, self.num_learning_epochs)
 
@@ -140,6 +141,7 @@ class HIMPPO:
                         kl = torch.sum(
                             torch.log(sigma_batch / old_sigma_batch + 1.e-5) + (torch.square(old_sigma_batch) + torch.square(old_mu_batch - mu_batch)) / (2.0 * torch.square(sigma_batch)) - 0.5, axis=-1)
                         kl_mean = torch.mean(kl)
+                        kl_means.append(kl_mean.item())
 
                         if kl_mean > self.desired_kl * 2.0:
                             self.learning_rate = max(1e-5, self.learning_rate / 1.5)
@@ -154,6 +156,8 @@ class HIMPPO:
 
                 # Surrogate loss
                 ratio = torch.exp(actions_log_prob_batch - torch.squeeze(old_actions_log_prob_batch))
+                clip_fractions.append(((ratio.detach() - 1.).abs() > self.clip_param).float().mean().item())
+                learning_rates.append(self.learning_rate)
                 surrogate = -torch.squeeze(advantages_batch) * ratio
                 surrogate_clipped = -torch.squeeze(advantages_batch) * torch.clamp(ratio, 1.0 - self.clip_param,
                                                                                 1.0 + self.clip_param)
@@ -188,5 +192,10 @@ class HIMPPO:
         mean_estimation_loss /= num_updates
         mean_swap_loss /= num_updates
         self.storage.clear()
+        self.update_stats = dict(
+            kl_mean=sum(kl_means) / len(kl_means) if kl_means else None,
+            kl_max=max(kl_means) if kl_means else None,
+            clip_fraction=sum(clip_fractions) / num_updates,
+            minibatch_kl=kl_means, minibatch_learning_rates=learning_rates)
 
-        return mean_value_loss, mean_surrogate_loss, estimation_loss, swap_loss
+        return mean_value_loss, mean_surrogate_loss, mean_estimation_loss, mean_swap_loss

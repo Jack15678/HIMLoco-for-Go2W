@@ -55,6 +55,7 @@ legged_gym/logs
 logs
 runs
 artifacts/
+docs/evidence/s10-resume-20260915/
 
 # other
 *.egg-info

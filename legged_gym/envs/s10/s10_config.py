@@ -19,7 +19,11 @@ class S10RoughCfg(GO2WRoughCfg):
                         for leg in ['fl', 'fr', 'hl', 'hr']
                         for joint, scale in [('hipx', .125), ('hipy', .25), ('knee', .25), ('wheel', 0.)]}
         vel_scale = 5.
-        decimation = 4  # 5 ms PD, 20 ms policy; retain HIM timing and delay sampling.
+        decimation = 8  # 2.5 ms PD, 20 ms policy/history/reward integration.
+        delay_stride = 2  # Uniform 0/2/4/6 substeps = 0/5/10/15 ms.
+
+    class sim(GO2WRoughCfg.sim):
+        dt = .0025
 
     class asset(GO2WRoughCfg.asset):
         file = '{LEGGED_GYM_ROOT_DIR}/resources/robots/s10/urdf/S10.urdf'
@@ -35,8 +39,11 @@ class S10RoughCfg(GO2WRoughCfg):
 
 
 class S10RoughCfgPPO(GO2WRoughCfgPPO):
+    class policy(GO2WRoughCfgPPO.policy):
+        init_noise_std = [.3, .3, .3, .6] * 4  # hipx, hipy, knee, wheel per leg.
+
     class runner(GO2WRoughCfgPPO.runner):
         experiment_name = 'S10_HIM'
-        save_interval = 100
+        save_interval = 50
         max_iterations = None  # A new run requires an explicit approved budget.
         resume = False
