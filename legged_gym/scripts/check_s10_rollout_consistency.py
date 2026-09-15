@@ -42,7 +42,8 @@ def main():
         expected = copy.deepcopy(saved['env'])
         expected['env']['num_envs'] = 512
         assert class_to_dict(cfg) == expected, 'Only environment count may differ'
-        assert env.sim_params.dt == .0025 and cfg.control.decimation == 8 and env.dt == .02
+        assert abs(env.sim_params.dt - .0025) < 1e-9 and cfg.control.decimation == 8
+        assert abs(env.dt - .02) < 1e-9
         assert cfg.control.delay_stride == 2
         assert saved['train']['policy']['init_noise_std'] == [.3, .3, .3, .6] * 4
         runner = HIMOnPolicyRunner(env, saved['train'], log_dir=None, device=args.rl_device)
