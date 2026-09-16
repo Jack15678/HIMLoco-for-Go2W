@@ -17,7 +17,7 @@ from rsl_rl.runners import HIMOnPolicyRunner
 
 
 def main():
-    parser = argparse.ArgumentParser(add_help=False)
+    parser = argparse.ArgumentParser(add_help=False, allow_abbrev=False)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--source-commit', required=True)
     parser.add_argument('--check-only', action='store_true')

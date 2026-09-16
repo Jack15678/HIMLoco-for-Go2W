@@ -11,6 +11,9 @@ def report(run, evaluations, window=200):
         raise ValueError('No completed training iterations')
     last = rows[-1]
     first = rows[max(0, len(rows)-window-1)] if len(rows) > window else None
+    if first is None and (run/'resume_verification.json').exists():
+        initial = json.loads((run/'resume_verification.json').read_text())
+        first = dict(iteration=initial['iteration'], curriculum=initial['initial_curriculum'])
     current = last['curriculum']
     def difference(key):
         values = np.asarray(current[key], dtype=float)

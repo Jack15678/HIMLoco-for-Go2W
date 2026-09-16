@@ -120,6 +120,14 @@ def main():
         assert result['iteration'] == 1 and len(result['terrain_mode_cells']) == 48
         assert result['evaluation_status'] == 'not_run_or_no_v2_results'
         assert any(x['coverage'] == 'not_sampled' for x in result['terrain_mode_cells'])
+        # A continuation's short window excludes the restored historical counters.
+        initial = course.report()
+        (run/'resume_verification.json').write_text(json.dumps(dict(iteration=1000, initial_curriculum=initial)))
+        course.total_seconds[0, 0] += 5.
+        (run/'metrics.jsonl').write_text(json.dumps(dict(iteration=1001, curriculum=course.report()))+'\n')
+        result = diagnostics.report(run, None)
+        assert result['window_start_iteration'] == 1000
+        assert result['terrain_mode_cells'][0]['seconds'] == 5.
     print('Diagnostics distinguish missing task coverage and absent evaluation from success.')
 
 
