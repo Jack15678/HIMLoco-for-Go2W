@@ -10,9 +10,26 @@ class S10RoughCfg(GO2WRoughCfg):
         pebble_vertical_scale = .001
         pebble_height_range = [.01, .08]
         pebble_density_range = [2., 5.]
+        task_spawn_fraction = .5  # Half start on terrain for turning/sideways/parking coverage.
 
     class commands(GO2WRoughCfg.commands):
         extended_speed_fraction = .2  # Random membership within every terrain column.
+        task_curriculum = True
+        # forward, reverse, left, right, yaw-left, yaw-right, mixed, parking
+        mode_probabilities = [.18, .12, .10, .10, .10, .10, .10, .20]
+        base_speed_limits = [1., .6, 1.]
+        max_speed_limits = [1.5, .9, 1.5]
+        speed_increments = [.1, .05, .1]
+        minimum_speed = [.15, .1, .2]
+        tracking_absolute_tolerance = [.1, .08, .15]
+        tracking_relative_tolerance = .2
+        parking_tracking_tolerance = [.02, .02, .04]
+        transition_seconds = 1.
+        minimum_episode_seconds = 3.
+        curriculum_window_s = 20.
+        minimum_bucket_seconds = 10.
+        promote_score = .8
+        demote_score = .4
         heading_command = False  # Sample yaw rate directly; actor input remains vx/vy/yaw rate.
         parking_probability = .2
         parking_thresholds = [.03, .03, .05]  # Command vx/vy (m/s), yaw rate (rad/s).

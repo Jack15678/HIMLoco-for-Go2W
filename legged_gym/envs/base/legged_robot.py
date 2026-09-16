@@ -44,7 +44,7 @@ from typing import Tuple, Dict
 from legged_gym import LEGGED_GYM_ROOT_DIR
 from legged_gym.envs.base.base_task import BaseTask
 from legged_gym.utils.terrain import Terrain
-from legged_gym.utils.curriculum import stratified_extended_mask
+from legged_gym.utils.curriculum import stratified_extended_mask, TaskCurriculum
 from legged_gym.utils.math import quat_apply_yaw, wrap_to_pi, torch_rand_sqrt_float, get_scale_shift
 from legged_gym.utils.helpers import class_to_dict
 from .legged_robot_config import LeggedRobotCfg
@@ -140,6 +140,9 @@ class LeggedRobot(BaseTask):
         self.feet_pos = self.rigid_body_states.view(self.num_envs, self.num_bodies, 13)[:, self.feet_indices, 0:3]
         self.feet_vel = self.rigid_body_states.view(self.num_envs, self.num_bodies, 13)[:, self.feet_indices, 7:10]
 
+        if hasattr(self, 'task_curriculum'):
+            target, inside = self._curriculum_surface()
+            self.task_curriculum.record(target, inside)
         self._post_physics_step_callback()
 
         # compute observations, rewards, resets, ...
@@ -147,6 +150,10 @@ class LeggedRobot(BaseTask):
         self.compute_reward()
         env_ids = self.reset_buf.nonzero(as_tuple=False).flatten()
         termination_privileged_obs = self.compute_termination_observations(env_ids)
+        if hasattr(self, 'task_curriculum'):
+            # Score the completed transition before selecting the next command.
+            due = (self.episode_length_buf % round(self.cfg.commands.resampling_time/self.dt) == 0) & ~self.reset_buf
+            self._resample_commands(due.nonzero(as_tuple=False).flatten())
         self.reset_idx(env_ids)
         self.compute_observations() # in some cases a simulation step might be required to refresh some obs (for example body positions)
 
@@ -167,6 +174,9 @@ class LeggedRobot(BaseTask):
         """
         self.reset_buf = torch.any(torch.norm(self.contact_forces[:, self.termination_contact_indices, :], dim=-1) > 1., dim=1)
         self.time_out_buf = self.episode_length_buf > self.max_episode_length # no terminal reward for time-outs
+        if hasattr(self, 'task_curriculum'):
+            half_size = self.root_states.new_tensor([self.terrain.env_length, self.terrain.env_width])*.5-.35
+            self.time_out_buf |= ((self.root_states[:, :2]-self.env_origins[:, :2]).abs() > half_size).any(dim=1)
         self.reset_buf |= self.time_out_buf
 
     def reset_idx(self, env_ids):
@@ -487,7 +497,8 @@ class LeggedRobot(BaseTask):
         """
         # 
         env_ids = (self.episode_length_buf % int(self.cfg.commands.resampling_time / self.dt)==0).nonzero(as_tuple=False).flatten()
-        self._resample_commands(env_ids)
+        if not hasattr(self, 'task_curriculum'):
+            self._resample_commands(env_ids)
         if self.cfg.commands.heading_command:
             self._update_heading_commands(slice(None))
 
@@ -504,6 +515,9 @@ class LeggedRobot(BaseTask):
         Args:
             env_ids (List[int]): Environments ids for which new commands are needed
         """
+        if hasattr(self, 'task_curriculum'):
+            self.task_curriculum.sample(env_ids)
+            return
         self.commands[env_ids, 0] = torch_rand_float(-1.0, 1.0, (len(env_ids), 1), device=self.device).squeeze(1)
         self.commands[env_ids, 1] = torch_rand_float(self.command_ranges["lin_vel_y"][0], self.command_ranges["lin_vel_y"][1], (len(env_ids), 1), device=self.device).squeeze(1)
         if self.cfg.commands.heading_command:
@@ -596,6 +610,14 @@ class LeggedRobot(BaseTask):
             self.root_states[env_ids] = self.base_init_state
             self.root_states[env_ids, :3] += self.env_origins[env_ids]
             self.root_states[env_ids, :2] += torch_rand_float(-1., 1., (len(env_ids), 2), device=self.device) # xy position within 1m of the center
+            if hasattr(self, 'task_curriculum'):
+                ids = env_ids[torch.rand(len(env_ids), device=self.device) < self.cfg.terrain.task_spawn_fraction]
+                xy = torch_rand_float(-2.5, 2.5, (len(ids), 2), device=self.device)
+                xy[:, 0] = torch.where(xy[:, 0] >= 0, 2.4, -2.4)
+                self.root_states[ids, :2] = self.env_origins[ids, :2] + xy
+                offsets = self.root_states.new_tensor([[0, 0, 0], [.35, .25, 0], [.35, -.25, 0], [-.35, .25, 0], [-.35, -.25, 0]])
+                points = self.root_states[ids, None, :3] + offsets
+                self.root_states[ids, 2] = self._surface_heights(points).max(dim=1).values + self.cfg.init_state.pos[2]
         else:
             self.root_states[env_ids] = self.base_init_state
             self.root_states[env_ids, :3] += self.env_origins[env_ids]
@@ -630,11 +652,14 @@ class LeggedRobot(BaseTask):
         if not self.init_done:
             # don't change on initial reset
             return
-        distance = torch.norm(self.root_states[env_ids, :2] - self.env_origins[env_ids, :2], dim=1)
-        # robots that walked far enough progress to harder terains
-        move_up = distance > self.terrain.env_length / 2
-        # robots that walked less than half of their required distance go to simpler terrains
-        move_down = (distance < torch.norm(self.commands[env_ids, :2], dim=1)*self.max_episode_length_s*0.5) * ~move_up
+        if hasattr(self, 'task_curriculum'):
+            failed = (self.contact_forces[env_ids][:, self.termination_contact_indices].norm(dim=-1) > 1.).any(dim=1) & (self.episode_length_buf[env_ids] > 0)
+            delta = self.task_curriculum.finish(env_ids, failed)
+            move_up, move_down = delta > 0, delta < 0
+        else:
+            distance = torch.norm(self.root_states[env_ids, :2] - self.env_origins[env_ids, :2], dim=1)
+            move_up = distance > self.terrain.env_length / 2
+            move_down = (distance < torch.norm(self.commands[env_ids, :2], dim=1)*self.max_episode_length_s*0.5) * ~move_up
         self.terrain_levels[env_ids] += 1 * move_up - 1 * move_down
         # Robots that solve the last level are sent to a random one
         self.terrain_levels[env_ids] = torch.where(self.terrain_levels[env_ids]>=self.max_terrain_level,
@@ -648,6 +673,8 @@ class LeggedRobot(BaseTask):
         Args:
             env_ids (List[int]): ids of environments being reset
         """
+        if hasattr(self, 'task_curriculum'):
+            return  # Independently updated from all environments every fixed time window.
         high_vel_env_ids = self.extended_speed_envs[env_ids] if hasattr(self, 'extended_speed_envs') else (env_ids < (self.num_envs * 0.2))
         low_vel_env_ids = ~high_vel_env_ids
         low_vel_env_ids = env_ids[low_vel_env_ids.nonzero(as_tuple=True)]
@@ -739,6 +766,8 @@ class LeggedRobot(BaseTask):
         if hasattr(self.cfg.commands, 'extended_speed_fraction'):
             columns = getattr(self, 'terrain_types', torch.zeros(self.num_envs, dtype=torch.long, device=self.device))
             self.extended_speed_envs = stratified_extended_mask(columns, self.cfg.commands.extended_speed_fraction)
+        if getattr(self.cfg.commands, 'task_curriculum', False) and self.cfg.terrain.curriculum:
+            self.task_curriculum = TaskCurriculum(self)
         self.commands_scale = torch.tensor([self.obs_scales.lin_vel, self.obs_scales.lin_vel, self.obs_scales.ang_vel], device=self.device, requires_grad=False,) # TODO change this
         self.feet_air_time = torch.zeros(self.num_envs, self.feet_indices.shape[0], dtype=torch.float, device=self.device, requires_grad=False)
         self.last_contacts = torch.zeros(self.num_envs, len(self.feet_indices), dtype=torch.bool, device=self.device, requires_grad=False)
@@ -1220,6 +1249,25 @@ class LeggedRobot(BaseTask):
         feet_height =  self.feet_pos[:, :, 2] - heights
 
         return feet_height
+
+    def _surface_heights(self, points):
+        grid = ((points[..., :2] + self.cfg.terrain.border_size)/self.cfg.terrain.horizontal_scale).long()
+        x = grid[..., 0].clamp(0, self.height_samples.shape[0]-2)
+        y = grid[..., 1].clamp(0, self.height_samples.shape[1]-2)
+        heights = self.height_samples[x, y] * self.cfg.terrain.vertical_scale
+        return self._pebble_heights(points, heights)
+
+    def _curriculum_surface(self):
+        local = self.feet_pos[..., :2]-self.env_origins[:, None, :2]
+        half_size = local.new_tensor([self.terrain.env_length, self.terrain.env_width])*.5
+        inside = ((self.root_states[:, :2]-self.env_origins[:, :2]).abs() < half_size-.35).all(dim=1)
+        outside_platform = (local.abs().amax(dim=2) > 1.55) & (local.abs() < half_size).all(dim=2)
+        heights = self._surface_heights(self.feet_pos)
+        kind = self.task_curriculum.kinds[:, None]
+        # Sparse obstacle/pebble fields require a loaded wheel on the geometry itself.
+        surface = torch.where(kind >= 4, heights.abs() > .0005, torch.ones_like(outside_platform))
+        loaded = self.contact_forces[:, self.feet_indices].norm(dim=2) > 1.
+        return (outside_platform & surface & loaded).any(dim=1) & inside, inside
 
     def _pebble_heights(self, points, heights):
         """Use the exact fine mesh triangles for pebble-region height queries."""
