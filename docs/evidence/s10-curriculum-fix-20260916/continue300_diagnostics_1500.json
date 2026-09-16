@@ -884,7 +884,1034 @@
     187.0,
     4.0
   ],
-  "task_evaluations": [],
-  "evaluation_status": "not_run_or_no_v2_results",
+  "task_evaluations": [
+    {
+      "path": "forward\\trial_0\\summary.json",
+      "scene": "stairs_up_5cm",
+      "probe": "forward",
+      "seed": 701,
+      "status": "tracking_deficit",
+      "task": {
+        "start": 3,
+        "end": 11,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.20303735463855604,
+          0.09920292032864968,
+          0.15913556466976636
+        ],
+        "target_surface_rmse": [
+          0.19172829664555693,
+          0.1003108024178582,
+          0.15778302652096463
+        ],
+        "tail_mean": [
+          0.36725983023643494,
+          -0.0014094763901084661,
+          -0.010115189477801323
+        ],
+        "tail_std": [
+          0.12335848808288574,
+          0.08384019136428833,
+          0.12074588239192963
+        ],
+        "target_surface_seconds": 6.99,
+        "target_success_fraction": 0.09477825464949928,
+        "time_to_all_axes_held_1s": null,
+        "position_displacement": 2.9089901447296143,
+        "path_length": 3.0649006366729736,
+        "heading_net_change": -0.13925358701466561,
+        "heading_path": 0.9845502793253393,
+        "passed": false,
+        "evidence": "sufficient"
+      },
+      "stopping": {
+        "start": 11,
+        "end": 17,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.045562842348910615,
+          0.011647621417135446,
+          0.02978213501608383
+        ],
+        "target_surface_rmse": [
+          0.0032710034250481254,
+          0.0032422787848875806,
+          0.012102186158151907
+        ],
+        "tail_mean": [
+          5.994543607812375e-05,
+          -1.676023930485826e-05,
+          -0.001762012834660709
+        ],
+        "tail_std": [
+          5.4044990974944085e-05,
+          3.499917147564702e-05,
+          0.00018448045011609793
+        ],
+        "target_surface_seconds": 5.0,
+        "target_success_fraction": 0.893,
+        "time_to_all_axes_held_1s": 1.6174999999999997,
+        "position_displacement": 0.034401021897792816,
+        "path_length": 0.07375554740428925,
+        "heading_net_change": 0.013083630085668638,
+        "heading_path": 0.07026043935822616,
+        "passed": false,
+        "evidence": "sufficient",
+        "holding_displacement": 0.007506232708692551,
+        "holding_path": 0.009570536203682423,
+        "holding_heading_path": 0.021839340898403878,
+        "braking_distance_1s": 0.026859786361455917,
+        "wheel_velocity_rms": [
+          0.02750062197446823,
+          0.1260947436094284,
+          0.03397374600172043,
+          0.2339429408311844
+        ]
+      },
+      "tilt": 14.476112365722656,
+      "saturation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.000588235294117647
+      ]
+    },
+    {
+      "path": "forward\\trial_1\\summary.json",
+      "scene": "stairs_up_5cm",
+      "probe": "forward",
+      "seed": 701,
+      "status": "passed_fixed_case",
+      "task": {
+        "start": 3,
+        "end": 11,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.05389164209306522,
+          0.010701384895160137,
+          0.04721470905525275
+        ],
+        "target_surface_rmse": [
+          0.04059853582799944,
+          0.010121479267032538,
+          0.04486363038965616
+        ],
+        "tail_mean": [
+          0.45726385712623596,
+          0.0006658064667135477,
+          0.00024383701384067535
+        ],
+        "tail_std": [
+          0.007360200397670269,
+          0.011860592290759087,
+          0.04952159896492958
+        ],
+        "target_surface_seconds": 7.0,
+        "target_success_fraction": 0.9882142857142857,
+        "time_to_all_axes_held_1s": 0.14749999999999996,
+        "position_displacement": 3.652968645095825,
+        "path_length": 3.654201030731201,
+        "heading_net_change": -0.013519313577860848,
+        "heading_path": 0.31979486117314937,
+        "passed": true,
+        "evidence": "sufficient"
+      },
+      "stopping": {
+        "start": 11,
+        "end": 17,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.04052925502842426,
+          0.0026240466716649065,
+          0.01591959923714488
+        ],
+        "target_surface_rmse": [
+          0.0008436012538697322,
+          0.0002390968905610254,
+          0.0018153680871923756
+        ],
+        "tail_mean": [
+          -8.40372231323272e-05,
+          -0.00010168831067858264,
+          -0.0008986225002445281
+        ],
+        "tail_std": [
+          0.0008764330996200442,
+          0.0002318310725968331,
+          0.0015394786605611444
+        ],
+        "target_surface_seconds": 5.0,
+        "target_success_fraction": 1.0,
+        "time_to_all_axes_held_1s": 0.5675000000000008,
+        "position_displacement": 0.0260024294257164,
+        "path_length": 0.044453926384449005,
+        "heading_net_change": -0.01497710828077059,
+        "heading_path": 0.021432920261855948,
+        "passed": true,
+        "evidence": "sufficient",
+        "holding_displacement": 0.00023769240942783654,
+        "holding_path": 0.0015027299523353577,
+        "holding_heading_path": 0.005004519713421862,
+        "braking_distance_1s": 0.025765687227249146,
+        "wheel_velocity_rms": [
+          0.12401533126831055,
+          0.06539146602153778,
+          0.07900799810886383,
+          0.06688489019870758
+        ]
+      },
+      "tilt": 9.88797378540039,
+      "saturation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "path": "forward\\trial_2\\summary.json",
+      "scene": "stairs_up_5cm",
+      "probe": "forward",
+      "seed": 701,
+      "status": "tracking_deficit",
+      "task": {
+        "start": 3,
+        "end": 11,
+        "command": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.11764059424087907,
+          0.029655187339043283,
+          0.1068991140132462
+        ],
+        "target_surface_rmse": [
+          0.11374853061516467,
+          0.029459517624035692,
+          0.1081638753866917
+        ],
+        "tail_mean": [
+          0.40791356563568115,
+          -0.003975179977715015,
+          0.010136986151337624
+        ],
+        "tail_std": [
+          0.06415782868862152,
+          0.03545363247394562,
+          0.13289442658424377
+        ],
+        "target_surface_seconds": 7.0,
+        "target_success_fraction": 0.3628571428571429,
+        "time_to_all_axes_held_1s": null,
+        "position_displacement": 3.1934869289398193,
+        "path_length": 3.2034144401550293,
+        "heading_net_change": 0.04600754154808051,
+        "heading_path": 0.5825915169863327,
+        "passed": false,
+        "evidence": "sufficient"
+      },
+      "stopping": {
+        "start": 11,
+        "end": 17,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.029248531148234676,
+          0.006417721019245705,
+          0.010723559124051412
+        ],
+        "target_surface_rmse": [
+          0.012954030986442945,
+          0.005755937474787051,
+          0.008755505513479141
+        ],
+        "tail_mean": [
+          -0.00532695883885026,
+          -0.0016675430815666914,
+          0.005075573921203613
+        ],
+        "tail_std": [
+          0.005270134657621384,
+          0.004951800219714642,
+          0.00669701537117362
+        ],
+        "target_surface_seconds": 5.0,
+        "target_success_fraction": 0.429,
+        "time_to_all_axes_held_1s": 4.800000000000001,
+        "position_displacement": 0.04459614306688309,
+        "path_length": 0.10018958151340485,
+        "heading_net_change": 0.018508242152840637,
+        "heading_path": 0.046866616681650264,
+        "passed": false,
+        "evidence": "sufficient",
+        "holding_displacement": 0.054077647626399994,
+        "holding_path": 0.06548045575618744,
+        "holding_heading_path": 0.03194067414732382,
+        "braking_distance_1s": 0.011620130389928818,
+        "wheel_velocity_rms": [
+          0.3184347450733185,
+          0.23820742964744568,
+          0.18936443328857422,
+          0.2035030573606491
+        ]
+      },
+      "tilt": 12.882994651794434,
+      "saturation": [
+        0.0,
+        0.0,
+        0.0,
+        0.00014705882352941175,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "path": "left\\trial_0\\summary.json",
+      "scene": "stairs_up_5cm",
+      "probe": "left",
+      "seed": 701,
+      "status": "tracking_deficit",
+      "task": {
+        "start": 3,
+        "end": 11,
+        "command": [
+          0.0,
+          0.3,
+          0.0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.0345342128204103,
+          0.13211620495426896,
+          0.11240291301772073
+        ],
+        "target_surface_rmse": [
+          0.031029296728172784,
+          0.12833552395938833,
+          0.11504787206662372
+        ],
+        "tail_mean": [
+          0.0024604452773928642,
+          0.16747209429740906,
+          0.014341993257403374
+        ],
+        "tail_std": [
+          0.03693237900733948,
+          0.049904242157936096,
+          0.11794096976518631
+        ],
+        "target_surface_seconds": 7.0,
+        "target_success_fraction": 0.21785714285714286,
+        "time_to_all_axes_held_1s": null,
+        "position_displacement": 1.5292906761169434,
+        "path_length": 1.5497570037841797,
+        "heading_net_change": 0.002069565314138277,
+        "heading_path": 0.688461042889386,
+        "passed": false,
+        "evidence": "sufficient"
+      },
+      "stopping": {
+        "start": 11,
+        "end": 17,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.00796803427503771,
+          0.01467941924713528,
+          0.02886877763517612
+        ],
+        "target_surface_rmse": [
+          0.0010451514043726057,
+          0.0006787241274930361,
+          0.001660217400307249
+        ],
+        "tail_mean": [
+          -0.00011053336493205279,
+          -0.00010556442430242896,
+          0.0014102411223575473
+        ],
+        "tail_std": [
+          3.347554957144894e-05,
+          3.992994243162684e-05,
+          0.00012089877418475226
+        ],
+        "target_surface_seconds": 5.0,
+        "target_success_fraction": 1.0,
+        "time_to_all_axes_held_1s": 0.9399999999999995,
+        "position_displacement": 0.0060227178037166595,
+        "path_length": 0.03090890310704708,
+        "heading_net_change": 0.03483651391936252,
+        "heading_path": 0.04637877531879108,
+        "passed": true,
+        "evidence": "sufficient",
+        "holding_displacement": 0.0018321999814361334,
+        "holding_path": 0.0027226193342357874,
+        "holding_heading_path": 0.002279199953207217,
+        "braking_distance_1s": 0.006159513257443905,
+        "wheel_velocity_rms": [
+          0.014849908649921417,
+          0.04675932228565216,
+          0.017496133223176003,
+          0.0777122899889946
+        ]
+      },
+      "tilt": 14.359391212463379,
+      "saturation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00014705882352941175
+      ]
+    },
+    {
+      "path": "left\\trial_1\\summary.json",
+      "scene": "stairs_up_5cm",
+      "probe": "left",
+      "seed": 701,
+      "status": "tracking_deficit",
+      "task": {
+        "start": 3,
+        "end": 11,
+        "command": [
+          0.0,
+          0.3,
+          0.0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.045609009600371724,
+          0.126825861960922,
+          0.19726864587666537
+        ],
+        "target_surface_rmse": [
+          0.04688449291151479,
+          0.12368043026531765,
+          0.19894428833193387
+        ],
+        "tail_mean": [
+          -0.022027304396033287,
+          0.17859764397144318,
+          0.028519075363874435
+        ],
+        "tail_std": [
+          0.041457511484622955,
+          0.0852891132235527,
+          0.1980142742395401
+        ],
+        "target_surface_seconds": 6.9975000000000005,
+        "target_success_fraction": 0.11789924973204716,
+        "time_to_all_axes_held_1s": null,
+        "position_displacement": 1.6133828163146973,
+        "path_length": 1.676398515701294,
+        "heading_net_change": 0.33574389789726067,
+        "heading_path": 1.1761643431505682,
+        "passed": false,
+        "evidence": "sufficient"
+      },
+      "stopping": {
+        "start": 11,
+        "end": 17,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.039799915383425435,
+          0.023960254629792947,
+          0.01673570977970133
+        ],
+        "target_surface_rmse": [
+          0.00920586907661757,
+          0.006351489532837446,
+          0.006043926451361923
+        ],
+        "tail_mean": [
+          -0.0002320704224985093,
+          5.938005415373482e-06,
+          0.0003085543867200613
+        ],
+        "tail_std": [
+          0.0012077440042048693,
+          0.0006708595901727676,
+          0.0029418908525258303
+        ],
+        "target_surface_seconds": 5.0,
+        "target_success_fraction": 0.8525,
+        "time_to_all_axes_held_1s": 1.7400000000000002,
+        "position_displacement": 0.07045869529247284,
+        "path_length": 0.13196156919002533,
+        "heading_net_change": -0.00678116352448721,
+        "heading_path": 0.05639299319404878,
+        "passed": false,
+        "evidence": "sufficient",
+        "holding_displacement": 0.020058050751686096,
+        "holding_path": 0.027539748698472977,
+        "holding_heading_path": 0.016430002293924773,
+        "braking_distance_1s": 0.08024592697620392,
+        "wheel_velocity_rms": [
+          0.1268080770969391,
+          0.3458517789840698,
+          0.1733652949333191,
+          0.09496699273586273
+        ]
+      },
+      "tilt": 16.113630294799805,
+      "saturation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "path": "left\\trial_2\\summary.json",
+      "scene": "stairs_up_5cm",
+      "probe": "left",
+      "seed": 701,
+      "status": "tracking_deficit",
+      "task": {
+        "start": 3,
+        "end": 11,
+        "command": [
+          0.0,
+          0.3,
+          0.0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.043248289661040246,
+          0.1404226462257974,
+          0.1047422850910047
+        ],
+        "target_surface_rmse": [
+          0.04309312157317808,
+          0.12760494578730855,
+          0.10127204950815227
+        ],
+        "tail_mean": [
+          -0.04172720015048981,
+          0.21760906279087067,
+          0.034885719418525696
+        ],
+        "tail_std": [
+          0.021639078855514526,
+          0.07373964786529541,
+          0.07084302604198456
+        ],
+        "target_surface_seconds": 7.0,
+        "target_success_fraction": 0.27214285714285713,
+        "time_to_all_axes_held_1s": null,
+        "position_displacement": 1.4835363626480103,
+        "path_length": 1.5154972076416016,
+        "heading_net_change": -0.06415282311534165,
+        "heading_path": 0.6438202963257589,
+        "passed": false,
+        "evidence": "sufficient"
+      },
+      "stopping": {
+        "start": 11,
+        "end": 17,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.012210778607887754,
+          0.021981319545328837,
+          0.024003639647949555
+        ],
+        "target_surface_rmse": [
+          0.0052884017698572264,
+          0.008707302199728558,
+          0.018552736063781466
+        ],
+        "tail_mean": [
+          -0.003042949363589287,
+          0.0010974466567859054,
+          0.0051474785432219505
+        ],
+        "tail_std": [
+          0.006363211665302515,
+          0.012173489667475224,
+          0.024484528228640556
+        ],
+        "target_surface_seconds": 5.0,
+        "target_success_fraction": 0.6255,
+        "time_to_all_axes_held_1s": null,
+        "position_displacement": 0.0316658653318882,
+        "path_length": 0.08555349707603455,
+        "heading_net_change": 0.006888714781356331,
+        "heading_path": 0.09439742793063255,
+        "passed": false,
+        "evidence": "sufficient",
+        "holding_displacement": 0.012428706511855125,
+        "holding_path": 0.04579636827111244,
+        "holding_heading_path": 0.06593101674616042,
+        "braking_distance_1s": 0.019350331276655197,
+        "wheel_velocity_rms": [
+          0.1272755116224289,
+          1.0672616958618164,
+          0.13709905743598938,
+          0.13452722132205963
+        ]
+      },
+      "tilt": 13.363537788391113,
+      "saturation": [
+        0.0,
+        0.0,
+        0.0,
+        0.00014705882352941175,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "path": "yaw_left\\trial_0\\summary.json",
+      "scene": "stairs_up_5cm",
+      "probe": "yaw_left",
+      "seed": 701,
+      "status": "tracking_deficit",
+      "task": {
+        "start": 3,
+        "end": 11,
+        "command": [
+          0.0,
+          0.0,
+          0.6
+        ],
+        "status": "complete",
+        "rmse": [
+          0.04716211953514915,
+          0.08161304078271855,
+          0.2964415367685304
+        ],
+        "target_surface_rmse": [
+          0.04803327389148824,
+          0.08457999045294091,
+          0.3107645503195724
+        ],
+        "tail_mean": [
+          -0.033997997641563416,
+          -0.026291336864233017,
+          0.543003261089325
+        ],
+        "tail_std": [
+          0.05670120567083359,
+          0.04645511507987976,
+          0.15250885486602783
+        ],
+        "target_surface_seconds": 6.9875,
+        "target_success_fraction": 0.13559928443649374,
+        "time_to_all_axes_held_1s": null,
+        "position_displacement": 0.14844846725463867,
+        "path_length": 0.650006890296936,
+        "heading_net_change": 3.3340368218451415,
+        "heading_path": 3.5294232398679215,
+        "passed": false,
+        "evidence": "sufficient"
+      },
+      "stopping": {
+        "start": 11,
+        "end": 17,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.008993294794890421,
+          0.009075950622664038,
+          0.04474889915762865
+        ],
+        "target_surface_rmse": [
+          0.0035184495301896434,
+          0.0026785099011141134,
+          0.021670015157733036
+        ],
+        "tail_mean": [
+          1.8322230971534736e-05,
+          3.4438031434547156e-05,
+          0.002393317874521017
+        ],
+        "tail_std": [
+          0.00036976326373405755,
+          0.00013098771160002798,
+          0.0001635978842386976
+        ],
+        "target_surface_seconds": 5.0,
+        "target_success_fraction": 0.7075,
+        "time_to_all_axes_held_1s": 3.705,
+        "position_displacement": 0.02391606569290161,
+        "path_length": 0.04102015122771263,
+        "heading_net_change": -0.07858810470934019,
+        "heading_path": 0.1404800603444376,
+        "passed": false,
+        "evidence": "sufficient",
+        "holding_displacement": 0.008232099004089832,
+        "holding_path": 0.015439344570040703,
+        "holding_heading_path": 0.07245087421086005,
+        "braking_distance_1s": 0.016252795234322548,
+        "wheel_velocity_rms": [
+          0.08436577767133713,
+          0.28384870290756226,
+          0.04405180364847183,
+          4.292160511016846
+        ]
+      },
+      "tilt": 19.841060638427734,
+      "saturation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "path": "yaw_left\\trial_1\\summary.json",
+      "scene": "stairs_up_5cm",
+      "probe": "yaw_left",
+      "seed": 701,
+      "status": "tracking_deficit",
+      "task": {
+        "start": 3,
+        "end": 11,
+        "command": [
+          0.0,
+          0.0,
+          0.6
+        ],
+        "status": "complete",
+        "rmse": [
+          0.07125617591350111,
+          0.06534333294203591,
+          0.27138408562773686
+        ],
+        "target_surface_rmse": [
+          0.07320144052951659,
+          0.06718028504881951,
+          0.28360590217143544
+        ],
+        "tail_mean": [
+          -0.057522062212228775,
+          -0.047286856919527054,
+          0.2506299912929535
+        ],
+        "tail_std": [
+          0.03513457998633385,
+          0.07756268233060837,
+          0.2736058831214905
+        ],
+        "target_surface_seconds": 6.9875,
+        "target_success_fraction": 0.17602862254025045,
+        "time_to_all_axes_held_1s": null,
+        "position_displacement": 0.19839046895503998,
+        "path_length": 0.59491366147995,
+        "heading_net_change": 3.782641111589516,
+        "heading_path": 3.9060182507876084,
+        "passed": false,
+        "evidence": "sufficient"
+      },
+      "stopping": {
+        "start": 11,
+        "end": 17,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.039038034106235804,
+          0.03460715921876019,
+          0.059863344737253396
+        ],
+        "target_surface_rmse": [
+          0.03441388423748838,
+          0.02381218412610672,
+          0.04924438581784477
+        ],
+        "tail_mean": [
+          0.00010587876749923453,
+          -0.00022007073857821524,
+          0.0004940227372571826
+        ],
+        "tail_std": [
+          0.0008571313810534775,
+          0.0006743603735230863,
+          0.003105947282165289
+        ],
+        "target_surface_seconds": 5.0,
+        "target_success_fraction": 0.759,
+        "time_to_all_axes_held_1s": 2.210000000000001,
+        "position_displacement": 0.12037845700979233,
+        "path_length": 0.16540342569351196,
+        "heading_net_change": -0.038564259071498186,
+        "heading_path": 0.14885662383304432,
+        "passed": false,
+        "evidence": "sufficient",
+        "holding_displacement": 0.05386042967438698,
+        "holding_path": 0.09155386686325073,
+        "holding_heading_path": 0.0832853959715737,
+        "braking_distance_1s": 0.07033588737249374,
+        "wheel_velocity_rms": [
+          0.41789233684539795,
+          0.2896079123020172,
+          0.5186802744865417,
+          0.46869730949401855
+        ]
+      },
+      "tilt": 14.405792236328125,
+      "saturation": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "path": "yaw_left\\trial_2\\summary.json",
+      "scene": "stairs_up_5cm",
+      "probe": "yaw_left",
+      "seed": 701,
+      "status": "tracking_deficit",
+      "task": {
+        "start": 3,
+        "end": 11,
+        "command": [
+          0.0,
+          0.0,
+          0.6
+        ],
+        "status": "complete",
+        "rmse": [
+          0.07295310441557712,
+          0.07232157278201691,
+          0.24943631493909194
+        ],
+        "target_surface_rmse": [
+          0.07540414877796987,
+          0.07645687835972892,
+          0.26144062385627653
+        ],
+        "tail_mean": [
+          -0.006567163392901421,
+          0.015042871236801147,
+          0.5043192505836487
+        ],
+        "tail_std": [
+          0.032961517572402954,
+          0.053348369896411896,
+          0.11880728602409363
+        ],
+        "target_surface_seconds": 6.995,
+        "target_success_fraction": 0.1908506075768406,
+        "time_to_all_axes_held_1s": null,
+        "position_displacement": 0.2261839061975479,
+        "path_length": 0.627976655960083,
+        "heading_net_change": 3.6077408074449004,
+        "heading_path": 3.7066857147595003,
+        "passed": false,
+        "evidence": "sufficient"
+      },
+      "stopping": {
+        "start": 11,
+        "end": 17,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "status": "complete",
+        "rmse": [
+          0.014857113889309093,
+          0.0062566399236840065,
+          0.01685774855076846
+        ],
+        "target_surface_rmse": [
+          0.004686015755598462,
+          0.002659862004038287,
+          0.006736009176267218
+        ],
+        "tail_mean": [
+          0.0009362697601318359,
+          0.0004446299863047898,
+          -0.001566179795190692
+        ],
+        "tail_std": [
+          0.005529776215553284,
+          0.0023886291310191154,
+          0.005051665473729372
+        ],
+        "target_surface_seconds": 5.0,
+        "target_success_fraction": 0.9785,
+        "time_to_all_axes_held_1s": 1.1575000000000006,
+        "position_displacement": 0.018299954012036324,
+        "path_length": 0.06362418830394745,
+        "heading_net_change": -0.025784958234653765,
+        "heading_path": 0.047789661565374786,
+        "passed": true,
+        "evidence": "sufficient",
+        "holding_displacement": 0.0023287844378501177,
+        "holding_path": 0.027109535411000252,
+        "holding_heading_path": 0.020380998988701937,
+        "braking_distance_1s": 0.01696515828371048,
+        "wheel_velocity_rms": [
+          0.08483333140611649,
+          0.09809744358062744,
+          0.10192478448152542,
+          0.08996497094631195
+        ]
+      },
+      "tilt": 12.882994651794434,
+      "saturation": [
+        0.0,
+        0.0,
+        0.0,
+        0.00014705882352941175,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00014705882352941175
+      ]
+    }
+  ],
+  "evaluation_status": "available",
   "interpretation": "Coverage and same-trajectory grade changes diagnose implementation effects. Fixed-case behavior diagnoses deficits. A single combined run does not identify isolated causal contributions."
 }
