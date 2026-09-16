@@ -1,4 +1,5 @@
 """Independent terrain/task probes; every probe starts afresh on the surface."""
+import json
 import numpy as np
 import s10_eval_protocol as legacy
 import importlib.util
@@ -123,7 +124,7 @@ def summarize(rows, scene, end_reason):
             seg['holding_heading_path'] = float(abs(np.diff(hold_heading)).sum())
             seg['braking_distance_1s'] = float(np.linalg.norm(pos[np.flatnonzero(~steady)[-1]]-origin)) if (~steady).any() else None
             seg['wheel_velocity_rms'] = np.sqrt((rows['qvel'][mask][steady][:, [9, 13, 17, 21]]**2).mean(axis=0)).tolist()
-            seg['passed'] &= seg['holding_path'] <= .05 and seg['holding_heading_path'] <= np.deg2rad(3)
+            seg['passed'] = bool(seg['passed'] and seg['holding_path'] <= .05 and seg['holding_heading_path'] <= np.deg2rad(3))
         result['segments'].append(seg)
     return result
 
@@ -142,6 +143,7 @@ def self_check():
         saturated=np.zeros((n, 16)), position=np.zeros((n, 3)), heading=np.zeros(n),
         target_contact=np.zeros(n, bool), qvel=np.zeros((n, 22)))
     result = summarize(rows, 'pebbles_6cm', 'completed')
+    json.dumps(result, allow_nan=False)
     assert not any(s['passed'] for s in result['segments'])
     assert result['segments'][1]['evidence'] == 'insufficient_target_contact'
     rows['target_contact'][:] = True
