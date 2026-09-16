@@ -4,6 +4,7 @@ from collections import Counter
 import json
 from pathlib import Path
 import sys
+import numpy as np
 
 
 def summarize(rows):
@@ -15,11 +16,16 @@ def summarize(rows):
     for low, high, label in [(0, .2, '0-.2s'), (.2, 1, '.2-1s'), (1, 3, '1-3s'),
                              (3, 10, '3-10s'), (10, float('inf'), '>10s')]:
         result['failures_by_age'][label] = sum(r['failed'] and low < r['seconds'] <= high for r in rows)
-    for horizon in [1, 3]:
+    for horizon in [.2, 1, 3]:
         eligible = [r for r in rows if r['seconds'] >= horizon or r['failed']]
         failed = sum(r['failed'] and r['seconds'] <= horizon for r in eligible)
         result['horizons'][str(horizon)] = dict(eligible=len(eligible), failed=failed,
             fraction=failed / len(eligible) if eligible else None)
+    observed = [r for r in rows if (r['seconds'] >= 3 or r['failed']) and 'max_tilt_first3_degrees' in r]
+    if observed:
+        tilt = np.asarray([r['max_tilt_first3_degrees'] for r in observed])
+        result['tilt_first3'] = dict(eligible=len(observed), median=float(np.median(tilt)),
+            p95=float(np.quantile(tilt, .95)), over45=int((tilt > 45).sum()))
     return result
 
 
@@ -28,6 +34,9 @@ def main():
     parser.add_argument('--checkpoint-path', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--seconds', type=float, default=120.)
+    parser.add_argument('--use-current-stairs', action='store_true')
+    parser.add_argument('--stratify-stair-levels', action='store_true',
+                        help='Hold stair environments evenly across all levels for diagnostic coverage')
     options, remaining = parser.parse_known_args()
     assert options.seconds >= 3
     import isaacgym  # Must precede torch.
@@ -45,13 +54,34 @@ def main():
     saved = json.loads((options.checkpoint_path.parent / 'config.json').read_text())
     source = torch.load(options.checkpoint_path, map_location='cpu')
     cfg, _ = task_registry.get_cfgs('s10')
+    current_stairs = cfg.terrain.stair_dimensions
     restore_config(cfg, saved['env'])
+    expected_env = dict(saved['env'])
+    if options.use_current_stairs:
+        cfg.terrain.stair_dimensions = current_stairs
+        expected_env['terrain'] = dict(saved['env']['terrain'], stair_dimensions=current_stairs)
     env, cfg = task_registry.make_env('s10', args=args, env_cfg=cfg)
-    assert class_to_dict(cfg) == saved['env'], 'Observe the saved recipe without changing it'
+    assert class_to_dict(cfg) == expected_env, 'Only the explicitly requested stair recipe may change'
     course = env.task_curriculum
     info = source['infos']
     assert torch.equal(env.terrain_types.cpu(), info['terrain_types'])
     env.terrain_levels.copy_(info['terrain_levels'])
+    if options.stratify_stair_levels:
+        for column in env.terrain_types.unique():
+            ids = ((env.terrain_types == column) & ((course.kinds == 2) | (course.kinds == 3))).nonzero(as_tuple=False).flatten()
+            env.terrain_levels[ids] = torch.arange(len(ids), device=env.device) % cfg.terrain.num_rows
+            if len(ids):
+                counts = torch.bincount(env.terrain_levels[ids], minlength=cfg.terrain.num_rows)
+                assert counts.min() > 0 and counts.max()-counts.min() <= 1
+        fixed_levels = env.terrain_levels.clone()
+        original_update = env._update_terrain_curriculum
+        def update(ids):
+            original_update(ids)  # Record original grading, then hold geometry for coverage.
+            stairs = ids[(course.kinds[ids] == 2) | (course.kinds[ids] == 3)]
+            env.terrain_levels[stairs] = fixed_levels[stairs]
+            env.env_origins[stairs] = env.terrain_origins[env.terrain_levels[stairs], env.terrain_types[stairs]]
+        env._update_terrain_curriculum = update
+    initial_levels = env.terrain_levels.cpu().clone()
     env.extended_speed_envs.copy_(info['extended_speed_envs'])
     env.env_origins[:] = env.terrain_origins[env.terrain_levels, env.terrain_types]
     course.speed_limits.copy_(info['curriculum']['speed_limits'])
@@ -60,7 +90,7 @@ def main():
     actor.load_state_dict(source['model_state_dict'])
     set_seed(1)
     options.output.mkdir(parents=True, exist_ok=False)
-    (options.output / 'config.json').write_text(json.dumps(saved, indent=2) + '\n')
+    (options.output / 'config.json').write_text(json.dumps(dict(saved, env=class_to_dict(cfg)), indent=2) + '\n')
     active, episodes = [None] * env.num_envs, []
     tick = 0
     peak_tilt = torch.zeros(env.num_envs, device=env.device)
@@ -161,6 +191,9 @@ def main():
         assert all(torch.equal(value.cpu(), source['model_state_dict'][key])
                    for key, value in actor.state_dict().items())
         assert not actor.estimator.optimizer.state
+        if options.stratify_stair_levels:
+            stairs = (course.kinds == 2) | (course.kinds == 3)
+            assert torch.equal(env.terrain_levels[stairs], fixed_levels[stairs])
         assert sum(r['failed'] for r in episodes) == int(course.failures.sum())
         assert sum(r['delta'] < 0 for r in episodes) == int(course.down_count.sum())
         groups = []
@@ -172,9 +205,12 @@ def main():
                     groups.append(dict(terrain=terrain, spawn=spawn, level=level, **summarize(rows)))
         result = dict(checkpoint=str(options.checkpoint_path), iteration=source['iter'],
             ppo_updates=0, model_unchanged=True, policy_steps=steps, seconds_per_env=steps * env.dt,
-            num_envs=env.num_envs, sampling='Saved training recipe, stochastic policy, original resets and live curriculum; restored checkpoint levels/membership/caps; fresh physical episodes and counters.',
+            num_envs=env.num_envs, sampling='Stochastic policy, original resets and grading; restored checkpoint membership/caps; fresh physical episodes and counters.',
+            current_stairs=options.use_current_stairs, stratified_stair_levels=options.stratify_stair_levels,
+            stair_dimensions=getattr(cfg.terrain, 'stair_dimensions', None),
+            terrain_level_handling='Stair columns evenly assigned to all levels, held fixed after grading; other terrain uses live curriculum.' if options.stratify_stair_levels else 'Restored checkpoint levels and live curriculum.',
             interpretation='Natural random spawn strata, not a changed-initialization A/B. Early failures also include command, exploration and randomization effects. Age rates exclude episodes censored before the horizon.',
-            initial_histogram=torch.bincount(info['terrain_levels'], minlength=cfg.terrain.num_rows).tolist(),
+            initial_histogram=torch.bincount(initial_levels, minlength=cfg.terrain.num_rows).tolist(),
             final_histogram=torch.bincount(env.terrain_levels, minlength=cfg.terrain.num_rows).tolist(),
             overall=summarize(episodes), groups=groups)
         (options.output / 'summary.json').write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
