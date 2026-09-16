@@ -94,3 +94,8 @@ python legged_gym/scripts/evaluate_s10_follow.py --run /output/training --iterat
 ## 密度修订与重新从零训练
 
 用户要求将训练鹅卵石密度改为8→15个/m²，并重新从零开始2000轮。旧组停止后保留全部输出，新组使用独立目录、重新初始化策略及两套优化器，不加载旧checkpoint。v2固定评估的鹅卵石场景仍为5个/m²，以保持已冻结协议的可比性；新训练密度由真实Gym预检及保存的配置验证。
+
+- 旧组于2026-09-16 16:39:08（北京时间）停止，最后完整日志为66轮、12,976,128环境步；保留 `model_0.pt`、`model_50.pt`。同级目录的 `training_user_stop_record.json` 记录用户停止原因，容器非OOM退出。
+- 新组源码固定为 `3fb1a0dff592ec0c6a70b35623dbf5494ce83e04`，提交已推送。容器 `s10-terrain-density8-15-scratch2000-20260916` 于16:41:36启动；新输出为 `/data/HIMLoco-S10-terrain-task-git-20260916/artifacts/s10-terrain-task-density8-15-20260916/training`。
+- 新密度真实Gym预检通过：512环境×600步、167次reset、0次学习更新，观测快照误差0，零更新概率比最大偏差 `3.7551e-6`。保存的配置确认密度范围 `[8.0, 15.0]`。本地证据在 `artifacts/s10-terrain-task-density8-15-20260916/`。
+- 新组正式初始化核验：迭代0、环境步0、两套Adam状态为空、LR均为.001，目标2000轮。`model_0` ONNX校验通过，最大绝对误差 `8.0094e-8`；已核验前4轮、786,432环境步正常写入日志，损失有限。此次重新训练从0计数，旧组66轮不计入新组预算。
