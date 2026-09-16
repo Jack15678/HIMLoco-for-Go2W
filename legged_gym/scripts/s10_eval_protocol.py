@@ -69,22 +69,22 @@ def geometry(scene):
     return raw, active, meta
 
 
-def ground(raw, xy):
+def ground(raw, xy, horizontal_scale=HS, vertical_scale=VS, extent=EXTENT):
     """Piecewise triangular height matching convert_heightfield_to_trimesh(None)."""
-    p = (np.asarray(xy)+EXTENT)/HS
+    p = (np.asarray(xy)+extent)/horizontal_scale
     ij = np.clip(np.floor(p).astype(int), 0, np.array(raw.shape)-2)
     f = np.clip(p-ij, 0, 1)
     i, j = ij[..., 0], ij[..., 1]
     a, b, c, d = raw[i,j], raw[i+1,j], raw[i,j+1], raw[i+1,j+1]
     # Isaac Gym divides the cell along (i,j)--(i+1,j+1).
     return np.where(f[...,1] >= f[...,0], a+(d-c)*f[...,0]+(c-a)*f[...,1],
-                    a+(b-a)*f[...,0]+(d-b)*f[...,1]) * VS
+                    a+(b-a)*f[...,0]+(d-b)*f[...,1]) * vertical_scale
 
 
-def mesh_ground(vertices, xy):
+def mesh_ground(vertices, xy, horizontal_scale=HS, extent=EXTENT):
     """Query the actual shifted triangles around each cell, including vertical steps."""
     p=np.asarray(xy)
-    ij=np.floor((p+EXTENT)/HS).astype(int)
+    ij=np.floor((p+extent)/horizontal_scale).astype(int)
     shifts=np.array([(i,j) for i in [-1,0,1] for j in [-1,0,1]])
     cells=np.clip(ij[:,None,:]+shifts,0,np.array(vertices.shape[:2])-2)
     i,j=cells[...,0],cells[...,1]

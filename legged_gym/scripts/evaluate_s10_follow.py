@@ -26,7 +26,7 @@ class Video:
         draw = ImageDraw.Draw(im)
         draw.rectangle((0,0,960,70),fill='black')
         draw.text((10,3), f'{self.source} | {self.scene} | fixed trial 0 | {t:6.2f} s', fill='white',font=self.font)
-        draw.text((10,25), f'cmd vx {cmd[0]:+.2f} yaw {cmd[2]:+.2f} | actual vx {actual[0]:+.2f} yaw {actual[2]:+.2f}',fill='white',font=self.font)
+        draw.text((10,25), f'cmd vx/vy/yaw {cmd[0]:+.2f}/{cmd[1]:+.2f}/{cmd[2]:+.2f} | actual {actual[0]:+.2f}/{actual[1]:+.2f}/{actual[2]:+.2f}',fill='white',font=self.font)
         draw.text((10,47), 'Camera follows position with fixed world direction. No resets.',fill='white',font=self.font)
         self.process.stdin.write(np.asarray(im).tobytes())
 
@@ -77,7 +77,8 @@ def gym_run(args):
 
     saved = json.loads((args.run/'config.json').read_text())
     cfg = S10RoughCfg();restore_config(cfg,saved['env'])
-    n = 1 if args.scene == 'flat' else 3
+    task_probe = getattr(args, 'protocol', 'v1') == 'v2'
+    n = 1 if args.scene == 'flat' and not task_probe else 3
     cfg.env.num_envs = n
     cfg.env.episode_length_s = 100.
     cfg.commands.heading_command = cfg.commands.curriculum = False
@@ -89,6 +90,9 @@ def gym_run(args):
     raw, active, meta = geometry(args.scene)
     offsets = np.array([[0.,100.*i,0.] for i in range(n)],dtype=np.float32)
     offsets[:,2] = ground(raw,offsets[:,:2]*0)
+    if task_probe:
+        support = np.array([[x,y] for x in [-.4, 0., .4] for y in [-.4, 0., .4]])
+        offsets[:, 2] = ground(raw, support).max()
 
     class Spawn:
         def __init__(self, backend): self.backend=backend; self.count=0
@@ -109,7 +113,7 @@ def gym_run(args):
             assert self.sim is not None
             if args.scene == 'flat': self._create_ground_plane()
             else:
-                vertices,triangles=terrain_utils.convert_heightfield_to_trimesh(raw,HS,VS,.25)
+                vertices,triangles=terrain_utils.convert_heightfield_to_trimesh(raw,HS,VS,None if args.scene.startswith('pebbles') else .25)
                 self.eval_vertices=vertices.reshape(*raw.shape,3).copy()
                 self.eval_vertices[:,:,:2]-=EXTENT
                 for i in range(n):
@@ -146,15 +150,16 @@ def gym_run(args):
     env.root_states[:,:3]+=env.env_origins
     env.root_states[:,7:]=0
     perturb=np.zeros((n,14),dtype=np.float32)
-    if args.scene != 'flat':
+    if args.scene != 'flat' or task_probe:
         perturb=np.stack([np.random.default_rng(i).uniform(-.02,.02,14) for i in range(n)]).astype(np.float32)
     legs=[i for i in range(16) if i%4!=3]
     env.dof_pos[:,legs]+=torch.tensor(perturb[:,:12],device=env.device)
-    env.root_states[:,3:7]=quat_from_euler_xyz(*[torch.tensor(v,device=env.device) for v in [perturb[:,12],perturb[:,13],np.zeros(n,dtype=np.float32)]])
+    initial_yaw = np.deg2rad([0, 90, 180]).astype(np.float32) if task_probe else np.zeros(n,dtype=np.float32)
+    env.root_states[:,3:7]=quat_from_euler_xyz(*[torch.tensor(v,device=env.device) for v in [perturb[:,12],perturb[:,13],initial_yaw]])
     env.gym.set_dof_state_tensor(env.sim,gymtorch.unwrap_tensor(env.dof_state))
     env.gym.set_actor_root_state_tensor(env.sim,gymtorch.unwrap_tensor(env.root_states))
     env.commands[:]=0;env.actions[:]=0;env.obs_buf[:]=0;env.privileged_obs_buf[:]=0
-    write_json(args.output/'initial_states.json',dict(seeds=[None] if n==1 else list(range(n)),perturbations=perturb.tolist(),root=env.root_states.tolist(),dof=env.dof_pos.tolist(),warmup_steps=0))
+    write_json(args.output/'initial_states.json',dict(seeds=[None] if n==1 else list(range(n)),initial_yaw=initial_yaw.tolist(),perturbations=perturb.tolist(),root=env.root_states.tolist(),dof=env.dof_pos.tolist(),warmup_steps=0))
     camera_params=gymapi.CameraProperties();camera_params.width=960;camera_params.height=640;camera_params.horizontal_fov=60
     camera=env.gym.create_camera_sensor(env.envs[0],camera_params);assert camera>=0
     video=Video(args.output/'representative.mp4',args.scene,'Isaac Gym actual geometry')
@@ -252,7 +257,7 @@ def mujoco_run(args):
     visual=mujoco.MjvOption();visual.geomgroup[1]=0
     video=Video(args.output/'representative.mp4','flat','MuJoCo physics')
     with mujoco.Renderer(model,height=640,width=960) as renderer, torch.inference_mode():
-        for step in range(round((args.seconds or 90)/.02)):
+        for step in range(round((args.seconds or schedule('flat')[-1][1])/.02)):
             cmd=np.asarray(command(step*.02,'flat'),dtype=np.float32)
             mujoco.mj_forward(model,data)
             mujoco.mj_objectVelocity(model,data,mujoco.mjtObj.mjOBJ_BODY,base,velocity,1)
@@ -293,11 +298,24 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run',type=Path,required=True)
     parser.add_argument('--iteration',type=int,required=True)
-    parser.add_argument('--scene',choices=SCENES,default='flat')
+    parser.add_argument('--scene',choices=SCENES+['pebbles_2cm','pebbles_6cm'],default='flat')
+    parser.add_argument('--protocol',choices=['v1','v2'],default='v1')
+    parser.add_argument('--probe',default='forward')
+    parser.add_argument('--geometry-seed',type=int,default=701)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--backend',choices=['gym','mujoco'],default='gym')
     parser.add_argument('--policy',type=Path)
     parser.add_argument('--seconds',type=float,help='Short infrastructure smoke only; omit for protocol results.')
-    args=parser.parse_args();args.output.mkdir(parents=True,exist_ok=False)
+    args=parser.parse_args()
+    if args.protocol == 'v2':
+        import s10_task_protocol as protocol
+        if args.probe not in protocol.PROBES:
+            parser.error('Unknown probe: '+args.probe)
+        protocol.PROBE, protocol.SEED = args.probe, args.geometry_seed
+        for name in ['VERSION', 'SCENES', 'HS', 'VS', 'EXTENT', 'geometry', 'ground', 'mesh_ground', 'command', 'schedule', 'summarize']:
+            globals()[name] = getattr(protocol, name)
+    elif args.scene.startswith('pebbles'):
+        parser.error('Pebble probes require --protocol v2')
+    args.output.mkdir(parents=True,exist_ok=False)
     write_json(args.output/'invocation.json',dict(protocol=VERSION,**{k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()}))
     (gym_run if args.backend=='gym' else mujoco_run)(args)
