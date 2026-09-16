@@ -10,13 +10,13 @@ from s10_eval_protocol import (VERSION, SCENES, HS, VS, EXTENT, geometry, ground
 
 
 class Video:
-    def __init__(self, path, scene, source):
+    def __init__(self, path, scene, source, fps=20):
         import matplotlib
         from PIL import ImageFont
         self.scene, self.source = scene, source
         self.font=ImageFont.truetype(str(Path(matplotlib.get_data_path())/'fonts/ttf/DejaVuSans.ttf'),17)
         self.process = subprocess.Popen(['ffmpeg','-y','-loglevel','error','-f','rawvideo',
-            '-pixel_format','rgb24','-video_size','960x640','-framerate','20','-i','-',
+            '-pixel_format','rgb24','-video_size','960x640','-framerate',str(fps),'-i','-',
             '-an','-c:v','libx264','-pix_fmt','yuv420p','-crf','23','-movflags','+faststart',str(path)],
             stdin=subprocess.PIPE)
 
