@@ -131,8 +131,9 @@ class TaskCurriculum:
         up &= self.terrain_ready[self.kinds[ids], e.terrain_levels[ids]]
         down = failed | (enough & (score < self.cfg.demote_score) & ~e.extended_speed_envs[ids])
         delta = up.long()-down.long()
+        completed = ((self.age[ids] > 0) | (seconds > 0) | failed).float()
         index = self.kinds[ids]*e.cfg.terrain.num_rows + e.terrain_levels[ids]
-        self.terrain_episodes.view(-1).index_add_(0, index, torch.ones_like(score))
+        self.terrain_episodes.view(-1).index_add_(0, index, completed)
         self.terrain_failures.view(-1).index_add_(0, index, failed.float())
         self.failures.view(-1).index_add_(0, self.kinds[ids]*len(MODES)+self.mode[ids], failed.float())
         self.up_count.index_add_(0, self.kinds[ids], up.float())
@@ -142,7 +143,7 @@ class TaskCurriculum:
         old_up = distance > e.terrain.env_length/2
         old_down = (distance < torch.norm(e.commands[ids, :2], dim=1)*e.max_episode_length_s*.5) & ~old_up
         old = old_up.long()-old_down.long()
-        self.old_new_disagreements.view(-1).index_add_(0, (old+1)*3+delta+1, torch.ones_like(score))
+        self.old_new_disagreements.view(-1).index_add_(0, (old+1)*3+delta+1, completed)
         self.episode_seconds[ids] = self.episode_good[ids] = self.episode_target[ids] = 0.
         self.age[ids] = 0.
         return delta

@@ -53,6 +53,8 @@ def main():
         root_states=torch.zeros(n, 13), env_origins=torch.zeros(n, 3), max_episode_length_s=20.)
     course = curriculum.TaskCurriculum(env)
     ids = torch.arange(n)
+    course.finish(ids, torch.zeros(n, dtype=torch.bool))
+    assert not course.terrain_episodes.any() and not course.old_new_disagreements.any()
     course.sample(ids)
     for mode in range(8):
         selected = course.mode == mode
