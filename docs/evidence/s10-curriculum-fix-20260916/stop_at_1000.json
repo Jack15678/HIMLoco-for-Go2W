@@ -1,0 +1,21 @@
+{
+  "reason": "User requested stop at 1000 before minimal curriculum repair",
+  "stopped_at_utc": "2026-09-16T10:19:39.840570+00:00",
+  "completed_iterations": 1000,
+  "environment_steps": 196608000,
+  "checkpoint": "model_1000.pt",
+  "onnx_verified": true,
+  "container_state": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 137,
+    "Error": "",
+    "StartedAt": "2026-09-16T08:41:36.161448044Z",
+    "FinishedAt": "2026-09-16T10:19:39.556069594Z"
+  }
+}

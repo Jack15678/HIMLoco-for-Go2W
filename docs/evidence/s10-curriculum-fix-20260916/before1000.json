@@ -1,0 +1,46 @@
+{
+  "iteration": 1000,
+  "environment_steps": 196608000,
+  "optimizer_steps": [
+    [
+      20000.0
+    ],
+    [
+      20000.0
+    ]
+  ],
+  "windows": [
+    {
+      "end_iteration": 100,
+      "Train/mean_reward": 19.671445274353026,
+      "Train/mean_episode_length": 762.0869995117188,
+      "Episode/terrain_level": 0.3653801053762436,
+      "Episode/rew_tracking_lin_vel": 1.0358494222164154,
+      "Episode/rew_tracking_ang_vel": 0.5345509797334671
+    },
+    {
+      "end_iteration": 500,
+      "Train/mean_reward": 23.684010314941407,
+      "Train/mean_episode_length": 754.376498413086,
+      "Episode/terrain_level": 0.20318705439567566,
+      "Episode/rew_tracking_lin_vel": 1.2629595339298247,
+      "Episode/rew_tracking_ang_vel": 0.6082163274288177
+    },
+    {
+      "end_iteration": 800,
+      "Train/mean_reward": 25.090074157714845,
+      "Train/mean_episode_length": 728.0974975585938,
+      "Episode/terrain_level": 0.170098876953125,
+      "Episode/rew_tracking_lin_vel": 1.3637755274772645,
+      "Episode/rew_tracking_ang_vel": 0.6370227664709092
+    },
+    {
+      "end_iteration": 1000,
+      "Train/mean_reward": 26.61326894760132,
+      "Train/mean_episode_length": 747.2830017089843,
+      "Episode/terrain_level": 0.16100336760282516,
+      "Episode/rew_tracking_lin_vel": 1.388650608062744,
+      "Episode/rew_tracking_ang_vel": 0.6504244357347488
+    }
+  ]
+}
