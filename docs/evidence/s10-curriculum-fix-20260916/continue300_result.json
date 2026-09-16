@@ -1,0 +1,10 @@
+{
+  "status": "completed",
+  "iterations": 1500,
+  "additional_iterations": 300,
+  "environment_steps": 294912000,
+  "optimizer_steps": [
+    30000,
+    30000
+  ]
+}
