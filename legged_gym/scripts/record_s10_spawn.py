@@ -80,17 +80,22 @@ def main():
         i = clip['env']
         clip['camera'] = env.gym.create_camera_sensor(env.envs[i], camera_params)
         assert clip['camera'] >= 0
+        origin = env.gym.get_env_origin(env.envs[i])
+        clip['camera_origin'] = [origin.x, origin.y, origin.z]
         writer = Video(options.output / (clip['name'] + '.mp4'), clip['name'],
                        'S10 model1500 | training reset | 0.5x', fps=25)
+        writer.note = f"Original random reset | level {clip['level']} | {clip['mode']} | freezes if episode ends"
         writers.append(writer)
     original_check = env.check_termination
     tick = 0
     def check():
         original_check()
+        # Headless training skips fetch_results; graphics still needs the synchronized transforms.
+        env.gym.fetch_results(env.sim, True)
         # Capture before automatic reset so a fall or boundary exit cannot be hidden.
         for clip in clips:
             if clip['end'] is None:
-                p = env.root_states[clip['env'], :3].cpu().numpy()
+                p = env.root_states[clip['env'], :3].cpu().numpy() - clip['camera_origin']
                 env.gym.set_camera_location(clip['camera'], env.envs[clip['env']],
                     gymapi.Vec3(*(p + [-1.5, -1.7, .75])), gymapi.Vec3(*(p + [0, 0, -.08])))
         env.gym.step_graphics(env.sim)

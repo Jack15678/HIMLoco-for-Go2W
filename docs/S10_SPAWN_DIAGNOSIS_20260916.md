@@ -67,3 +67,19 @@
 - 本地逐回合原始记录：`artifacts/s10-spawn-diagnosis-20260916/episodes.jsonl.gz`。
 - 服务器原始记录：`/data/HIMLoco-S10-terrain-task-git-20260916/artifacts/s10-spawn-diagnosis-20260916/run/episodes.jsonl`。
 - 可复现入口：`python legged_gym/scripts/diagnose_s10_spawn.py --task s10 --headless --num_envs 4096 --seed 1 --checkpoint-path <continue300/model_1500.pt> --seconds 120 --output <新目录>`。
+
+## 出生过程实录
+
+使用冻结的1500轮模型与原训练随机reset，另录22环境（每列一个机器人，避免画面重叠）的自然出生样本。各列使用检查点中最低的已有等级；保留探索动作和域随机化，优先选本次自然抽到的停车命令。它们是展示样本，不是上面4096环境诊断的轨迹回放，也不用于估计失败概率。
+
+| 片段 | 本次命令 | 6秒内最大倾角 | 基座接触终止 |
+| --- | --- | ---: | --- |
+| 上台阶地形/平台出生 | 后退 -.267m/s | 5.87° | 无 |
+| 上台阶地形/直接出生 | 左侧移 .330m/s | 20.65° | 无 |
+| 下台阶地形/直接出生 | 停车 | 15.30° | 无 |
+
+每段300帧、25fps、12秒播放，对应6秒仿真，播放速度0.5倍；附出生后.02/.2/1秒截图。录制在自动reset前取帧，若回合结束会冻结并标原因；本次三段均完整结束。无PPO更新，结束时模型逐张量相等检查通过。实际查看截图确认机器人与车轮可见，并核对三个MP4均完整300帧。
+
+- 入口：`legged_gym/scripts/record_s10_spawn.py`，参数为 `--task s10 --headless --num_envs 22 --seed 1 --checkpoint-path <continue300/model_1500.pt> --output <新目录>`。
+- 本地视频、截图、动图与逐帧记录：`artifacts/s10-spawn-diagnosis-20260916/videos-02/`。
+- 容器 `s10-spawn-videos-1500-02-20260916` 正常退出；首版缺少无窗口渲染同步而未拍到机器人，已通过 `fetch_results` 修正，首版 `videos/` 不作为视觉证据。

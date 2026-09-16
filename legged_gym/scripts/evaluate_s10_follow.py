@@ -14,6 +14,7 @@ class Video:
         import matplotlib
         from PIL import ImageFont
         self.scene, self.source = scene, source
+        self.note = 'Camera follows position with fixed world direction. No resets.'
         self.font=ImageFont.truetype(str(Path(matplotlib.get_data_path())/'fonts/ttf/DejaVuSans.ttf'),17)
         self.process = subprocess.Popen(['ffmpeg','-y','-loglevel','error','-f','rawvideo',
             '-pixel_format','rgb24','-video_size','960x640','-framerate',str(fps),'-i','-',
@@ -25,9 +26,9 @@ class Video:
         im = Image.fromarray(np.asarray(rgb,dtype=np.uint8))
         draw = ImageDraw.Draw(im)
         draw.rectangle((0,0,960,70),fill='black')
-        draw.text((10,3), f'{self.source} | {self.scene} | fixed trial 0 | {t:6.2f} s', fill='white',font=self.font)
+        draw.text((10,3), f'{self.source} | {self.scene} | {t:6.2f} s', fill='white',font=self.font)
         draw.text((10,25), f'cmd vx/vy/yaw {cmd[0]:+.2f}/{cmd[1]:+.2f}/{cmd[2]:+.2f} | actual {actual[0]:+.2f}/{actual[1]:+.2f}/{actual[2]:+.2f}',fill='white',font=self.font)
-        draw.text((10,47), 'Camera follows position with fixed world direction. No resets.',fill='white',font=self.font)
+        draw.text((10,47), self.note,fill='white',font=self.font)
         self.process.stdin.write(np.asarray(im).tobytes())
 
     def close(self):
