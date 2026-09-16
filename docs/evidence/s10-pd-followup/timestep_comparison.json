@@ -1,0 +1,112 @@
+{
+  "gym-air": {
+    "5ms": {
+      "knee_rms_range": [
+        24.531728744506836,
+        24.60422706604004
+      ],
+      "wheel_rms_range": [
+        30.419225692749023,
+        30.697721481323242
+      ],
+      "max_joint_rms": 30.697721481323242,
+      "max_joint_saturation_fraction": 1.0,
+      "max_tail_speed": 34.332210540771484,
+      "final_height_range": [
+        0.9913269877433777,
+        1.0466558933258057
+      ]
+    },
+    "2p5ms": {
+      "knee_rms_range": [
+        1.8775102944346145e-05,
+        2.0351215425762348e-05
+      ],
+      "wheel_rms_range": [
+        1.7441855106881121e-06,
+        1.769439450072241e-06
+      ],
+      "max_joint_rms": 2.0351215425762348e-05,
+      "max_joint_saturation_fraction": 0.0,
+      "max_tail_speed": 0.00017351098358631134,
+      "final_height_range": [
+        0.9983221888542175,
+        1.0834617614746094
+      ]
+    }
+  },
+  "mujoco-air": {
+    "5ms": {
+      "knee_rms_range": [
+        24.532225434332084,
+        24.602938481411712
+      ],
+      "wheel_rms_range": [
+        30.415699701698525,
+        30.70047670531195
+      ],
+      "max_joint_rms": 30.70047670531195,
+      "max_joint_saturation_fraction": 1.0,
+      "max_tail_speed": 34.506089218775706,
+      "final_height_range": [
+        1.08536453324438,
+        1.0902639702975065
+      ]
+    },
+    "2p5ms": {
+      "knee_rms_range": [
+        8.316623700497476e-06,
+        8.357762729550649e-06
+      ],
+      "wheel_rms_range": [
+        2.052875129073308e-06,
+        2.063174125988019e-06
+      ],
+      "max_joint_rms": 1.8022350177256107e-05,
+      "max_joint_saturation_fraction": 0.0,
+      "max_tail_speed": 0.00017373016502343576,
+      "final_height_range": [
+        0.9983114582756153,
+        1.0032632395519927
+      ]
+    }
+  },
+  "gym-stand": {
+    "5ms": {
+      "knee_rms_range": [
+        6.058424949645996,
+        6.163496017456055
+      ],
+      "wheel_rms_range": [
+        7.049705505371094,
+        7.2580461502075195
+      ],
+      "max_joint_rms": 7.2580461502075195,
+      "max_joint_saturation_fraction": 0.054375,
+      "max_tail_speed": 38.7958984375,
+      "final_height_range": [
+        0.42204591631889343,
+        0.42975178360939026
+      ]
+    },
+    "2p5ms": {
+      "knee_rms_range": [
+        0.007552065886557102,
+        0.00978773646056652
+      ],
+      "wheel_rms_range": [
+        0.010082871653139591,
+        0.03698829934000969
+      ],
+      "max_joint_rms": 0.03698829934000969,
+      "max_joint_saturation_fraction": 0.0,
+      "max_tail_speed": 0.0829298198223114,
+      "final_height_range": [
+        0.4220280647277832,
+        0.4224049746990204
+      ]
+    }
+  },
+  "configuration_check": "Within each engine/profile, only PD dt and decimation changed; policy interval remains 20 ms.",
+  "ppo_updates": 0
+}

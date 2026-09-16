@@ -1,0 +1,138 @@
+{
+  "checks": [
+    "configuration differs only in num_envs",
+    "torque reward reconstructed from final PD substeps",
+    "action-rate reward reconstructed from actual action deltas",
+    "delivered reward matches clipped sum"
+  ],
+  "sampled_environment_steps": 64000,
+  "sampled_pd_environment_steps": 256000,
+  "zero_rewards": 63999,
+  "joint_groups": {
+    "hipx": {
+      "target_std_range": [
+        0.17901691794395447,
+        0.18951281905174255
+      ],
+      "target_std_degrees_range": [
+        10.256913859628366,
+        10.858284695291308
+      ],
+      "torque_reward_rate": -1.0794557332992554,
+      "saturation_min_max": [
+        0.02280078125,
+        0.17625
+      ]
+    },
+    "hipy": {
+      "target_std_range": [
+        0.3561091721057892,
+        0.3672946095466614
+      ],
+      "target_std_degrees_range": [
+        20.403552607559583,
+        21.044430964929173
+      ],
+      "torque_reward_rate": -2.2485620975494385,
+      "saturation_min_max": [
+        0.2123515625,
+        0.30875390625
+      ]
+    },
+    "knee": {
+      "target_std_range": [
+        0.36211588978767395,
+        0.3794345557689667
+      ],
+      "target_std_degrees_range": [
+        20.747712179458187,
+        21.739998646983054
+      ],
+      "torque_reward_rate": -2.214393138885498,
+      "saturation_min_max": [
+        0.23026953125,
+        0.29677734375
+      ]
+    },
+    "wheel": {
+      "target_std_range": [
+        7.371660232543945,
+        7.692811489105225
+      ],
+      "target_std_degrees_range": null,
+      "torque_reward_rate": -0.17748896777629852,
+      "saturation_min_max": [
+        0.23404296875,
+        0.38674609375
+      ]
+    }
+  },
+  "phase_rewards": [
+    {
+      "name": "all",
+      "samples": 64000,
+      "zero_fraction": 0.999984375,
+      "mean_reward_components": {
+        "action_rate": -1.2033261060714722,
+        "ang_vel_xy": -1.0036225318908691,
+        "base_height": -0.13798877596855164,
+        "collision": -0.051125817000865936,
+        "dof_acc": -1.0483042001724243,
+        "dof_vel": -0.00018680990615393966,
+        "feet_stumble": -8.437494398094714e-05,
+        "hip_default": -0.20403318107128143,
+        "lin_vel_z": -0.33185309171676636,
+        "orientation": -0.14513762295246124,
+        "run_still": -0.29864776134490967,
+        "stand_still": -0.09245167672634125,
+        "torques": -5.719886302947998,
+        "tracking_ang_vel": 0.11962538212537766,
+        "tracking_lin_vel": 0.3014757037162781
+      }
+    },
+    {
+      "name": "tilt_under_15_degrees",
+      "samples": 24799,
+      "zero_fraction": 0.9999596757933787,
+      "mean_reward_components": {
+        "action_rate": -1.0372653007507324,
+        "ang_vel_xy": -0.7130626440048218,
+        "base_height": -0.015772785991430283,
+        "collision": -0.0012500506127253175,
+        "dof_acc": -1.014650583267212,
+        "dof_vel": -0.00018456915859133005,
+        "feet_stumble": -6.855115498183295e-05,
+        "hip_default": -0.10861783474683762,
+        "lin_vel_z": -0.2226817011833191,
+        "orientation": -0.011445286683738232,
+        "run_still": -0.19188342988491058,
+        "stand_still": -0.07360783964395523,
+        "torques": -5.3418192863464355,
+        "tracking_ang_vel": 0.12438511848449707,
+        "tracking_lin_vel": 0.3445739150047302
+      }
+    },
+    {
+      "name": "first_1_second",
+      "samples": 3200,
+      "zero_fraction": 1.0,
+      "mean_reward_components": {
+        "action_rate": -1.085361361503601,
+        "ang_vel_xy": -0.8592587113380432,
+        "base_height": -0.044158369302749634,
+        "collision": -0.0075000012293457985,
+        "dof_acc": -1.0343148708343506,
+        "dof_vel": -0.00018851865024771541,
+        "feet_stumble": 0.0,
+        "hip_default": -0.14010608196258545,
+        "lin_vel_z": -0.2685887813568115,
+        "orientation": -0.07551344484090805,
+        "run_still": -0.22484803199768066,
+        "stand_still": -0.06610314548015594,
+        "torques": -5.514216899871826,
+        "tracking_ang_vel": 0.12206200510263443,
+        "tracking_lin_vel": 0.33298563957214355
+      }
+    }
+  ]
+}

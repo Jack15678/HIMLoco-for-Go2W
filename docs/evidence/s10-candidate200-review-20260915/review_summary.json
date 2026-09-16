@@ -1,0 +1,89 @@
+{
+  "ppo_updates": 0,
+  "checkpoint": 200,
+  "same_initial_states": true,
+  "same_evaluation_config": true,
+  "same_policy_metadata": true,
+  "original_contact_samples": 1,
+  "corrected_contact_samples": 0,
+  "gym_passed": true,
+  "gym_tail_height_range": [
+    0.42024514079093933,
+    0.4227372109889984
+  ],
+  "gym_tail_max_tilt_degrees": 0.3956475853919983,
+  "gym_max_pd_saturation": 0.0,
+  "unchanged_perturbed_trajectories": {
+    "root": true,
+    "tilt": true,
+    "dof_velocity": true,
+    "torque": true,
+    "base_contact_force": true
+  },
+  "mujoco": {
+    "passed": true,
+    "actual_seconds": 9.999999776482582,
+    "pd_steps": 4000,
+    "policy_steps": 500,
+    "history_dt": 0.019999999552965164,
+    "first_base_contact_seconds": null,
+    "tail_height_min": 0.4000573724243284,
+    "tail_height_max": 0.4087610166213142,
+    "tail_tilt_max_degrees": 0.5455171671326388,
+    "displacement_xy": [
+      -0.2269147491937831,
+      -0.0577080411873607
+    ],
+    "tail_velocity_mean": [
+      -0.045233384896789616,
+      -0.00046357287077092096,
+      0.0076451846268709165
+    ],
+    "tail_velocity_rms": [
+      0.04539289043821175,
+      0.0005054415712451793,
+      0.007846815667936938
+    ],
+    "tail_wheel_velocity_rms": [
+      0.495865822330008,
+      0.5131562932986469,
+      0.6406820300986754,
+      0.5808568831235882
+    ],
+    "pd_saturation_fraction": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "warnings": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "reset": false,
+    "ppo_updates": 0,
+    "drift_distance": 0.23413782569110786
+  },
+  "gym_drift_distance_range": [
+    0.02376685011245853,
+    0.047396017424725885
+  ]
+}
