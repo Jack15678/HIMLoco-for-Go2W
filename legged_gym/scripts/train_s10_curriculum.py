@@ -43,7 +43,7 @@ def main():
     assert runner.current_learning_iteration == runner.tot_timesteps == 0
     assert all(not optimizer.state for optimizer in optimizers)
     assert runner.num_steps_per_env == 48 and runner.save_interval == 50
-    assert env.dt == .02 and cfg.control.decimation == 8
+    assert math.isclose(env.dt, .02, abs_tol=1e-8) and cfg.control.decimation == 8
     torch.testing.assert_close(actor.std, torch.tensor([.3, .3, .3, .6]*4, device=env.device))
     write_json(run/'config.json', dict(env=class_to_dict(cfg), train=train, initialization='scratch',
         interface_version=2, dof_names=env.dof_names, source_commit=options.source_commit))
