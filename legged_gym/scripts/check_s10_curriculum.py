@@ -85,6 +85,18 @@ def main():
     for _ in range(205):
         course.record(~target, target)
     assert not (course.finish(ids, torch.zeros(n, dtype=torch.bool)) > 0).any()
+    # Staggered brief errors: each axis succeeds 82.5%, although their intersection is 47.5%.
+    course.age.fill_(cfg.commands.transition_seconds)
+    for step in range(200):
+        env.base_lin_vel.zero_(); env.base_ang_vel[:, 2] = .6
+        if step < 35:
+            env.base_lin_vel[:, 0] = .2
+        elif step < 70:
+            env.base_lin_vel[:, 1] = .2
+        elif step < 105:
+            env.base_ang_vel[:, 2] = 1.
+        course.record(target, target)
+    assert (course.finish(ids, torch.zeros(n, dtype=torch.bool)) == 1).all()
     # Parking drift must stay visible without downgrading terrain; a parking fall still demotes.
     course.mode[:] = 7
     env.commands.zero_()

@@ -41,7 +41,7 @@ class TaskCurriculum:
         self.edge_seconds = torch.zeros(len(TERRAINS), 3, device=device)
         self.edge_good = torch.zeros_like(self.edge_seconds)
         self.episode_seconds = torch.zeros(n, device=device)
-        self.episode_good = torch.zeros(n, device=device)
+        self.episode_good = torch.zeros(n, 3, device=device)
         self.episode_target = torch.zeros(n, device=device)
         self.total_seconds = torch.zeros(len(TERRAINS), len(MODES), device=device)
         self.total_target_seconds = torch.zeros_like(self.total_seconds)
@@ -88,7 +88,7 @@ class TaskCurriculum:
         # Parking accuracy remains a diagnostic; it cannot grade obstacle traversal.
         moving = steady & (self.mode != 7)
         self.episode_seconds += moving*dt
-        self.episode_good += (moving & good)*dt
+        self.episode_good += (moving[:, None] & axis_good)*dt
         self.episode_target += (moving & target_contact)*dt
         index = self.kinds*len(MODES) + self.mode
         self.total_seconds.view(-1).index_add_(0, index, torch.full_like(self.age, dt))
@@ -113,10 +113,10 @@ class TaskCurriculum:
     def finish(self, ids, failed):
         e = self.env
         seconds = self.episode_seconds[ids]
-        score = self.episode_good[ids] / seconds.clamp_min(1e-9)
+        score = self.episode_good[ids] / seconds[:, None].clamp_min(1e-9)
         enough = seconds >= self.cfg.minimum_episode_seconds
-        up = enough & (score >= self.cfg.promote_score) & (self.episode_target[ids] >= 1.) & ~failed
-        down = failed | (enough & (score < self.cfg.demote_score) & ~e.extended_speed_envs[ids])
+        up = enough & (score >= self.cfg.promote_score).all(dim=1) & (self.episode_target[ids] >= 1.) & ~failed
+        down = failed | (enough & (score < self.cfg.demote_score).any(dim=1) & ~e.extended_speed_envs[ids])
         delta = up.long()-down.long()
         completed = ((self.age[ids] > 0) | (seconds > 0) | failed).float()
         self.failures.view(-1).index_add_(0, self.kinds[ids]*len(MODES)+self.mode[ids], failed.float())
