@@ -70,6 +70,7 @@ def cpu_check():
         method = next(n for n in robot.body if isinstance(n, ast.FunctionDef) and n.name == name)
         exec(compile(ast.Module(body=[method], type_ignores=[]), str(source), 'exec'), scope)
     env = SimpleNamespace(num_envs=4096, device='cpu', dt=.02, commands=torch.zeros(4096, 4),
+        parking_commands=torch.zeros(4096, dtype=torch.bool),
         cfg=SimpleNamespace(commands=SimpleNamespace(heading_command=False, resampling_time=10.),
                             terrain=SimpleNamespace(measure_heights=False),
                             domain_rand=SimpleNamespace(push_robots=False, disturbance=False)),

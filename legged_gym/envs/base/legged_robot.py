@@ -200,9 +200,7 @@ class LeggedRobot(BaseTask):
         self.base_ang_vel[env_ids] = quat_rotate_inverse(self.base_quat[env_ids], self.root_states[env_ids, 10:13])
         self.projected_gravity[env_ids] = quat_rotate_inverse(self.base_quat[env_ids], self.gravity_vec[env_ids])
         if self.cfg.commands.heading_command:
-            forward = quat_apply(self.base_quat[env_ids], self.forward_vec[env_ids])
-            heading = torch.atan2(forward[:, 1], forward[:, 0])
-            self.commands[env_ids, 2] = torch.clip(0.5 * wrap_to_pi(self.commands[env_ids, 3] - heading), -2., 2.)
+            self._update_heading_commands(env_ids)
         self.disturbance[env_ids] = 0.
 
         # update height measurements
@@ -484,9 +482,7 @@ class LeggedRobot(BaseTask):
         env_ids = (self.episode_length_buf % int(self.cfg.commands.resampling_time / self.dt)==0).nonzero(as_tuple=False).flatten()
         self._resample_commands(env_ids)
         if self.cfg.commands.heading_command:
-            forward = quat_apply(self.base_quat, self.forward_vec)
-            heading = torch.atan2(forward[:, 1], forward[:, 0])
-            self.commands[:, 2] = torch.clip(0.5*wrap_to_pi(self.commands[:, 3] - heading), -2., 2.)
+            self._update_heading_commands(slice(None))
 
         if self.cfg.terrain.measure_heights:
             self.measured_heights = self._get_heights()
@@ -518,6 +514,21 @@ class LeggedRobot(BaseTask):
 
         # set small commands to zero
         self.commands[env_ids, :2] *= (torch.norm(self.commands[env_ids, :2], dim=1) > 0.2).unsqueeze(1)
+
+        # Explicit 10 s parking samples also occur at in-episode command changes.
+        probability = getattr(self.cfg.commands, 'parking_probability', 0.)
+        if probability:
+            self.parking_commands[env_ids] = torch.rand(len(env_ids), device=self.device) < probability
+            self.commands[env_ids[self.parking_commands[env_ids]], :3] = 0.
+        else:
+            self.parking_commands[env_ids] = False
+
+    def _update_heading_commands(self, env_ids):
+        forward = quat_apply(self.base_quat[env_ids], self.forward_vec[env_ids])
+        heading = torch.atan2(forward[:, 1], forward[:, 0])
+        self.commands[env_ids, 2] = torch.clip(0.5 * wrap_to_pi(self.commands[env_ids, 3] - heading), -2., 2.)
+        # Preserve zero commands only for explicit parking; driving keeps heading control.
+        self.commands[self.parking_commands, :3] = 0.
 
     def _compute_torques(self, actions):
         """ Compute torques from actions.
@@ -716,6 +727,7 @@ class LeggedRobot(BaseTask):
         self.last_dof_vel = torch.zeros_like(self.dof_vel)
         self.last_root_vel = torch.zeros_like(self.root_states[:, 7:13])
         self.commands = torch.zeros(self.num_envs, self.cfg.commands.num_commands, dtype=torch.float, device=self.device, requires_grad=False) # x vel, y vel, yaw vel, heading
+        self.parking_commands = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
         self.commands_scale = torch.tensor([self.obs_scales.lin_vel, self.obs_scales.lin_vel, self.obs_scales.ang_vel], device=self.device, requires_grad=False,) # TODO change this
         self.feet_air_time = torch.zeros(self.num_envs, self.feet_indices.shape[0], dtype=torch.float, device=self.device, requires_grad=False)
         self.last_contacts = torch.zeros(self.num_envs, len(self.feet_indices), dtype=torch.bool, device=self.device, requires_grad=False)
@@ -1221,7 +1233,22 @@ class LeggedRobot(BaseTask):
         # Penalize motion at zero commands        
         dof_err = self.dof_pos - self.default_dof_pos
         dof_err[:,self.wheel_indices] = 0
-        return torch.sum(torch.abs(dof_err), dim=1) * (torch.norm(self.commands[:, :2], dim=1) < 0.1)
+        return torch.sum(torch.abs(dof_err), dim=1) * self._parking_mask()
+
+    def _parking_mask(self):
+        # Per-axis command thresholds: vx m/s, vy m/s, yaw rad/s. No state gate.
+        thresholds = self.commands.new_tensor(getattr(self.cfg.commands, 'parking_thresholds', [.03, .03, .05]))
+        return (self.commands[:, :3].abs() <= thresholds).all(dim=1)
+
+    def _reward_parking_lin_vel(self):
+        return torch.norm(self.base_lin_vel[:, :2], dim=1) * self._parking_mask()
+
+    def _reward_parking_ang_vel(self):
+        return self.base_ang_vel[:, 2].abs() * self._parking_mask()
+
+    def _reward_parking_wheel_vel(self):
+        # Actual wheel speed is auxiliary; targets and holding torques stay unrestricted.
+        return self.dof_vel[:, self.wheel_indices].abs().mean(dim=1) * self._parking_mask()
     
     def _reward_torques(self):
         # Penalize torques
