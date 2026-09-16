@@ -37,6 +37,7 @@ import random
 from isaacgym import gymapi
 from isaacgym import gymutil
 import torch.nn.functional as F
+from rsl_rl.export_s10 import policy_metadata
 
 from legged_gym import LEGGED_GYM_ROOT_DIR, LEGGED_GYM_ENVS_DIR
 
@@ -195,18 +196,7 @@ def export_policy_as_jit(actor_critic, path, env=None):
         traced_script_module.save(path)
 
     if env is not None:
-        metadata = dict(
-            robot=env.cfg.asset.name, interface_version=2, reset_history='zero',
-            dof_names=env.dof_names, wheel_indices=env.wheel_indices.tolist(),
-            default_dof_pos=env.default_dof_pos[0].tolist(),
-            p_gains=env.p_gains.tolist(), d_gains=env.d_gains.tolist(),
-            action_scale=env.action_scale.tolist(), vel_scale=env.cfg.control.vel_scale,
-            torque_limits=env.torque_limits.tolist(), dof_vel_limits=env.dof_vel_limits.tolist(),
-            commands_scale=env.commands_scale.tolist(), obs_scales=class_to_dict(env.obs_scales),
-            clip_actions=env.cfg.normalization.clip_actions,
-            clip_observations=env.cfg.normalization.clip_observations,
-            sim_dt=env.sim_params.dt, decimation=env.cfg.control.decimation,
-            self_collisions=env.cfg.asset.self_collisions, initial_position=env.cfg.init_state.pos)
+        metadata = policy_metadata(env)
         with open(os.path.join(path, 'policy.json'), 'w') as file:
             json.dump(metadata, file, indent=2)
 
