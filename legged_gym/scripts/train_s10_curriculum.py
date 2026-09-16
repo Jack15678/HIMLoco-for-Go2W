@@ -1,4 +1,4 @@
-"""One scratch 2000-iteration run, or a zero-update real-simulator preflight."""
+"""Scratch 2000 iterations, zero-update preflight, or a bounded full-state continuation."""
 import argparse
 import json
 import math
@@ -11,7 +11,8 @@ import torch
 from legged_gym.envs import S10RoughCfg
 from legged_gym.utils import get_args, task_registry
 from legged_gym.utils.helpers import class_to_dict, set_seed
-from legged_gym.scripts.resume_s10_candidate import require_finite, write_json
+from legged_gym.scripts.resume_s10_candidate import equal_state, require_finite, write_json
+from legged_gym.scripts.evaluate_s10 import restore_config
 from rsl_rl.runners import HIMOnPolicyRunner
 
 
@@ -20,32 +21,75 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--source-commit', required=True)
     parser.add_argument('--check-only', action='store_true')
+    parser.add_argument('--resume-from', type=Path)
     options, remaining = parser.parse_known_args()
     sys.argv = [sys.argv[0]] + remaining
     args = get_args()
-    assert args.task == 's10' and not args.resume and args.initialization == 'scratch'
-    assert args.max_iterations == 2000 and args.seed == 1 and args.headless
+    assert args.task == 's10' and args.resume == bool(options.resume_from)
+    assert args.max_iterations > 0 and args.seed == 1 and args.headless
+    if options.resume_from:
+        assert not options.check_only and args.initialization is None
+    else:
+        assert args.initialization == 'scratch' and args.max_iterations == 2000
     assert args.num_envs == (512 if options.check_only else 4096)
     assert len(options.source_commit) == 40 and all(c in '0123456789abcdef' for c in options.source_commit)
     run = options.output
     run.mkdir(parents=True, exist_ok=False)
     (run/'source_commit.txt').write_text(options.source_commit+'\n')
     cfg, train_cfg = task_registry.get_cfgs('s10')
+    if options.resume_from:
+        saved_config = json.loads((options.resume_from.parent/'config.json').read_text())
+        restore_config(cfg, saved_config['env'])
     env, cfg = task_registry.make_env('s10', args=args, env_cfg=cfg)
     train_cfg.seed = 1
-    train_cfg.runner.max_iterations = 2000
+    train_cfg.runner.max_iterations = args.max_iterations
     train_cfg.runner.resume = False
-    train = class_to_dict(train_cfg)
+    train = saved_config['train'] if options.resume_from else class_to_dict(train_cfg)
     set_seed(1)
     runner = HIMOnPolicyRunner(env, train, str(run), device=args.rl_device)
     actor = runner.alg.actor_critic
     optimizers = [runner.alg.optimizer, actor.estimator.optimizer]
-    assert runner.current_learning_iteration == runner.tot_timesteps == 0
-    assert all(not optimizer.state for optimizer in optimizers)
+    if options.resume_from:
+        assert class_to_dict(cfg) == saved_config['env'], 'Continuation must preserve the saved recipe'
+        runner.load(str(options.resume_from), load_optimizer=True)
+        source = torch.load(options.resume_from, map_location='cpu')
+        equal_state(actor.state_dict(), source['model_state_dict'])
+        for optimizer, key in zip(optimizers, ['optimizer_state_dict', 'estimator_optimizer_state_dict']):
+            equal_state(optimizer.state_dict(), source[key])
+            assert {float(s['step']) for s in optimizer.state.values()} == {20.*source['iter']}
+        info = source['infos']
+        equal_state(env.terrain_types, info['terrain_types'])
+        env.terrain_levels.copy_(info['terrain_levels'])
+        env.extended_speed_envs.copy_(info['extended_speed_envs'])
+        env.env_origins[:] = env.terrain_origins[env.terrain_levels, env.terrain_types]
+        # Restore persistent progress; fresh physical episodes need fresh episode/window scores.
+        env.task_curriculum.speed_limits.copy_(info['curriculum']['speed_limits'])
+        env.init_done = False
+        env.reset()
+        env.init_done = True
+        for key in env.task_curriculum.report():
+            value = getattr(env.task_curriculum, key, None)
+            if torch.is_tensor(value):
+                value.copy_(info['curriculum'][key])
+        write_json(run/'resume_verification.json', dict(source_checkpoint=str(options.resume_from),
+            iteration=source['iter'], environment_steps=source['tot_timesteps'],
+            all_model_and_optimizer_tensors_equal_source=True,
+            optimizer_steps=[20*source['iter']]*2, additional_iterations=args.max_iterations,
+            initial_terrain_histogram=torch.bincount(env.terrain_levels, minlength=cfg.terrain.num_rows).tolist(),
+            initial_curriculum=env.task_curriculum.report(),
+            environment_handling='Fresh simulator/RNG/episodes; restored terrain levels, membership, speed caps and cumulative counters. Episode/window scores restart; no seamless physics resume.'))
+    else:
+        assert runner.current_learning_iteration == runner.tot_timesteps == 0
+        assert all(not optimizer.state for optimizer in optimizers)
+        torch.testing.assert_close(actor.std, torch.tensor([.3, .3, .3, .6]*4, device=env.device))
+    start = runner.current_learning_iteration
+    target = start + args.max_iterations
+    assert runner.tot_timesteps == start*4096*48
+    train['runner'].update(max_iterations=target, resume=bool(options.resume_from))
+    initialization = 'full checkpoint + both Adam optimizers' if options.resume_from else 'scratch'
     assert runner.num_steps_per_env == 48 and runner.save_interval == 50
     assert math.isclose(env.dt, .02, abs_tol=1e-8) and cfg.control.decimation == 8
-    torch.testing.assert_close(actor.std, torch.tensor([.3, .3, .3, .6]*4, device=env.device))
-    write_json(run/'config.json', dict(env=class_to_dict(cfg), train=train, initialization='scratch',
+    write_json(run/'config.json', dict(env=class_to_dict(cfg), train=train, initialization=initialization,
         interface_version=2, dof_names=env.dof_names, source_commit=options.source_commit))
     coverage = []
     for column in env.terrain_types.unique():
@@ -54,11 +98,11 @@ def main():
         assert high == round(count*.2)
         coverage.append(dict(column=int(column), terrain=int(env.task_curriculum.kinds[selected][0]),
                              environments=count, extended=high, fraction=high/count))
-    write_json(run/'initialization_verification.json', dict(initialization='scratch', iteration=0,
-        environment_steps=0, adam_states=[len(o.state) for o in optimizers],
+    write_json(run/'initialization_verification.json', dict(initialization=initialization, iteration=start,
+        environment_steps=runner.tot_timesteps, adam_states=[len(o.state) for o in optimizers],
         learning_rates=[o.param_groups[0]['lr'] for o in optimizers], std=actor.std.tolist(),
         terrain_speed_coverage=coverage, terrain_vertices=len(env.terrain.vertices),
-        terrain_triangles=len(env.terrain.triangles), requested_iterations=2000,
+        terrain_triangles=len(env.terrain.triangles), requested_iterations=args.max_iterations, target_iteration=target,
         preflight_only=options.check_only))
     try:
         if options.check_only:
@@ -119,6 +163,8 @@ def main():
                 losses = {k: float(locs[k]) for k in ['mean_value_loss', 'mean_surrogate_loss', 'mean_estimation_loss', 'mean_swap_loss']}
                 assert all(math.isfinite(v) for v in losses.values()) and torch.isfinite(actor.std).all() and (actor.std > 0).all()
                 row = dict(iteration=locs['it']+1, total_timesteps=runner.tot_timesteps,
+                    mean_reward=sum(locs['rewbuffer'])/len(locs['rewbuffer']) if locs['rewbuffer'] else None,
+                    mean_episode_length_steps=sum(locs['lenbuffer'])/len(locs['lenbuffer']) if locs['lenbuffer'] else None,
                     total_seconds=runner.tot_time, losses=losses, std=actor.std.tolist(),
                     learning_rate=runner.alg.learning_rate, estimator_learning_rate=actor.estimator.learning_rate,
                     terrain_histogram=torch.bincount(env.terrain_levels, minlength=cfg.terrain.num_rows).tolist(),
@@ -127,13 +173,14 @@ def main():
                     curriculum=env.task_curriculum.report(), **runner.alg.update_stats)
                 metrics.write(json.dumps(row, allow_nan=False)+'\n'); metrics.flush()
             runner.log = log
-            runner.save(str(run/'model_0.pt'))
-            print('SCRATCH_VERIFIED_STARTING_EXACTLY_2000_ITERATIONS', flush=True)
-            runner.learn(2000, init_at_random_ep_len=False)
-        assert runner.current_learning_iteration == 2000 and runner.tot_timesteps == 393216000
-        assert all({float(s['step']) for s in o.state.values()} == {40000.} for o in optimizers)
-        write_json(run/'training_result.json', dict(status='completed', iterations=2000,
-            environment_steps=runner.tot_timesteps, optimizer_steps=[40000, 40000]))
+            runner.save(str(run/f'model_{start}.pt'))
+            print(f'INITIALIZATION_VERIFIED_LEARNING_{start}_TO_{target}', flush=True)
+            runner.learn(args.max_iterations, init_at_random_ep_len=False)
+        assert runner.current_learning_iteration == target and runner.tot_timesteps == target*4096*48
+        assert all({float(s['step']) for s in o.state.values()} == {20.*target} for o in optimizers)
+        write_json(run/'training_result.json', dict(status='completed', iterations=target,
+            additional_iterations=args.max_iterations, environment_steps=runner.tot_timesteps,
+            optimizer_steps=[20*target]*2))
     except BaseException:
         write_json(run/'training_result.json', dict(status='failed', iteration=runner.current_learning_iteration,
             environment_steps=runner.tot_timesteps, error=traceback.format_exc()))

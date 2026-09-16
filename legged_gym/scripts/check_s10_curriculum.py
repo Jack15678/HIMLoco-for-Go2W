@@ -54,7 +54,7 @@ def main():
     course = curriculum.TaskCurriculum(env)
     ids = torch.arange(n)
     course.finish(ids, torch.zeros(n, dtype=torch.bool))
-    assert not course.terrain_episodes.any() and not course.old_new_disagreements.any()
+    assert not course.up_count.any() and not course.down_count.any() and not course.old_new_disagreements.any()
     course.sample(ids)
     for mode in range(8):
         selected = course.mode == mode
@@ -67,14 +67,13 @@ def main():
         elif mode == 7:
             assert not commands.any()
     assert (env.commands[(course.mode == 2) | (course.mode == 3), 1].abs() < .2).any()
-    # Perfect pure yaw can progress without net translation; wrong uncommanded axes cannot.
+    # A successful yaw episode progresses without translation or unrelated task certification.
     course.mode[:] = 4
     env.commands[:, :3] = torch.tensor([0., 0., .6])
     env.base_ang_vel[:, 2] = .6
     target = torch.ones(n, dtype=torch.bool)
     for _ in range(205):
         course.record(target, target)
-    course.terrain_ready[:] = True
     delta = course.finish(ids, torch.zeros(n, dtype=torch.bool))
     assert (delta == 1).all()
     # Same command, unwanted sideways drift: normal-speed episodes must demote.
@@ -86,16 +85,27 @@ def main():
     for _ in range(205):
         course.record(~target, target)
     assert not (course.finish(ids, torch.zeros(n, dtype=torch.bool)) > 0).any()
-    # Single-mode evidence never certifies every terrain task. Each speed axis is independent.
-    course.terrain_seconds.zero_(); course.terrain_good.zero_()
-    course.terrain_seconds[:, :, 0] = 100
-    course.terrain_good[:, :, 0] = 100
+    # Parking drift must stay visible without downgrading terrain; a parking fall still demotes.
+    course.mode[:] = 7
+    env.commands.zero_()
+    env.base_ang_vel[:, 2] = .1
+    previous_good = course.total_good[:, 7].clone()
+    for _ in range(205):
+        course.record(target, target)
+    assert not course.finish(ids, torch.zeros(n, dtype=torch.bool)).any()
+    assert torch.equal(course.total_good[:, 7], previous_good)
+    assert (course.finish(ids[:1], torch.ones(1, dtype=torch.bool)) == -1).all()
+    # vx can qualify at its boundary despite poor vy; vy/yaw do not get unearned increases.
+    course.mode[:] = 0
+    env.commands[:, :3] = torch.tensor([1., 0., 0.])
+    env.base_lin_vel[:, :2] = torch.tensor([1., .5])
+    env.base_ang_vel.zero_()
     course.edge_seconds.zero_(); course.edge_good.zero_()
-    course.edge_seconds[4, 1] = course.edge_good[4, 1] = 100
+    for _ in range(205):
+        course.record(target, target)
     previous = course.speed_limits.clone()
     course.advance_window()
-    assert not course.terrain_ready.any()
-    expected = previous.clone(); expected[4, 1] += cfg.commands.speed_increments[1]
+    expected = previous.clone(); expected[:, 0] += cfg.commands.speed_increments[0]
     torch.testing.assert_close(course.speed_limits, expected)
     # A short fall fails even before there was enough tracking opportunity.
     assert (course.finish(ids[:1], torch.ones(1, dtype=torch.bool)) == -1).all()

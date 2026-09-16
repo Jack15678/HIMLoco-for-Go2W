@@ -21,7 +21,7 @@ class TaskCurriculum:
     """Separate terrain mastery from three per-terrain command limits.
 
     All scores use the command that produced the observed transition. Terrain
-    promotion requires evidence for every mode on the actual target surface.
+    promotion uses the episode's moving tasks on the actual target surface.
     """
     def __init__(self, env):
         self.env, self.cfg = env, env.cfg.commands
@@ -38,12 +38,6 @@ class TaskCurriculum:
             raise ValueError('Command mode probabilities must be eight nonnegative values summing to one')
         if (self.base_limits <= 0).any() or (self.max_limits < self.base_limits).any():
             raise ValueError('Invalid curriculum speed bounds')
-        shape = (len(TERRAINS), env.cfg.terrain.num_rows, len(MODES))
-        self.terrain_seconds = torch.zeros(shape, device=device)
-        self.terrain_good = torch.zeros_like(self.terrain_seconds)
-        self.terrain_ready = torch.zeros(shape[:2], dtype=torch.bool, device=device)
-        self.terrain_episodes = torch.zeros(shape[:2], device=device)
-        self.terrain_failures = torch.zeros_like(self.terrain_episodes)
         self.edge_seconds = torch.zeros(len(TERRAINS), 3, device=device)
         self.edge_good = torch.zeros_like(self.edge_seconds)
         self.episode_seconds = torch.zeros(n, device=device)
@@ -87,39 +81,33 @@ class TaskCurriculum:
         error = (actual-e.commands[:, :3]).abs()
         tolerance = error.new_tensor(self.cfg.tracking_absolute_tolerance) + self.cfg.tracking_relative_tolerance*e.commands[:, :3].abs()
         tolerance[self.mode == 7] = error.new_tensor(self.cfg.parking_tracking_tolerance)
-        good = (error <= tolerance).all(dim=1)
+        axis_good = error <= tolerance
+        good = axis_good.all(dim=1)
         self.age += dt
         steady = (self.age >= self.cfg.transition_seconds) & inside_tile
-        self.episode_seconds += steady*dt
-        self.episode_good += (steady & good)*dt
-        self.episode_target += (steady & target_contact)*dt
+        # Parking accuracy remains a diagnostic; it cannot grade obstacle traversal.
+        moving = steady & (self.mode != 7)
+        self.episode_seconds += moving*dt
+        self.episode_good += (moving & good)*dt
+        self.episode_target += (moving & target_contact)*dt
         index = self.kinds*len(MODES) + self.mode
         self.total_seconds.view(-1).index_add_(0, index, torch.full_like(self.age, dt))
         self.total_good.view(-1).index_add_(0, index, good.float()*dt)
         self.total_target_seconds.view(-1).index_add_(0, index, (target_contact & inside_tile).float()*dt)
         self.total_squared_error.view(-1, 3).index_add_(0, index, error.square()*dt)
-        # Normal-speed samples determine terrain difficulty; high-speed probes cannot inflate mastery.
-        eligible = steady & target_contact & ~e.extended_speed_envs
-        bucket = (self.kinds*e.cfg.terrain.num_rows + e.terrain_levels)*len(MODES) + self.mode
-        self.terrain_seconds.view(-1).index_add_(0, bucket, eligible.float()*dt)
-        self.terrain_good.view(-1).index_add_(0, bucket, (eligible & good).float()*dt)
         edge = ((e.commands[:, :3].abs() >= .8*self.speed_limits[self.kinds])
             & (steady & target_contact & e.extended_speed_envs)[:, None])
         self.edge_seconds.index_add_(0, self.kinds, edge.float()*dt)
-        self.edge_good.index_add_(0, self.kinds, (edge & good[:, None]).float()*dt)
+        self.edge_good.index_add_(0, self.kinds, (edge & axis_good).float()*dt)
         if e.common_step_counter % round(self.cfg.curriculum_window_s/dt) == 0:
             self.advance_window()
 
     def advance_window(self):
-        enough = (self.terrain_seconds >= self.cfg.minimum_bucket_seconds).all(dim=2)
-        score = self.terrain_good / self.terrain_seconds.clamp_min(1e-9)
-        failure_rate = self.terrain_failures / self.terrain_episodes.clamp_min(1)
-        self.terrain_ready[:] = enough & (score >= self.cfg.promote_score).all(dim=2) & (failure_rate <= .1)
         edge_score = self.edge_good / self.edge_seconds.clamp_min(1e-9)
         enough_edge = self.edge_seconds >= self.cfg.minimum_bucket_seconds
         direction = (enough_edge & (edge_score >= self.cfg.promote_score)).float() - (enough_edge & (edge_score < self.cfg.demote_score)).float()
         self.speed_limits[:] = torch.maximum(self.base_limits, torch.minimum(self.max_limits, self.speed_limits + direction*self.increments))
-        for tensor in [self.terrain_seconds, self.terrain_good, self.terrain_episodes, self.terrain_failures, self.edge_seconds, self.edge_good]:
+        for tensor in [self.edge_seconds, self.edge_good]:
             tensor.zero_()
 
     def finish(self, ids, failed):
@@ -128,13 +116,9 @@ class TaskCurriculum:
         score = self.episode_good[ids] / seconds.clamp_min(1e-9)
         enough = seconds >= self.cfg.minimum_episode_seconds
         up = enough & (score >= self.cfg.promote_score) & (self.episode_target[ids] >= 1.) & ~failed
-        up &= self.terrain_ready[self.kinds[ids], e.terrain_levels[ids]]
         down = failed | (enough & (score < self.cfg.demote_score) & ~e.extended_speed_envs[ids])
         delta = up.long()-down.long()
         completed = ((self.age[ids] > 0) | (seconds > 0) | failed).float()
-        index = self.kinds[ids]*e.cfg.terrain.num_rows + e.terrain_levels[ids]
-        self.terrain_episodes.view(-1).index_add_(0, index, completed)
-        self.terrain_failures.view(-1).index_add_(0, index, failed.float())
         self.failures.view(-1).index_add_(0, self.kinds[ids]*len(MODES)+self.mode[ids], failed.float())
         self.up_count.index_add_(0, self.kinds[ids], up.float())
         self.down_count.index_add_(0, self.kinds[ids], down.float())
