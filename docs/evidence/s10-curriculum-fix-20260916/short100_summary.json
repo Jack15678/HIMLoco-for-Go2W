@@ -18,7 +18,8 @@
       "reward_per_second": 1.7879633619511088,
       "mean_level": 0.16190185546875,
       "tracking_lin": 1.3824215451876323,
-      "tracking_yaw": 0.6464917119281988
+      "tracking_yaw": 0.6464917119281988,
+      "falls_per_1000_env_seconds": 0.5397467201490392
     },
     {
       "start": 1081,
@@ -28,9 +29,12 @@
       "reward_per_second": 1.7960705233679648,
       "mean_level": 0.16990966796875,
       "tracking_lin": 1.391180186967055,
-      "tracking_yaw": 0.6549083306143682
+      "tracking_yaw": 0.6549083306143682,
+      "falls_per_1000_env_seconds": 0.3146824719871753
     }
   ],
+  "initial_mean_level": 0.16064453125,
+  "final_mean_level": 0.172119140625,
   "final_terrain_histogram": [
     3763,
     165,

@@ -1,0 +1,90 @@
+{
+  "result": {
+    "status": "completed",
+    "iterations": 1200,
+    "additional_iterations": 100,
+    "environment_steps": 235929600,
+    "optimizer_steps": [
+      24000,
+      24000
+    ]
+  },
+  "windows": [
+    {
+      "start": 1122,
+      "end": 1141,
+      "mean_reward": 21.830208013035357,
+      "mean_episode_steps": 609.6875,
+      "reward_per_second": 1.7900077688076876,
+      "mean_level": 0.2309326171875,
+      "tracking_lin": 1.3818092004706461,
+      "tracking_yaw": 0.6504009940040608,
+      "falls_per_1000_env_seconds": 0.6653073501261328
+    },
+    {
+      "start": 1181,
+      "end": 1200,
+      "mean_reward": 25.480442543305458,
+      "mean_episode_steps": 708.8695,
+      "reward_per_second": 1.7970470225880832,
+      "mean_level": 0.376123046875,
+      "tracking_lin": 1.387226849483947,
+      "tracking_yaw": 0.6508424822241068,
+      "falls_per_1000_env_seconds": 0.4376633544277952
+    }
+  ],
+  "initial_mean_level": 0.172119140625,
+  "final_mean_level": 0.397705078125,
+  "final_terrain_histogram": [
+    3084,
+    657,
+    207,
+    69,
+    48,
+    27,
+    4,
+    0,
+    0,
+    0
+  ],
+  "promotions": [
+    289.0,
+    185.0,
+    32.0,
+    24.0,
+    239.0,
+    214.0
+  ],
+  "speed_limits": [
+    [
+      1.5,
+      0.8999999761581421,
+      1.5
+    ],
+    [
+      1.5,
+      0.8999999761581421,
+      1.5
+    ],
+    [
+      1.5,
+      0.6000000238418579,
+      1.0
+    ],
+    [
+      1.5,
+      0.6000000238418579,
+      1.0
+    ],
+    [
+      1.5,
+      0.6000000238418579,
+      1.0
+    ],
+    [
+      1.5,
+      0.7000000476837158,
+      1.5
+    ]
+  ]
+}
