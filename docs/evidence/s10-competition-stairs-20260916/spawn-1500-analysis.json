@@ -1,0 +1,5486 @@
+{
+  "overall": {
+    "episodes": 34672,
+    "completed": 30576,
+    "failures": 1812,
+    "demotion_causes": {
+      "base_contact": 1812,
+      "tracking": 2522
+    },
+    "failures_by_age": {
+      "0-.2s": 0,
+      ".2-1s": 2,
+      "1-3s": 155,
+      "3-10s": 736,
+      ">10s": 919
+    },
+    "horizons": {
+      "0.2": {
+        "eligible": 34632,
+        "failed": 0,
+        "fraction": 0.0
+      },
+      "1": {
+        "eligible": 34441,
+        "failed": 2,
+        "fraction": 5.8070323161348394e-05
+      },
+      "3": {
+        "eligible": 32163,
+        "failed": 157,
+        "fraction": 0.004881385442900227
+      }
+    },
+    "tilt_first3": {
+      "eligible": 32163,
+      "median": 5.354305744171143,
+      "p95": 21.918604850769032,
+      "over45": 227
+    }
+  },
+  "stairs": {
+    "episodes": 16022,
+    "completed": 13974,
+    "failures": 1661,
+    "demotion_causes": {
+      "base_contact": 1661,
+      "tracking": 2377
+    },
+    "failures_by_age": {
+      "0-.2s": 0,
+      ".2-1s": 1,
+      "1-3s": 128,
+      "3-10s": 677,
+      ">10s": 855
+    },
+    "horizons": {
+      "0.2": {
+        "eligible": 16000,
+        "failed": 0,
+        "fraction": 0.0
+      },
+      "1": {
+        "eligible": 15928,
+        "failed": 1,
+        "fraction": 6.278252134605726e-05
+      },
+      "3": {
+        "eligible": 15228,
+        "failed": 129,
+        "fraction": 0.00847123719464145
+      }
+    },
+    "tilt_first3": {
+      "eligible": 15228,
+      "median": 11.699883937835693,
+      "p95": 24.585546779632566,
+      "over45": 189
+    },
+    "tracking": {
+      "scored_episodes": 12315,
+      "all_axes_ge_08": 711,
+      "promotion_requests": 32,
+      "median_axis_scores": [
+        0.7185930013656616,
+        0.6711093783378601,
+        0.5816327333450317
+      ]
+    },
+    "support_height_span_median": 0.0,
+    "first_wheel_contact_p95": 0.1599999964237213
+  },
+  "groups": [
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "episodes": 4518,
+      "completed": 3837,
+      "failures": 301,
+      "demotion_causes": {
+        "base_contact": 301,
+        "tracking": 815
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 5,
+        "3-10s": 98,
+        ">10s": 198
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 4512,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 4495,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 4442,
+          "failed": 5,
+          "fraction": 0.0011256190904997748
+        }
+      },
+      "tilt_first3": {
+        "eligible": 4442,
+        "median": 3.0948113203048706,
+        "p95": 16.49233245849609,
+        "over45": 12
+      },
+      "tracking": {
+        "scored_episodes": 3661,
+        "all_axes_ge_08": 400,
+        "promotion_requests": 2,
+        "median_axis_scores": [
+          0.6320000290870667,
+          0.6444407105445862,
+          0.6066625714302063
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "episodes": 4548,
+      "completed": 3925,
+      "failures": 621,
+      "demotion_causes": {
+        "base_contact": 621,
+        "tracking": 975
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 1,
+        "1-3s": 59,
+        "3-10s": 209,
+        ">10s": 352
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 4545,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 4527,
+          "failed": 1,
+          "fraction": 0.0002208968411751712
+        },
+        "3": {
+          "eligible": 4431,
+          "failed": 60,
+          "fraction": 0.013540961408259987
+        }
+      },
+      "tilt_first3": {
+        "eligible": 4431,
+        "median": 17.12468719482422,
+        "p95": 27.772153854370117,
+        "over45": 75
+      },
+      "tracking": {
+        "scored_episodes": 3590,
+        "all_axes_ge_08": 6,
+        "promotion_requests": 6,
+        "median_axis_scores": [
+          0.6142004430294037,
+          0.597773551940918,
+          0.5399951934814453
+        ]
+      },
+      "support_height_span_median": 0.13999998569488525,
+      "first_wheel_contact_p95": 0.1599999964237213
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "episodes": 3521,
+      "completed": 3147,
+      "failures": 417,
+      "demotion_causes": {
+        "base_contact": 417,
+        "tracking": 69
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 22,
+        "3-10s": 234,
+        ">10s": 161
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 3512,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 3496,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 3406,
+          "failed": 22,
+          "fraction": 0.0064591896652965355
+        }
+      },
+      "tilt_first3": {
+        "eligible": 3406,
+        "median": 3.289738178253174,
+        "p95": 21.02948808670044,
+        "over45": 42
+      },
+      "tracking": {
+        "scored_episodes": 2774,
+        "all_axes_ge_08": 303,
+        "promotion_requests": 22,
+        "median_axis_scores": [
+          0.9289327263832092,
+          0.8171566426753998,
+          0.6211071610450745
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "episodes": 3435,
+      "completed": 3065,
+      "failures": 322,
+      "demotion_causes": {
+        "base_contact": 322,
+        "tracking": 518
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 42,
+        "3-10s": 136,
+        ">10s": 144
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 3431,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 3410,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 2949,
+          "failed": 42,
+          "fraction": 0.014242115971515769
+        }
+      },
+      "tilt_first3": {
+        "eligible": 2949,
+        "median": 15.87635612487793,
+        "p95": 28.108127975463862,
+        "over45": 60
+      },
+      "tracking": {
+        "scored_episodes": 2290,
+        "all_axes_ge_08": 2,
+        "promotion_requests": 2,
+        "median_axis_scores": [
+          0.6977746486663818,
+          0.6311094760894775,
+          0.5555508732795715
+        ]
+      },
+      "support_height_span_median": 0.13999998569488525,
+      "first_wheel_contact_p95": 0.2199999988079071
+    }
+  ],
+  "parking": [
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 106,
+      "completed": 92,
+      "failures": 1,
+      "demotion_causes": {
+        "tracking": 18,
+        "base_contact": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 1
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 106,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 106,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 106,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 106,
+        "median": 1.9148916006088257,
+        "p95": 2.9481090903282166,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 69,
+        "all_axes_ge_08": 9,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7644424438476562,
+          0.6644427180290222,
+          0.6022206544876099
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 1,
+      "episodes": 101,
+      "completed": 86,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 11
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 101,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 100,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 96,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 96,
+        "median": 1.8220930695533752,
+        "p95": 3.392016887664795,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 64,
+        "all_axes_ge_08": 9,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7602145969867706,
+          0.6951958239078522,
+          0.5970380008220673
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 2,
+      "episodes": 107,
+      "completed": 88,
+      "failures": 1,
+      "demotion_causes": {
+        "tracking": 20,
+        "base_contact": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 1
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 106,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 106,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 104,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 104,
+        "median": 1.853877067565918,
+        "p95": 3.219361031055449,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 78,
+        "all_axes_ge_08": 19,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.8455533385276794,
+          0.7222203612327576,
+          0.6655538082122803
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 3,
+      "episodes": 96,
+      "completed": 83,
+      "failures": 2,
+      "demotion_causes": {
+        "tracking": 17,
+        "base_contact": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 2
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 96,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 96,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 95,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 95,
+        "median": 1.8298107385635376,
+        "p95": 3.6239408493041987,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 68,
+        "all_axes_ge_08": 12,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7488869428634644,
+          0.7022213339805603,
+          0.6333317160606384
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 4,
+      "episodes": 85,
+      "completed": 70,
+      "failures": 3,
+      "demotion_causes": {
+        "base_contact": 3,
+        "tracking": 17
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 3
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 85,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 84,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 81,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 81,
+        "median": 1.9608440399169922,
+        "p95": 3.8114616870880127,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 57,
+        "all_axes_ge_08": 14,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7155537009239197,
+          0.7555536031723022,
+          0.6466649770736694
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 5,
+      "episodes": 106,
+      "completed": 91,
+      "failures": 11,
+      "demotion_causes": {
+        "base_contact": 11,
+        "tracking": 25
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 11
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 106,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 105,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 104,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 104,
+        "median": 1.8787782788276672,
+        "p95": 3.432468128204345,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 73,
+        "all_axes_ge_08": 9,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5111098289489746,
+          0.5466652512550354,
+          0.6111095547676086
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 6,
+      "episodes": 81,
+      "completed": 71,
+      "failures": 2,
+      "demotion_causes": {
+        "tracking": 19,
+        "base_contact": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 2
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 81,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 80,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 79,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 79,
+        "median": 1.877843976020813,
+        "p95": 3.36470878124237,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 52,
+        "all_axes_ge_08": 11,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7222203314304352,
+          0.5911096036434174,
+          0.682220458984375
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 7,
+      "episodes": 95,
+      "completed": 84,
+      "failures": 5,
+      "demotion_causes": {
+        "tracking": 26,
+        "base_contact": 5
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 5
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 95,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 95,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 95,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 95,
+        "median": 1.7860791683197021,
+        "p95": 2.9496177673339843,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 67,
+        "all_axes_ge_08": 11,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6066650748252869,
+          0.6222206354141235,
+          0.6111095547676086
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 8,
+      "episodes": 75,
+      "completed": 57,
+      "failures": 2,
+      "demotion_causes": {
+        "base_contact": 2,
+        "tracking": 17
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 2
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 75,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 75,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 72,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 72,
+        "median": 1.955776333808899,
+        "p95": 3.5389095067977907,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 44,
+        "all_axes_ge_08": 10,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5688874125480652,
+          0.6211095154285431,
+          0.6055540144443512
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 9,
+      "episodes": 85,
+      "completed": 71,
+      "failures": 2,
+      "demotion_causes": {
+        "base_contact": 2,
+        "tracking": 25
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 2
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 85,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 85,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 82,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 82,
+        "median": 1.8759604692459106,
+        "p95": 2.954837512969971,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 62,
+        "all_axes_ge_08": 21,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.8299978077411652,
+          0.8066645562648773,
+          0.6611093878746033
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 93,
+      "completed": 82,
+      "failures": 1,
+      "demotion_causes": {
+        "tracking": 18,
+        "base_contact": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 1
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 93,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 93,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 92,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 92,
+        "median": 9.216594219207764,
+        "p95": 13.905336713790893,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 61,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.692307710647583,
+          0.6288872361183167,
+          0.6111095547676086
+        ]
+      },
+      "support_height_span_median": 0.14999999105930328,
+      "first_wheel_contact_p95": 0.1599999964237213
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 1,
+      "episodes": 92,
+      "completed": 81,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 18
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 92,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 92,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 91,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 91,
+        "median": 12.723880767822266,
+        "p95": 16.01163959503174,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 60,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6799982488155365,
+          0.6311094760894775,
+          0.6011095643043518
+        ]
+      },
+      "support_height_span_median": 0.11999998986721039,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 2,
+      "episodes": 71,
+      "completed": 59,
+      "failures": 3,
+      "demotion_causes": {
+        "tracking": 13,
+        "base_contact": 3
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 3
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 71,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 71,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 70,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 70,
+        "median": 10.141557693481445,
+        "p95": 16.907671070098875,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 46,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6633316278457642,
+          0.6274497509002686,
+          0.5711096525192261
+        ]
+      },
+      "support_height_span_median": 0.13999998569488525,
+      "first_wheel_contact_p95": 0.1599999964237213
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 3,
+      "episodes": 84,
+      "completed": 67,
+      "failures": 3,
+      "demotion_causes": {
+        "tracking": 20,
+        "base_contact": 3
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 3
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 84,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 84,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 80,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 80,
+        "median": 11.001662731170654,
+        "p95": 16.656437397003174,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 58,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6063463687896729,
+          0.6266650259494781,
+          0.5899984836578369
+        ]
+      },
+      "support_height_span_median": 0.07999999821186066,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 4,
+      "episodes": 67,
+      "completed": 64,
+      "failures": 8,
+      "demotion_causes": {
+        "base_contact": 8,
+        "tracking": 10
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 8
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 67,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 67,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 67,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 67,
+        "median": 13.61416244506836,
+        "p95": 14.718972969055173,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 54,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5292384028434753,
+          0.5433319509029388,
+          0.49777650833129883
+        ]
+      },
+      "support_height_span_median": 0.10000000894069672,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 5,
+      "episodes": 75,
+      "completed": 64,
+      "failures": 5,
+      "demotion_causes": {
+        "base_contact": 5,
+        "tracking": 16
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 5
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 75,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 75,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 74,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 74,
+        "median": 16.179041862487793,
+        "p95": 19.129770660400375,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 52,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6426590979099274,
+          0.6311094760894775,
+          0.5611096918582916
+        ]
+      },
+      "support_height_span_median": 0.11999998986721039,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 6,
+      "episodes": 89,
+      "completed": 80,
+      "failures": 11,
+      "demotion_causes": {
+        "base_contact": 11,
+        "tracking": 29
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 1,
+        ">10s": 10
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 89,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 89,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 89,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 89,
+        "median": 19.018341064453125,
+        "p95": 25.094634246826168,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 64,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.589811384677887,
+          0.6036920547485352,
+          0.5455541610717773
+        ]
+      },
+      "support_height_span_median": 0.2800000011920929,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 7,
+      "episodes": 81,
+      "completed": 68,
+      "failures": 8,
+      "demotion_causes": {
+        "base_contact": 8,
+        "tracking": 25
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 2,
+        "3-10s": 1,
+        ">10s": 5
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 81,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 81,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 79,
+          "failed": 2,
+          "fraction": 0.02531645569620253
+        }
+      },
+      "tilt_first3": {
+        "eligible": 79,
+        "median": 21.742456436157227,
+        "p95": 25.45440807342527,
+        "over45": 2
+      },
+      "tracking": {
+        "scored_episodes": 50,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6077762246131897,
+          0.6433316767215729,
+          0.5011098384857178
+        ]
+      },
+      "support_height_span_median": 0.1599999964237213,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 8,
+      "episodes": 100,
+      "completed": 79,
+      "failures": 13,
+      "demotion_causes": {
+        "base_contact": 13,
+        "tracking": 28
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 1,
+        ">10s": 12
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 100,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 100,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 99,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 99,
+        "median": 21.668712615966797,
+        "p95": 25.492320632934565,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 66,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5499985814094543,
+          0.5311097502708435,
+          0.48888763785362244
+        ]
+      },
+      "support_height_span_median": 0.3199999928474426,
+      "first_wheel_contact_p95": 0.1599999964237213
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 9,
+      "episodes": 87,
+      "completed": 78,
+      "failures": 14,
+      "demotion_causes": {
+        "base_contact": 14,
+        "tracking": 24
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 0,
+        ">10s": 13
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 87,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 87,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 87,
+          "failed": 1,
+          "fraction": 0.011494252873563218
+        }
+      },
+      "tilt_first3": {
+        "eligible": 87,
+        "median": 21.82651710510254,
+        "p95": 23.9700044631958,
+        "over45": 1
+      },
+      "tracking": {
+        "scored_episodes": 60,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5764496624469757,
+          0.5755540728569031,
+          0.4944431930780411
+        ]
+      },
+      "support_height_span_median": 0.3199999928474426,
+      "first_wheel_contact_p95": 0.18799999058246625
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 73,
+      "completed": 59,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 73,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 73,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 72,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 72,
+        "median": 2.0101271867752075,
+        "p95": 3.517648696899416,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 47,
+        "all_axes_ge_08": 7,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.9777773022651672,
+          0.8577755093574524,
+          0.6029051542282104
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 1,
+      "episodes": 67,
+      "completed": 59,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 67,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 66,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 66,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 66,
+        "median": 1.9205049276351929,
+        "p95": 3.0622426867485046,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 44,
+        "all_axes_ge_08": 11,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.9623525142669678,
+          0.8644421696662903,
+          0.6411094665527344
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 2,
+      "episodes": 86,
+      "completed": 75,
+      "failures": 1,
+      "demotion_causes": {
+        "base_contact": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 1
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 86,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 86,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 84,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 84,
+        "median": 1.9553889632225037,
+        "p95": 3.3870737075805657,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 54,
+        "all_axes_ge_08": 11,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.9711105227470398,
+          0.8567947149276733,
+          0.6388872265815735
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 3,
+      "episodes": 62,
+      "completed": 50,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 62,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 62,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 59,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 59,
+        "median": 1.9269150495529175,
+        "p95": 3.0302157163619987,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 41,
+        "all_axes_ge_08": 6,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.9700000286102295,
+          0.8088867664337158,
+          0.6360294222831726
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 4,
+      "episodes": 76,
+      "completed": 65,
+      "failures": 4,
+      "demotion_causes": {
+        "base_contact": 4,
+        "tracking": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 4
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 76,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 76,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 74,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 74,
+        "median": 1.8552997708320618,
+        "p95": 3.552270913124081,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 48,
+        "all_axes_ge_08": 8,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.9633325636386871,
+          0.7844423949718475,
+          0.6430889964103699
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 5,
+      "episodes": 71,
+      "completed": 62,
+      "failures": 5,
+      "demotion_causes": {
+        "tracking": 2,
+        "base_contact": 5
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 5
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 71,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 71,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 68,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 68,
+        "median": 1.884374737739563,
+        "p95": 3.7180308461189266,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 48,
+        "all_axes_ge_08": 12,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.9481528997421265,
+          0.8671018183231354,
+          0.654096394777298
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 6,
+      "episodes": 73,
+      "completed": 56,
+      "failures": 9,
+      "demotion_causes": {
+        "base_contact": 9,
+        "tracking": 3
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 9
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 73,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 71,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 70,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 70,
+        "median": 1.9539657831192017,
+        "p95": 3.9038678288459776,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 39,
+        "all_axes_ge_08": 6,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.9414225816726685,
+          0.8311089277267456,
+          0.6416667103767395
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 7,
+      "episodes": 72,
+      "completed": 64,
+      "failures": 16,
+      "demotion_causes": {
+        "base_contact": 16,
+        "tracking": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 16
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 71,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 71,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 70,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 70,
+        "median": 1.9386094212532043,
+        "p95": 2.8309464812278744,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 48,
+        "all_axes_ge_08": 12,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.9255539774894714,
+          0.8380779922008514,
+          0.6677760481834412
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 8,
+      "episodes": 86,
+      "completed": 74,
+      "failures": 10,
+      "demotion_causes": {
+        "base_contact": 10,
+        "tracking": 3
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 10
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 86,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 86,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 85,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 85,
+        "median": 1.9599456787109375,
+        "p95": 3.423699522018432,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 50,
+        "all_axes_ge_08": 11,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.9077150523662567,
+          0.852219969034195,
+          0.6622205078601837
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 9,
+      "episodes": 76,
+      "completed": 69,
+      "failures": 14,
+      "demotion_causes": {
+        "base_contact": 14,
+        "tracking": 5
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 14
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 76,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 76,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 76,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 76,
+        "median": 1.8447761535644531,
+        "p95": 2.5688211917877197,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 52,
+        "all_axes_ge_08": 10,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.8789789080619812,
+          0.8708118200302124,
+          0.6639207303524017
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 74,
+      "completed": 67,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 4
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 73,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 73,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 73,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 73,
+        "median": 8.224425315856934,
+        "p95": 13.266869926452637,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 43,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.8203883171081543,
+          0.7177758812904358,
+          0.6679536700248718
+        ]
+      },
+      "support_height_span_median": 0.14999999105930328,
+      "first_wheel_contact_p95": 0.17999999225139618
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 1,
+      "episodes": 65,
+      "completed": 59,
+      "failures": 1,
+      "demotion_causes": {
+        "base_contact": 1,
+        "tracking": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 1
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 65,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 64,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 64,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 64,
+        "median": 14.792896270751953,
+        "p95": 15.836214447021485,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 37,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7700000405311584,
+          0.6444427967071533,
+          0.6577760577201843
+        ]
+      },
+      "support_height_span_median": 0.11999998986721039,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 2,
+      "episodes": 67,
+      "completed": 60,
+      "failures": 2,
+      "demotion_causes": {
+        "tracking": 4,
+        "base_contact": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 2
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 67,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 67,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 65,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 65,
+        "median": 9.749513626098633,
+        "p95": 15.169865226745603,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 41,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7533313632011414,
+          0.6333317160606384,
+          0.6355538964271545
+        ]
+      },
+      "support_height_span_median": 0.13999998569488525,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 3,
+      "episodes": 64,
+      "completed": 57,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 11
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 64,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 64,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 64,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 64,
+        "median": 10.899021625518799,
+        "p95": 11.933965349197386,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 40,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7611091136932373,
+          0.694442629814148,
+          0.583331823348999
+        ]
+      },
+      "support_height_span_median": 0.07999999821186066,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 4,
+      "episodes": 73,
+      "completed": 64,
+      "failures": 5,
+      "demotion_causes": {
+        "base_contact": 5,
+        "tracking": 6
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 5
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 73,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 73,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 72,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 72,
+        "median": 13.098194122314453,
+        "p95": 14.103871297836305,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 41,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.686664879322052,
+          0.6133317351341248,
+          0.5755540728569031
+        ]
+      },
+      "support_height_span_median": 0.10000000894069672,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 5,
+      "episodes": 73,
+      "completed": 59,
+      "failures": 6,
+      "demotion_causes": {
+        "tracking": 15,
+        "base_contact": 6
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 6
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 73,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 72,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 68,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 68,
+        "median": 14.698148727416992,
+        "p95": 16.193750953674318,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 44,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5544430017471313,
+          0.5333319902420044,
+          0.5266653299331665
+        ]
+      },
+      "support_height_span_median": 0.11999998986721039,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 6,
+      "episodes": 72,
+      "completed": 63,
+      "failures": 8,
+      "demotion_causes": {
+        "tracking": 11,
+        "base_contact": 8
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 0,
+        ">10s": 7
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 72,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 72,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 70,
+          "failed": 1,
+          "fraction": 0.014285714285714285
+        }
+      },
+      "tilt_first3": {
+        "eligible": 70,
+        "median": 16.748899459838867,
+        "p95": 19.773412227630615,
+        "over45": 1
+      },
+      "tracking": {
+        "scored_episodes": 35,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6470588445663452,
+          0.677776038646698,
+          0.48695656657218933
+        ]
+      },
+      "support_height_span_median": 0.2800000011920929,
+      "first_wheel_contact_p95": 0.2199999988079071
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 7,
+      "episodes": 74,
+      "completed": 61,
+      "failures": 5,
+      "demotion_causes": {
+        "base_contact": 5,
+        "tracking": 15
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 5
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 74,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 74,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 74,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 74,
+        "median": 19.259273529052734,
+        "p95": 22.707193660736085,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 36,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6423653066158295,
+          0.5099987089633942,
+          0.49431729316711426
+        ]
+      },
+      "support_height_span_median": 0.1599999964237213,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 8,
+      "episodes": 70,
+      "completed": 59,
+      "failures": 6,
+      "demotion_causes": {
+        "tracking": 22,
+        "base_contact": 6
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 6
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 70,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 70,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 66,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 66,
+        "median": 19.45236587524414,
+        "p95": 22.323203086853027,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 44,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5642602443695068,
+          0.5199986845254898,
+          0.5474846959114075
+        ]
+      },
+      "support_height_span_median": 0.3199999928474426,
+      "first_wheel_contact_p95": 0.23999999463558197
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 9,
+      "episodes": 73,
+      "completed": 60,
+      "failures": 10,
+      "demotion_causes": {
+        "base_contact": 10,
+        "tracking": 18
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 1,
+        ">10s": 9
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 73,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 73,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 71,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 71,
+        "median": 18.812671661376953,
+        "p95": 23.160858154296875,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 40,
+        "all_axes_ge_08": 1,
+        "promotion_requests": 1,
+        "median_axis_scores": [
+          0.6584834158420563,
+          0.5077764689922333,
+          0.5166653692722321
+        ]
+      },
+      "support_height_span_median": 0.3199999928474426,
+      "first_wheel_contact_p95": 0.22999999672174454
+    }
+  ],
+  "levels": [
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 502,
+      "completed": 435,
+      "failures": 2,
+      "demotion_causes": {
+        "tracking": 60,
+        "base_contact": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 2
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 502,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 499,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 492,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 492,
+        "median": 3.3412567377090454,
+        "p95": 14.696458721160887,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 411,
+        "all_axes_ge_08": 39,
+        "promotion_requests": 1,
+        "median_axis_scores": [
+          0.7273778915405273,
+          0.6833300590515137,
+          0.5911068320274353
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 1,
+      "episodes": 487,
+      "completed": 418,
+      "failures": 9,
+      "demotion_causes": {
+        "tracking": 60,
+        "base_contact": 9
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 2,
+        ">10s": 7
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 486,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 484,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 476,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 476,
+        "median": 3.3139302730560303,
+        "p95": 17.71165418624878,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 396,
+        "all_axes_ge_08": 42,
+        "promotion_requests": 1,
+        "median_axis_scores": [
+          0.7116642594337463,
+          0.670098066329956,
+          0.5887685418128967
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 2,
+      "episodes": 477,
+      "completed": 402,
+      "failures": 24,
+      "demotion_causes": {
+        "base_contact": 24,
+        "tracking": 77
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 9,
+        ">10s": 15
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 474,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 472,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 467,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 467,
+        "median": 2.9136290550231934,
+        "p95": 18.460368537902827,
+        "over45": 2
+      },
+      "tracking": {
+        "scored_episodes": 389,
+        "all_axes_ge_08": 43,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.695552408695221,
+          0.6755521893501282,
+          0.6066650748252869
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 3,
+      "episodes": 458,
+      "completed": 395,
+      "failures": 34,
+      "demotion_causes": {
+        "base_contact": 34,
+        "tracking": 84
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 13,
+        ">10s": 21
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 458,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 457,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 452,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 452,
+        "median": 3.002504587173462,
+        "p95": 18.709462356567382,
+        "over45": 2
+      },
+      "tracking": {
+        "scored_episodes": 377,
+        "all_axes_ge_08": 41,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6511074900627136,
+          0.6612679958343506,
+          0.6099959015846252
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 4,
+      "episodes": 462,
+      "completed": 379,
+      "failures": 48,
+      "demotion_causes": {
+        "base_contact": 48,
+        "tracking": 84
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 21,
+        ">10s": 27
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 462,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 460,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 453,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 453,
+        "median": 3.1384353637695312,
+        "p95": 16.7659812927246,
+        "over45": 1
+      },
+      "tracking": {
+        "scored_episodes": 365,
+        "all_axes_ge_08": 50,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6066625714302063,
+          0.6633298397064209,
+          0.6111095547676086
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 5,
+      "episodes": 467,
+      "completed": 399,
+      "failures": 52,
+      "demotion_causes": {
+        "base_contact": 52,
+        "tracking": 94
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 3,
+        "3-10s": 14,
+        ">10s": 35
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 467,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 465,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 461,
+          "failed": 3,
+          "fraction": 0.006507592190889371
+        }
+      },
+      "tilt_first3": {
+        "eligible": 461,
+        "median": 3.046004295349121,
+        "p95": 11.134042739868164,
+        "over45": 4
+      },
+      "tracking": {
+        "scored_episodes": 376,
+        "all_axes_ge_08": 37,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5422174036502838,
+          0.6055514514446259,
+          0.6127737164497375
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 6,
+      "episodes": 429,
+      "completed": 360,
+      "failures": 40,
+      "demotion_causes": {
+        "base_contact": 40,
+        "tracking": 83
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 13,
+        ">10s": 27
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 429,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 428,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 426,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 426,
+        "median": 3.121171712875366,
+        "p95": 13.13131332397461,
+        "over45": 1
+      },
+      "tracking": {
+        "scored_episodes": 341,
+        "all_axes_ge_08": 36,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5766622424125671,
+          0.6066650748252869,
+          0.613329291343689
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 7,
+      "episodes": 441,
+      "completed": 376,
+      "failures": 46,
+      "demotion_causes": {
+        "base_contact": 46,
+        "tracking": 103
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 12,
+        ">10s": 33
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 441,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 439,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 433,
+          "failed": 1,
+          "fraction": 0.0023094688221709007
+        }
+      },
+      "tilt_first3": {
+        "eligible": 433,
+        "median": 3.133441209793091,
+        "p95": 10.534919357299799,
+        "over45": 1
+      },
+      "tracking": {
+        "scored_episodes": 357,
+        "all_axes_ge_08": 31,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5654616951942444,
+          0.5911068320274353,
+          0.6111070513725281
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 8,
+      "episodes": 389,
+      "completed": 332,
+      "failures": 22,
+      "demotion_causes": {
+        "base_contact": 22,
+        "tracking": 80
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 6,
+        ">10s": 16
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 388,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 388,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 385,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 385,
+        "median": 3.0796878337860107,
+        "p95": 10.398116111755371,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 318,
+        "all_axes_ge_08": 39,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5794400274753571,
+          0.6205527782440186,
+          0.6194404661655426
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 9,
+      "episodes": 406,
+      "completed": 341,
+      "failures": 24,
+      "demotion_causes": {
+        "base_contact": 24,
+        "tracking": 90
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 8,
+        ">10s": 15
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 405,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 403,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 397,
+          "failed": 1,
+          "fraction": 0.0025188916876574307
+        }
+      },
+      "tilt_first3": {
+        "eligible": 397,
+        "median": 3.0421454906463623,
+        "p95": 12.197414398193358,
+        "over45": 1
+      },
+      "tracking": {
+        "scored_episodes": 331,
+        "all_axes_ge_08": 42,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5611065030097961,
+          0.6333295106887817,
+          0.6188849210739136
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 491,
+      "completed": 425,
+      "failures": 9,
+      "demotion_causes": {
+        "tracking": 47,
+        "base_contact": 9
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 6,
+        ">10s": 3
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 490,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 490,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 465,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 465,
+        "median": 12.627591133117676,
+        "p95": 16.367621231079102,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 366,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7294416427612305,
+          0.639441728591919,
+          0.6111070513725281
+        ]
+      },
+      "support_height_span_median": 0.14999999105930328,
+      "first_wheel_contact_p95": 0.17999999225139618
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 1,
+      "episodes": 483,
+      "completed": 419,
+      "failures": 10,
+      "demotion_causes": {
+        "tracking": 75,
+        "base_contact": 10
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 2,
+        "3-10s": 2,
+        ">10s": 6
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 483,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 481,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 460,
+          "failed": 2,
+          "fraction": 0.004347826086956522
+        }
+      },
+      "tilt_first3": {
+        "eligible": 460,
+        "median": 14.694979667663574,
+        "p95": 19.07063694000244,
+        "over45": 2
+      },
+      "tracking": {
+        "scored_episodes": 368,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6866285800933838,
+          0.6388861835002899,
+          0.5733753740787506
+        ]
+      },
+      "support_height_span_median": 0.11999998986721039,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 2,
+      "episodes": 480,
+      "completed": 422,
+      "failures": 33,
+      "demotion_causes": {
+        "base_contact": 33,
+        "tracking": 69
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 2,
+        "3-10s": 12,
+        ">10s": 19
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 479,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 475,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 459,
+          "failed": 2,
+          "fraction": 0.004357298474945534
+        }
+      },
+      "tilt_first3": {
+        "eligible": 459,
+        "median": 14.567092895507812,
+        "p95": 21.910654830932614,
+        "over45": 5
+      },
+      "tracking": {
+        "scored_episodes": 383,
+        "all_axes_ge_08": 2,
+        "promotion_requests": 2,
+        "median_axis_scores": [
+          0.659523069858551,
+          0.6222182512283325,
+          0.562217652797699
+        ]
+      },
+      "support_height_span_median": 0.13999998569488525,
+      "first_wheel_contact_p95": 0.17999999225139618
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 3,
+      "episodes": 453,
+      "completed": 383,
+      "failures": 31,
+      "demotion_causes": {
+        "base_contact": 31,
+        "tracking": 96
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 6,
+        "3-10s": 9,
+        ">10s": 16
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 453,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 451,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 439,
+          "failed": 6,
+          "fraction": 0.01366742596810934
+        }
+      },
+      "tilt_first3": {
+        "eligible": 439,
+        "median": 12.985433578491211,
+        "p95": 22.428446769714355,
+        "over45": 7
+      },
+      "tracking": {
+        "scored_episodes": 354,
+        "all_axes_ge_08": 1,
+        "promotion_requests": 1,
+        "median_axis_scores": [
+          0.6390437185764313,
+          0.6022180616855621,
+          0.563328742980957
+        ]
+      },
+      "support_height_span_median": 0.07999999821186066,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 4,
+      "episodes": 423,
+      "completed": 373,
+      "failures": 58,
+      "demotion_causes": {
+        "base_contact": 58,
+        "tracking": 91
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 2,
+        "3-10s": 24,
+        ">10s": 32
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 423,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 422,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 418,
+          "failed": 2,
+          "fraction": 0.004784688995215311
+        }
+      },
+      "tilt_first3": {
+        "eligible": 418,
+        "median": 14.218516826629639,
+        "p95": 22.728172683715812,
+        "over45": 3
+      },
+      "tracking": {
+        "scored_episodes": 359,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5766622424125671,
+          0.5933290719985962,
+          0.5411062836647034
+        ]
+      },
+      "support_height_span_median": 0.10000000894069672,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 5,
+      "episodes": 419,
+      "completed": 354,
+      "failures": 56,
+      "demotion_causes": {
+        "base_contact": 56,
+        "tracking": 92
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 3,
+        "3-10s": 14,
+        ">10s": 39
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 418,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 416,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 414,
+          "failed": 3,
+          "fraction": 0.007246376811594203
+        }
+      },
+      "tilt_first3": {
+        "eligible": 414,
+        "median": 16.686152458190918,
+        "p95": 24.98320369720457,
+        "over45": 4
+      },
+      "tracking": {
+        "scored_episodes": 337,
+        "all_axes_ge_08": 1,
+        "promotion_requests": 1,
+        "median_axis_scores": [
+          0.5711096525192261,
+          0.591109573841095,
+          0.5222209095954895
+        ]
+      },
+      "support_height_span_median": 0.11999998986721039,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 6,
+      "episodes": 433,
+      "completed": 374,
+      "failures": 86,
+      "demotion_causes": {
+        "base_contact": 86,
+        "tracking": 115
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 6,
+        "3-10s": 26,
+        ">10s": 54
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 433,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 432,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 428,
+          "failed": 6,
+          "fraction": 0.014018691588785047
+        }
+      },
+      "tilt_first3": {
+        "eligible": 428,
+        "median": 19.274094581604004,
+        "p95": 28.59184246063231,
+        "over45": 8
+      },
+      "tracking": {
+        "scored_episodes": 348,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5577771067619324,
+          0.5798816084861755,
+          0.5133301317691803
+        ]
+      },
+      "support_height_span_median": 0.2800000011920929,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 7,
+      "episodes": 431,
+      "completed": 370,
+      "failures": 101,
+      "demotion_causes": {
+        "base_contact": 101,
+        "tracking": 124
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 20,
+        "3-10s": 31,
+        ">10s": 50
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 431,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 429,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 423,
+          "failed": 20,
+          "fraction": 0.04728132387706856
+        }
+      },
+      "tilt_first3": {
+        "eligible": 423,
+        "median": 21.853038787841797,
+        "p95": 36.44125366210936,
+        "over45": 20
+      },
+      "tracking": {
+        "scored_episodes": 333,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5166615843772888,
+          0.5794740319252014,
+          0.5011059045791626
+        ]
+      },
+      "support_height_span_median": 0.1599999964237213,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 8,
+      "episodes": 469,
+      "completed": 400,
+      "failures": 114,
+      "demotion_causes": {
+        "base_contact": 114,
+        "tracking": 135
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 6,
+        "3-10s": 39,
+        ">10s": 69
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 469,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 466,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 463,
+          "failed": 6,
+          "fraction": 0.012958963282937365
+        }
+      },
+      "tilt_first3": {
+        "eligible": 463,
+        "median": 21.783212661743164,
+        "p95": 31.03149414062499,
+        "over45": 9
+      },
+      "tracking": {
+        "scored_episodes": 377,
+        "all_axes_ge_08": 2,
+        "promotion_requests": 2,
+        "median_axis_scores": [
+          0.5370370745658875,
+          0.5366618037223816,
+          0.4795871078968048
+        ]
+      },
+      "support_height_span_median": 0.3199999928474426,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 9,
+      "episodes": 466,
+      "completed": 405,
+      "failures": 123,
+      "demotion_causes": {
+        "base_contact": 123,
+        "tracking": 131
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 1,
+        "1-3s": 12,
+        "3-10s": 46,
+        ">10s": 64
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 466,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 465,
+          "failed": 1,
+          "fraction": 0.002150537634408602
+        },
+        "3": {
+          "eligible": 462,
+          "failed": 13,
+          "fraction": 0.02813852813852814
+        }
+      },
+      "tilt_first3": {
+        "eligible": 462,
+        "median": 21.973098754882812,
+        "p95": 34.9795196533203,
+        "over45": 17
+      },
+      "tracking": {
+        "scored_episodes": 365,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5233283638954163,
+          0.5544397830963135,
+          0.4955542981624603
+        ]
+      },
+      "support_height_span_median": 0.3199999928474426,
+      "first_wheel_contact_p95": 0.17999999225139618
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 363,
+      "completed": 318,
+      "failures": 3,
+      "demotion_causes": {
+        "base_contact": 3
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 1,
+        ">10s": 2
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 362,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 359,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 351,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 351,
+        "median": 3.2733917236328125,
+        "p95": 13.08919906616211,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 288,
+        "all_axes_ge_08": 27,
+        "promotion_requests": 3,
+        "median_axis_scores": [
+          0.9726804196834564,
+          0.8435471951961517,
+          0.6191767752170563
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 1,
+      "episodes": 338,
+      "completed": 305,
+      "failures": 5,
+      "demotion_causes": {
+        "base_contact": 5,
+        "tracking": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 2,
+        ">10s": 3
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 338,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 337,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 328,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 328,
+        "median": 3.0877740383148193,
+        "p95": 14.562582445144653,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 274,
+        "all_axes_ge_08": 27,
+        "promotion_requests": 4,
+        "median_axis_scores": [
+          0.9615042507648468,
+          0.8381424844264984,
+          0.6222182512283325
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 2,
+      "episodes": 361,
+      "completed": 316,
+      "failures": 7,
+      "demotion_causes": {
+        "base_contact": 7,
+        "tracking": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 6,
+        ">10s": 1
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 360,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 356,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 346,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 346,
+        "median": 2.974579095840454,
+        "p95": 16.263095378875732,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 282,
+        "all_axes_ge_08": 30,
+        "promotion_requests": 2,
+        "median_axis_scores": [
+          0.962221622467041,
+          0.8403971791267395,
+          0.622505396604538
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 3,
+      "episodes": 362,
+      "completed": 316,
+      "failures": 8,
+      "demotion_causes": {
+        "base_contact": 8,
+        "tracking": 3
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 6,
+        ">10s": 2
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 362,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 361,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 347,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 347,
+        "median": 3.3926334381103516,
+        "p95": 16.918956375122068,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 290,
+        "all_axes_ge_08": 32,
+        "promotion_requests": 4,
+        "median_axis_scores": [
+          0.9644436836242676,
+          0.8094208538532257,
+          0.6332648396492004
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 4,
+      "episodes": 360,
+      "completed": 322,
+      "failures": 21,
+      "demotion_causes": {
+        "base_contact": 21,
+        "tracking": 13
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 13,
+        ">10s": 8
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 358,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 358,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 348,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 348,
+        "median": 3.24604070186615,
+        "p95": 16.768739986419675,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 286,
+        "all_axes_ge_08": 30,
+        "promotion_requests": 1,
+        "median_axis_scores": [
+          0.9548968374729156,
+          0.7868553400039673,
+          0.6311083734035492
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 5,
+      "episodes": 339,
+      "completed": 311,
+      "failures": 44,
+      "demotion_causes": {
+        "base_contact": 44,
+        "tracking": 7
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 24,
+        ">10s": 19
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 338,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 338,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 328,
+          "failed": 1,
+          "fraction": 0.003048780487804878
+        }
+      },
+      "tilt_first3": {
+        "eligible": 328,
+        "median": 3.4944634437561035,
+        "p95": 18.285532188415527,
+        "over45": 3
+      },
+      "tracking": {
+        "scored_episodes": 271,
+        "all_axes_ge_08": 31,
+        "promotion_requests": 1,
+        "median_axis_scores": [
+          0.9045336246490479,
+          0.7992278337478638,
+          0.6108787059783936
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 6,
+      "episodes": 351,
+      "completed": 314,
+      "failures": 71,
+      "demotion_causes": {
+        "base_contact": 71,
+        "tracking": 11
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 2,
+        "3-10s": 38,
+        ">10s": 31
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 351,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 348,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 340,
+          "failed": 2,
+          "fraction": 0.0058823529411764705
+        }
+      },
+      "tilt_first3": {
+        "eligible": 340,
+        "median": 3.489406943321228,
+        "p95": 24.57895135879517,
+        "over45": 4
+      },
+      "tracking": {
+        "scored_episodes": 270,
+        "all_axes_ge_08": 28,
+        "promotion_requests": 1,
+        "median_axis_scores": [
+          0.9062871932983398,
+          0.7984031140804291,
+          0.6159452497959137
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 7,
+      "episodes": 351,
+      "completed": 319,
+      "failures": 91,
+      "demotion_causes": {
+        "base_contact": 91,
+        "tracking": 6
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 10,
+        "3-10s": 46,
+        ">10s": 35
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 349,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 347,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 338,
+          "failed": 10,
+          "fraction": 0.029585798816568046
+        }
+      },
+      "tilt_first3": {
+        "eligible": 338,
+        "median": 3.2614320516586304,
+        "p95": 40.26402778625445,
+        "over45": 17
+      },
+      "tracking": {
+        "scored_episodes": 272,
+        "all_axes_ge_08": 34,
+        "promotion_requests": 1,
+        "median_axis_scores": [
+          0.8789053559303284,
+          0.8044487535953522,
+          0.6180472075939178
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 8,
+      "episodes": 358,
+      "completed": 319,
+      "failures": 84,
+      "demotion_causes": {
+        "base_contact": 84,
+        "tracking": 10
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 5,
+        "3-10s": 52,
+        ">10s": 27
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 357,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 356,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 352,
+          "failed": 5,
+          "fraction": 0.014204545454545454
+        }
+      },
+      "tilt_first3": {
+        "eligible": 352,
+        "median": 3.278130054473877,
+        "p95": 26.187794685363766,
+        "over45": 9
+      },
+      "tracking": {
+        "scored_episodes": 276,
+        "all_axes_ge_08": 29,
+        "promotion_requests": 2,
+        "median_axis_scores": [
+          0.8494178652763367,
+          0.8174435198307037,
+          0.6177749633789062
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 9,
+      "episodes": 338,
+      "completed": 307,
+      "failures": 83,
+      "demotion_causes": {
+        "base_contact": 83,
+        "tracking": 15
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 4,
+        "3-10s": 46,
+        ">10s": 33
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 337,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 336,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 328,
+          "failed": 4,
+          "fraction": 0.012195121951219513
+        }
+      },
+      "tilt_first3": {
+        "eligible": 328,
+        "median": 3.46526837348938,
+        "p95": 29.33029260635376,
+        "over45": 9
+      },
+      "tracking": {
+        "scored_episodes": 265,
+        "all_axes_ge_08": 35,
+        "promotion_requests": 3,
+        "median_axis_scores": [
+          0.8622199296951294,
+          0.8113207221031189,
+          0.6086956858634949
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 346,
+      "completed": 315,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 14
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 345,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 344,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 293,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 293,
+        "median": 12.48961353302002,
+        "p95": 16.780410766601562,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 228,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.8233311772346497,
+          0.7194420397281647,
+          0.6294116079807281
+        ]
+      },
+      "support_height_span_median": 0.14999999105930328,
+      "first_wheel_contact_p95": 0.17999999225139618
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 1,
+      "episodes": 351,
+      "completed": 308,
+      "failures": 4,
+      "demotion_causes": {
+        "tracking": 18,
+        "base_contact": 4
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 3,
+        ">10s": 1
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 348,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 345,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 306,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 306,
+        "median": 15.026429176330566,
+        "p95": 19.202621936798096,
+        "over45": 1
+      },
+      "tracking": {
+        "scored_episodes": 240,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7909033298492432,
+          0.7030401527881622,
+          0.6044161915779114
+        ]
+      },
+      "support_height_span_median": 0.11999998986721039,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 2,
+      "episodes": 327,
+      "completed": 296,
+      "failures": 7,
+      "demotion_causes": {
+        "base_contact": 7,
+        "tracking": 16
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 3,
+        ">10s": 4
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 327,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 325,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 281,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 281,
+        "median": 12.377154350280762,
+        "p95": 19.78346824645996,
+        "over45": 0
+      },
+      "tracking": {
+        "scored_episodes": 226,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.788864940404892,
+          0.6994419395923615,
+          0.6077761948108673
+        ]
+      },
+      "support_height_span_median": 0.13999998569488525,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 3,
+      "episodes": 340,
+      "completed": 310,
+      "failures": 9,
+      "demotion_causes": {
+        "base_contact": 9,
+        "tracking": 32
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 5,
+        ">10s": 3
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 340,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 337,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 291,
+          "failed": 1,
+          "fraction": 0.003436426116838488
+        }
+      },
+      "tilt_first3": {
+        "eligible": 291,
+        "median": 12.265239715576172,
+        "p95": 20.922147750854492,
+        "over45": 2
+      },
+      "tracking": {
+        "scored_episodes": 241,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7566641569137573,
+          0.6622204780578613,
+          0.5799984931945801
+        ]
+      },
+      "support_height_span_median": 0.07999999821186066,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 4,
+      "episodes": 315,
+      "completed": 277,
+      "failures": 18,
+      "demotion_causes": {
+        "base_contact": 18,
+        "tracking": 38
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 10,
+        ">10s": 8
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 315,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 314,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 279,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 279,
+        "median": 13.716262817382812,
+        "p95": 19.565119743347147,
+        "over45": 1
+      },
+      "tracking": {
+        "scored_episodes": 216,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.7099975645542145,
+          0.6350929141044617,
+          0.542687714099884
+        ]
+      },
+      "support_height_span_median": 0.10000000894069672,
+      "first_wheel_contact_p95": 0.14000000059604645
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 5,
+      "episodes": 375,
+      "completed": 327,
+      "failures": 39,
+      "demotion_causes": {
+        "base_contact": 39,
+        "tracking": 82
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 11,
+        "3-10s": 10,
+        ">10s": 18
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 375,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 371,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 313,
+          "failed": 11,
+          "fraction": 0.03514376996805112
+        }
+      },
+      "tilt_first3": {
+        "eligible": 313,
+        "median": 15.665412902832031,
+        "p95": 28.54300003051757,
+        "over45": 13
+      },
+      "tracking": {
+        "scored_episodes": 240,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6311072707176208,
+          0.5724623501300812,
+          0.5311097502708435
+        ]
+      },
+      "support_height_span_median": 0.11999998986721039,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 6,
+      "episodes": 331,
+      "completed": 296,
+      "failures": 58,
+      "demotion_causes": {
+        "base_contact": 58,
+        "tracking": 59
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 7,
+        "3-10s": 24,
+        ">10s": 27
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 331,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 329,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 285,
+          "failed": 7,
+          "fraction": 0.02456140350877193
+        }
+      },
+      "tilt_first3": {
+        "eligible": 285,
+        "median": 18.587129592895508,
+        "p95": 31.985620498657237,
+        "over45": 11
+      },
+      "tracking": {
+        "scored_episodes": 209,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.6235029697418213,
+          0.5731225609779358,
+          0.4755500555038452
+        ]
+      },
+      "support_height_span_median": 0.2800000011920929,
+      "first_wheel_contact_p95": 0.2199999988079071
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 7,
+      "episodes": 361,
+      "completed": 321,
+      "failures": 62,
+      "demotion_causes": {
+        "base_contact": 62,
+        "tracking": 91
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 7,
+        "3-10s": 28,
+        ">10s": 27
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 361,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 360,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 308,
+          "failed": 7,
+          "fraction": 0.022727272727272728
+        }
+      },
+      "tilt_first3": {
+        "eligible": 308,
+        "median": 20.17530345916748,
+        "p95": 30.939166259765614,
+        "over45": 8
+      },
+      "tracking": {
+        "scored_episodes": 234,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.585077702999115,
+          0.524999350309372,
+          0.4601779729127884
+        ]
+      },
+      "support_height_span_median": 0.1599999964237213,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 8,
+      "episodes": 318,
+      "completed": 285,
+      "failures": 45,
+      "demotion_causes": {
+        "base_contact": 45,
+        "tracking": 82
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 6,
+        "3-10s": 20,
+        ">10s": 19
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 318,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 315,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 276,
+          "failed": 6,
+          "fraction": 0.021739130434782608
+        }
+      },
+      "tilt_first3": {
+        "eligible": 276,
+        "median": 20.74508285522461,
+        "p95": 32.77042770385742,
+        "over45": 8
+      },
+      "tracking": {
+        "scored_episodes": 217,
+        "all_axes_ge_08": 0,
+        "promotion_requests": 0,
+        "median_axis_scores": [
+          0.5577731728553772,
+          0.5520577430725098,
+          0.5130566358566284
+        ]
+      },
+      "support_height_span_median": 0.3199999928474426,
+      "first_wheel_contact_p95": 0.23999999463558197
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 9,
+      "episodes": 371,
+      "completed": 330,
+      "failures": 80,
+      "demotion_causes": {
+        "base_contact": 80,
+        "tracking": 86
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 10,
+        "3-10s": 33,
+        ">10s": 37
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 371,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 370,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 317,
+          "failed": 10,
+          "fraction": 0.031545741324921134
+        }
+      },
+      "tilt_first3": {
+        "eligible": 317,
+        "median": 20.81475067138672,
+        "p95": 40.884480285644464,
+        "over45": 16
+      },
+      "tracking": {
+        "scored_episodes": 239,
+        "all_axes_ge_08": 2,
+        "promotion_requests": 2,
+        "median_axis_scores": [
+          0.5977762341499329,
+          0.5066653490066528,
+          0.47878342866897583
+        ]
+      },
+      "support_height_span_median": 0.3199999928474426,
+      "first_wheel_contact_p95": 0.23999999463558197
+    }
+  ],
+  "bands": [
+    {
+      "heights": "5-8cm",
+      "spawn": "platform",
+      "episodes": 3348,
+      "completed": 2905,
+      "failures": 92,
+      "demotion_causes": {
+        "tracking": 288,
+        "base_contact": 92
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 39,
+        ">10s": 53
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 3342,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 3325,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 3259,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 3259,
+        "median": 3.155728816986084,
+        "p95": 16.65866546630859,
+        "over45": 4
+      },
+      "tracking": {
+        "scored_episodes": 2707,
+        "all_axes_ge_08": 281,
+        "promotion_requests": 15,
+        "median_axis_scores": [
+          0.8655542135238647,
+          0.7648447155952454,
+          0.6109660863876343
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "heights": "5-8cm",
+      "spawn": "terrain",
+      "episodes": 3271,
+      "completed": 2878,
+      "failures": 103,
+      "demotion_causes": {
+        "base_contact": 103,
+        "tracking": 367
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 11,
+        "3-10s": 40,
+        ">10s": 52
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 3265,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 3248,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 2994,
+          "failed": 11,
+          "fraction": 0.003674014696058784
+        }
+      },
+      "tilt_first3": {
+        "eligible": 2994,
+        "median": 13.42891263961792,
+        "p95": 20.038336658477782,
+        "over45": 17
+      },
+      "tracking": {
+        "scored_episodes": 2406,
+        "all_axes_ge_08": 3,
+        "promotion_requests": 3,
+        "median_axis_scores": [
+          0.7272294163703918,
+          0.6511093974113464,
+          0.5888845920562744
+        ]
+      },
+      "support_height_span_median": 0.11999998986721039,
+      "first_wheel_contact_p95": 0.1599999964237213
+    },
+    {
+      "heights": "10-14cm",
+      "spawn": "platform",
+      "episodes": 2408,
+      "completed": 2085,
+      "failures": 276,
+      "demotion_causes": {
+        "base_contact": 276,
+        "tracking": 292
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 6,
+        "3-10s": 123,
+        ">10s": 147
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 2405,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 2397,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 2356,
+          "failed": 6,
+          "fraction": 0.0025466893039049238
+        }
+      },
+      "tilt_first3": {
+        "eligible": 2356,
+        "median": 3.217593193054199,
+        "p95": 18.065677642822266,
+        "over45": 13
+      },
+      "tracking": {
+        "scored_episodes": 1909,
+        "all_axes_ge_08": 212,
+        "promotion_requests": 3,
+        "median_axis_scores": [
+          0.8111090064048767,
+          0.7211081981658936,
+          0.6160221695899963
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "heights": "10-14cm",
+      "spawn": "terrain",
+      "episodes": 2296,
+      "completed": 2001,
+      "failures": 315,
+      "demotion_causes": {
+        "base_contact": 315,
+        "tracking": 477
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 29,
+        "3-10s": 108,
+        ">10s": 178
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 2295,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 2284,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 2137,
+          "failed": 29,
+          "fraction": 0.01357042583060365
+        }
+      },
+      "tilt_first3": {
+        "eligible": 2137,
+        "median": 16.677724838256836,
+        "p95": 26.603845596313473,
+        "over45": 40
+      },
+      "tracking": {
+        "scored_episodes": 1709,
+        "all_axes_ge_08": 1,
+        "promotion_requests": 1,
+        "median_axis_scores": [
+          0.5999984741210938,
+          0.5925908088684082,
+          0.5255506038665771
+        ]
+      },
+      "support_height_span_median": 0.11999998986721039,
+      "first_wheel_contact_p95": 0.17999999225139618
+    },
+    {
+      "heights": "16cm",
+      "spawn": "platform",
+      "episodes": 2283,
+      "completed": 1994,
+      "failures": 350,
+      "demotion_causes": {
+        "base_contact": 350,
+        "tracking": 304
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 21,
+        "3-10s": 170,
+        ">10s": 159
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 2277,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 2269,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 2233,
+          "failed": 21,
+          "fraction": 0.009404388714733543
+        }
+      },
+      "tilt_first3": {
+        "eligible": 2233,
+        "median": 3.1982476711273193,
+        "p95": 22.135337066650397,
+        "over45": 37
+      },
+      "tracking": {
+        "scored_episodes": 1819,
+        "all_axes_ge_08": 210,
+        "promotion_requests": 6,
+        "median_axis_scores": [
+          0.7629629969596863,
+          0.7266638278961182,
+          0.6166626811027527
+        ]
+      },
+      "support_height_span_median": 0.0,
+      "first_wheel_contact_p95": 0.11999999731779099
+    },
+    {
+      "heights": "16cm",
+      "spawn": "terrain",
+      "episodes": 2416,
+      "completed": 2111,
+      "failures": 525,
+      "demotion_causes": {
+        "base_contact": 525,
+        "tracking": 649
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 1,
+        "1-3s": 61,
+        "3-10s": 197,
+        ">10s": 266
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 2416,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 2405,
+          "failed": 1,
+          "fraction": 0.0004158004158004158
+        },
+        "3": {
+          "eligible": 2249,
+          "failed": 62,
+          "fraction": 0.027567807914628723
+        }
+      },
+      "tilt_first3": {
+        "eligible": 2249,
+        "median": 21.498746871948242,
+        "p95": 33.94319305419921,
+        "over45": 78
+      },
+      "tracking": {
+        "scored_episodes": 1765,
+        "all_axes_ge_08": 4,
+        "promotion_requests": 4,
+        "median_axis_scores": [
+          0.5485391020774841,
+          0.5477730631828308,
+          0.48888763785362244
+        ]
+      },
+      "support_height_span_median": 0.3199999928474426,
+      "first_wheel_contact_p95": 0.2199999988079071
+    }
+  ],
+  "earliest_stair_failures": [
+    {
+      "env": 794,
+      "start_step": 4008,
+      "spawn": "terrain",
+      "local_position": [
+        -2.4000015258789062,
+        2.4470291137695312,
+        0.9300000071525574
+      ],
+      "initial_velocity": [
+        0.29941415786743164,
+        -0.21797192096710205,
+        -0.33399367332458496,
+        -0.10060679912567139,
+        0.10787451267242432,
+        0.18121302127838135
+      ],
+      "support_height_range": 0.1599999964237213,
+      "level": 9,
+      "terrain": "stairs_up",
+      "initial_mode": "mixed",
+      "extended": false,
+      "snapshots": {
+        "0.02": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 0.6844273209571838,
+          "wheel_clearance_proxy": [
+            0.1941964328289032,
+            0.1816140115261078,
+            0.1721450388431549,
+            0.1771405041217804
+          ]
+        },
+        "0.20": {
+          "loaded_wheels": 2,
+          "tilt_degrees": 23.24126625061035,
+          "wheel_clearance_proxy": [
+            0.15350747108459473,
+            0.00017201900482177734,
+            0.2253076434135437,
+            0.16361890733242035
+          ]
+        }
+      },
+      "seconds": 0.85999995470047,
+      "failed": true,
+      "censored": false,
+      "delta": -1,
+      "demotion_reason": "base_contact",
+      "scored_seconds": 0.0,
+      "axis_scores": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "target_seconds": 0.0,
+      "max_tilt_first3_degrees": 132.536376953125,
+      "first_contact_seconds": 0.05999999865889549,
+      "ending_mode": "mixed"
+    },
+    {
+      "env": 1671,
+      "start_step": 2004,
+      "spawn": "terrain",
+      "local_position": [
+        -2.3999996185302734,
+        2.2901229858398438,
+        0.6899999976158142
+      ],
+      "initial_velocity": [
+        0.47960299253463745,
+        -0.49274519085884094,
+        -0.3373328149318695,
+        -0.4781036078929901,
+        -0.25764626264572144,
+        0.19126510620117188
+      ],
+      "support_height_range": 0.11999998986721039,
+      "level": 1,
+      "terrain": "stairs_up",
+      "initial_mode": "right",
+      "extended": false,
+      "snapshots": {
+        "0.02": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 1.219488501548767,
+          "wheel_clearance_proxy": [
+            0.07816769182682037,
+            0.15169847011566162,
+            0.01350526511669159,
+            0.02304115891456604
+          ]
+        },
+        "0.20": {
+          "loaded_wheels": 2,
+          "tilt_degrees": 16.947303771972656,
+          "wheel_clearance_proxy": [
+            0.0013452768325805664,
+            0.00013497471809387207,
+            0.11839607357978821,
+            0.0015332996845245361
+          ]
+        },
+        "1.00": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 154.83938598632812,
+          "wheel_clearance_proxy": [
+            0.2800111770629883,
+            0.1355675607919693,
+            0.4657229483127594,
+            0.14474225044250488
+          ]
+        }
+      },
+      "seconds": 1.0199999809265137,
+      "failed": true,
+      "censored": false,
+      "delta": -1,
+      "demotion_reason": "base_contact",
+      "scored_seconds": 0.019999999552965164,
+      "axis_scores": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "target_seconds": 0.0,
+      "max_tilt_first3_degrees": 161.71759033203125,
+      "first_contact_seconds": 0.03999999910593033,
+      "ending_mode": "right"
+    },
+    {
+      "env": 2735,
+      "start_step": 3006,
+      "spawn": "terrain",
+      "local_position": [
+        -2.4000015258789062,
+        1.2960205078125,
+        0.28999990224838257
+      ],
+      "initial_velocity": [
+        -0.027458399534225464,
+        0.22443169355392456,
+        -0.3860357701778412,
+        -0.28619247674942017,
+        -0.04549252986907959,
+        -0.1736307144165039
+      ],
+      "support_height_range": 0.3199999928474426,
+      "level": 8,
+      "terrain": "stairs_down",
+      "initial_mode": "mixed",
+      "extended": false,
+      "snapshots": {
+        "0.02": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 0.6685181856155396,
+          "wheel_clearance_proxy": [
+            0.17732787132263184,
+            0.1895260214805603,
+            0.17170977592468262,
+            0.34934553503990173
+          ]
+        },
+        "0.20": {
+          "loaded_wheels": 2,
+          "tilt_degrees": 4.490607261657715,
+          "wheel_clearance_proxy": [
+            0.0006026029586791992,
+            0.004106342792510986,
+            0.1366313397884369,
+            0.0017459392547607422
+          ]
+        },
+        "1.00": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 109.07402801513672,
+          "wheel_clearance_proxy": [
+            -0.021960079669952393,
+            0.4098348617553711,
+            0.013550609350204468,
+            0.4073242247104645
+          ]
+        }
+      },
+      "seconds": 1.0199999809265137,
+      "failed": true,
+      "censored": false,
+      "delta": -1,
+      "demotion_reason": "base_contact",
+      "scored_seconds": 0.019999999552965164,
+      "axis_scores": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "target_seconds": 0.0,
+      "max_tilt_first3_degrees": 116.9087142944336,
+      "first_contact_seconds": 0.1599999964237213,
+      "ending_mode": "mixed"
+    },
+    {
+      "env": 1637,
+      "start_step": 1002,
+      "spawn": "terrain",
+      "local_position": [
+        2.4000015258789062,
+        -2.4255905151367188,
+        0.9300000071525574
+      ],
+      "initial_velocity": [
+        -0.4178750813007355,
+        0.10098713636398315,
+        -0.3351842164993286,
+        -0.4611782133579254,
+        0.11110532283782959,
+        0.27866238355636597
+      ],
+      "support_height_range": 0.1599999964237213,
+      "level": 7,
+      "terrain": "stairs_up",
+      "initial_mode": "mixed",
+      "extended": false,
+      "snapshots": {
+        "0.02": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 1.224932074546814,
+          "wheel_clearance_proxy": [
+            0.02614443004131317,
+            0.0044385939836502075,
+            0.18491506576538086,
+            0.020453110337257385
+          ]
+        },
+        "0.20": {
+          "loaded_wheels": 3,
+          "tilt_degrees": 20.788188934326172,
+          "wheel_clearance_proxy": [
+            0.0016811192035675049,
+            0.21145662665367126,
+            0.0007988214492797852,
+            0.0010615885257720947
+          ]
+        },
+        "1.00": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 137.33705139160156,
+          "wheel_clearance_proxy": [
+            0.1126086413860321,
+            0.4385928213596344,
+            0.006993144750595093,
+            0.5553125143051147
+          ]
+        }
+      },
+      "seconds": 1.100000023841858,
+      "failed": true,
+      "censored": false,
+      "delta": -1,
+      "demotion_reason": "base_contact",
+      "scored_seconds": 0.09999999403953552,
+      "axis_scores": [
+        0.800000011920929,
+        0.0,
+        0.0
+      ],
+      "target_seconds": 0.0,
+      "max_tilt_first3_degrees": 156.23048400878906,
+      "first_contact_seconds": 0.03999999910593033,
+      "ending_mode": "mixed"
+    },
+    {
+      "env": 2310,
+      "start_step": 4157,
+      "spawn": "terrain",
+      "local_position": [
+        -2.4000015258789062,
+        1.4190139770507812,
+        0.2099999189376831
+      ],
+      "initial_velocity": [
+        0.027908146381378174,
+        -0.4198366701602936,
+        -0.40607500076293945,
+        0.30654633045196533,
+        0.36933791637420654,
+        0.15386444330215454
+      ],
+      "support_height_range": 0.11999998986721039,
+      "level": 5,
+      "terrain": "stairs_down",
+      "initial_mode": "forward",
+      "extended": true,
+      "snapshots": {
+        "0.02": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 0.49337172508239746,
+          "wheel_clearance_proxy": [
+            0.016062051057815552,
+            0.022310495376586914,
+            0.1521732062101364,
+            0.012480556964874268
+          ]
+        },
+        "0.20": {
+          "loaded_wheels": 2,
+          "tilt_degrees": 8.962430953979492,
+          "wheel_clearance_proxy": [
+            0.0006894469261169434,
+            0.023048102855682373,
+            0.08109648525714874,
+            8.150935173034668e-05
+          ]
+        },
+        "1.00": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 114.37992858886719,
+          "wheel_clearance_proxy": [
+            0.005728304386138916,
+            0.4286210238933563,
+            -0.04014219343662262,
+            0.3726899325847626
+          ]
+        }
+      },
+      "seconds": 1.159999966621399,
+      "failed": true,
+      "censored": false,
+      "delta": -1,
+      "demotion_reason": "base_contact",
+      "scored_seconds": 0.15999998152256012,
+      "axis_scores": [
+        0.0,
+        0.0,
+        0.1250000149011612
+      ],
+      "target_seconds": 0.0,
+      "max_tilt_first3_degrees": 162.55804443359375,
+      "first_contact_seconds": 0.03999999910593033,
+      "ending_mode": "forward"
+    },
+    {
+      "env": 1529,
+      "start_step": 1002,
+      "spawn": "terrain",
+      "local_position": [
+        -2.4000015258789062,
+        1.5758743286132812,
+        0.9300000071525574
+      ],
+      "initial_velocity": [
+        -0.04320302605628967,
+        0.362277626991272,
+        0.4633561372756958,
+        0.06824100017547607,
+        0.23832297325134277,
+        -0.19358882308006287
+      ],
+      "support_height_range": 0.3199999928474426,
+      "level": 9,
+      "terrain": "stairs_up",
+      "initial_mode": "yaw_left",
+      "extended": false,
+      "snapshots": {
+        "0.02": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 0.30646708607673645,
+          "wheel_clearance_proxy": [
+            0.2007201611995697,
+            0.19990643858909607,
+            0.20114067196846008,
+            0.03786490857601166
+          ]
+        },
+        "0.20": {
+          "loaded_wheels": 1,
+          "tilt_degrees": 11.334959983825684,
+          "wheel_clearance_proxy": [
+            0.08378297090530396,
+            0.06142759323120117,
+            0.13945388793945312,
+            0.00027945637702941895
+          ]
+        },
+        "1.00": {
+          "loaded_wheels": 2,
+          "tilt_degrees": 64.91981506347656,
+          "wheel_clearance_proxy": [
+            0.0007678866386413574,
+            -0.0007444620132446289,
+            0.3376387357711792,
+            0.293476939201355
+          ]
+        }
+      },
+      "seconds": 1.1999999284744263,
+      "failed": true,
+      "censored": false,
+      "delta": -1,
+      "demotion_reason": "base_contact",
+      "scored_seconds": 0.19999997317790985,
+      "axis_scores": [
+        0.0,
+        0.20000001788139343,
+        0.7000000476837158
+      ],
+      "target_seconds": 0.17999997735023499,
+      "max_tilt_first3_degrees": 116.62799835205078,
+      "first_contact_seconds": 0.1599999964237213,
+      "ending_mode": "yaw_left"
+    },
+    {
+      "env": 2599,
+      "start_step": 0,
+      "spawn": "terrain",
+      "local_position": [
+        2.4000015258789062,
+        0.7026901245117188,
+        0.28999990224838257
+      ],
+      "initial_velocity": [
+        -0.4310200810432434,
+        -0.20344758033752441,
+        0.10469800233840942,
+        -0.07123780250549316,
+        0.32303816080093384,
+        0.39464032649993896
+      ],
+      "support_height_range": 0.3199999928474426,
+      "level": 8,
+      "terrain": "stairs_down",
+      "initial_mode": "right",
+      "extended": false,
+      "snapshots": {
+        "0.02": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 0.3409232199192047,
+          "wheel_clearance_proxy": [
+            0.3538115918636322,
+            0.3531321585178375,
+            0.19993078708648682,
+            0.18764597177505493
+          ]
+        },
+        "0.20": {
+          "loaded_wheels": 2,
+          "tilt_degrees": 13.822468757629395,
+          "wheel_clearance_proxy": [
+            0.0013810396194458008,
+            0.0016356706619262695,
+            0.11076384782791138,
+            0.12368208169937134
+          ]
+        },
+        "1.00": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 85.88616180419922,
+          "wheel_clearance_proxy": [
+            0.4214352071285248,
+            0.00915229320526123,
+            0.6225541830062866,
+            -0.013921678066253662
+          ]
+        }
+      },
+      "seconds": 1.2200000286102295,
+      "failed": true,
+      "censored": false,
+      "delta": -1,
+      "demotion_reason": "base_contact",
+      "scored_seconds": 0.21999996900558472,
+      "axis_scores": [
+        0.09090910106897354,
+        0.2727273106575012,
+        0.0
+      ],
+      "target_seconds": 0.019999999552965164,
+      "max_tilt_first3_degrees": 142.97122192382812,
+      "first_contact_seconds": 0.14000000059604645,
+      "ending_mode": "right"
+    },
+    {
+      "env": 1300,
+      "start_step": 0,
+      "spawn": "terrain",
+      "local_position": [
+        2.3999996185302734,
+        -2.322803497314453,
+        0.7300000190734863
+      ],
+      "initial_velocity": [
+        -0.3335317373275757,
+        0.40157485008239746,
+        0.126365065574646,
+        0.419188916683197,
+        0.182650625705719,
+        0.1846117377281189
+      ],
+      "support_height_range": 0.13999998569488525,
+      "level": 2,
+      "terrain": "stairs_up",
+      "initial_mode": "left",
+      "extended": false,
+      "snapshots": {
+        "0.02": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 0.8978747129440308,
+          "wheel_clearance_proxy": [
+            0.0946778655052185,
+            0.09252625703811646,
+            0.1818578839302063,
+            0.10271885991096497
+          ]
+        },
+        "0.20": {
+          "loaded_wheels": 2,
+          "tilt_degrees": 6.001752853393555,
+          "wheel_clearance_proxy": [
+            0.0007985085248947144,
+            0.0029426664113998413,
+            0.015259593725204468,
+            -0.00038199126720428467
+          ]
+        },
+        "1.00": {
+          "loaded_wheels": 0,
+          "tilt_degrees": 110.72291564941406,
+          "wheel_clearance_proxy": [
+            -0.017868652939796448,
+            0.4390769898891449,
+            -0.019578486680984497,
+            0.4715968072414398
+          ]
+        }
+      },
+      "seconds": 1.2400000095367432,
+      "failed": true,
+      "censored": false,
+      "delta": -1,
+      "demotion_reason": "base_contact",
+      "scored_seconds": 0.23999996483325958,
+      "axis_scores": [
+        0.9166666865348816,
+        0.0833333432674408,
+        0.5000000596046448
+      ],
+      "target_seconds": 0.0,
+      "max_tilt_first3_degrees": 159.62435913085938,
+      "first_contact_seconds": 0.14000000059604645,
+      "ending_mode": "left"
+    }
+  ]
+}

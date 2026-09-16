@@ -1,0 +1,4524 @@
+{
+  "checkpoint": "/checkpoint/model_1500.pt",
+  "iteration": 1500,
+  "ppo_updates": 0,
+  "model_unchanged": true,
+  "policy_steps": 6000,
+  "seconds_per_env": 119.99999731779099,
+  "num_envs": 4096,
+  "sampling": "Stochastic policy, original resets and grading; restored checkpoint membership/caps; fresh physical episodes and counters.",
+  "current_stairs": true,
+  "stratified_stair_levels": true,
+  "stair_dimensions": [
+    [
+      0.05,
+      0.3
+    ],
+    [
+      0.06,
+      0.35
+    ],
+    [
+      0.07,
+      0.4
+    ],
+    [
+      0.08,
+      0.45
+    ],
+    [
+      0.1,
+      0.5
+    ],
+    [
+      0.12,
+      0.55
+    ],
+    [
+      0.14,
+      0.56
+    ],
+    [
+      0.16,
+      0.55
+    ],
+    [
+      0.16,
+      0.56
+    ],
+    [
+      0.16,
+      0.57
+    ]
+  ],
+  "terrain_level_handling": "Stair columns evenly assigned to all levels, held fixed after grading; other terrain uses live curriculum.",
+  "interpretation": "Natural random spawn strata, not a changed-initialization A/B. Early failures also include command, exploration and randomization effects. Age rates exclude episodes censored before the horizon.",
+  "initial_histogram": [
+    651,
+    781,
+    645,
+    545,
+    367,
+    282,
+    219,
+    208,
+    199,
+    199
+  ],
+  "final_histogram": [
+    588,
+    759,
+    567,
+    593,
+    424,
+    315,
+    236,
+    214,
+    201,
+    199
+  ],
+  "overall": {
+    "episodes": 34672,
+    "completed": 30576,
+    "failures": 1812,
+    "demotion_causes": {
+      "base_contact": 1812,
+      "tracking": 2522
+    },
+    "failures_by_age": {
+      "0-.2s": 0,
+      ".2-1s": 2,
+      "1-3s": 155,
+      "3-10s": 736,
+      ">10s": 919
+    },
+    "horizons": {
+      "0.2": {
+        "eligible": 34632,
+        "failed": 0,
+        "fraction": 0.0
+      },
+      "1": {
+        "eligible": 34441,
+        "failed": 2,
+        "fraction": 5.8070323161348394e-05
+      },
+      "3": {
+        "eligible": 32163,
+        "failed": 157,
+        "fraction": 0.004881385442900227
+      }
+    },
+    "tilt_first3": {
+      "eligible": 32163,
+      "median": 5.354305744171143,
+      "p95": 21.918604850769032,
+      "over45": 227
+    }
+  },
+  "groups": [
+    {
+      "terrain": "smooth_slope",
+      "spawn": "platform",
+      "level": null,
+      "episodes": 1724,
+      "completed": 1528,
+      "failures": 1,
+      "demotion_causes": {
+        "base_contact": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 1,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 1723,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 1712,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 1651,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 1651,
+        "median": 2.8257007598876953,
+        "p95": 8.473207950592041,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 2,
+      "completed": 2,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 2,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 2,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 2,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 2,
+        "median": 3.019725203514099,
+        "p95": 3.527303326129913,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "platform",
+      "level": 1,
+      "episodes": 85,
+      "completed": 82,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 85,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 85,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 84,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 84,
+        "median": 2.494862198829651,
+        "p95": 5.426383781433105,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "platform",
+      "level": 2,
+      "episodes": 258,
+      "completed": 240,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 258,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 258,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 253,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 253,
+        "median": 2.8547165393829346,
+        "p95": 5.814320564270019,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "platform",
+      "level": 3,
+      "episodes": 474,
+      "completed": 414,
+      "failures": 1,
+      "demotion_causes": {
+        "base_contact": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 1,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 473,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 468,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 458,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 458,
+        "median": 2.747125029563904,
+        "p95": 6.882013201713561,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "platform",
+      "level": 4,
+      "episodes": 457,
+      "completed": 400,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 457,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 452,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 438,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 438,
+        "median": 2.8493536710739136,
+        "p95": 8.661440801620481,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "platform",
+      "level": 5,
+      "episodes": 265,
+      "completed": 229,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 265,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 265,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 248,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 248,
+        "median": 2.9122846126556396,
+        "p95": 10.550689411163326,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "platform",
+      "level": 6,
+      "episodes": 108,
+      "completed": 93,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 108,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 108,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 97,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 97,
+        "median": 2.693554162979126,
+        "p95": 13.295639419555656,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "platform",
+      "level": 7,
+      "episodes": 67,
+      "completed": 60,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 67,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 66,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 63,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 63,
+        "median": 2.97249436378479,
+        "p95": 13.509472370147703,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "platform",
+      "level": 8,
+      "episodes": 4,
+      "completed": 4,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 4,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 4,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 4,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 4,
+        "median": 2.6507073640823364,
+        "p95": 3.393265092372894,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "platform",
+      "level": 9,
+      "episodes": 4,
+      "completed": 4,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 4,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 4,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 4,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 4,
+        "median": 4.124598979949951,
+        "p95": 5.947187042236328,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "terrain",
+      "level": null,
+      "episodes": 1744,
+      "completed": 1567,
+      "failures": 1,
+      "demotion_causes": {
+        "tracking": 2,
+        "base_contact": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 1742,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 1729,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 1470,
+          "failed": 1,
+          "fraction": 0.0006802721088435374
+        }
+      },
+      "tilt_first3": {
+        "eligible": 1470,
+        "median": 7.865804672241211,
+        "p95": 14.057824182510375,
+        "over45": 1
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 8,
+      "completed": 7,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 8,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 8,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 7,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 7,
+        "median": 4.768838405609131,
+        "p95": 7.893046569824217,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "terrain",
+      "level": 1,
+      "episodes": 81,
+      "completed": 76,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 81,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 81,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 72,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 72,
+        "median": 3.9543601274490356,
+        "p95": 6.624493288993836,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "terrain",
+      "level": 2,
+      "episodes": 249,
+      "completed": 231,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 249,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 247,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 218,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 218,
+        "median": 4.997349262237549,
+        "p95": 7.998861312866207,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "terrain",
+      "level": 3,
+      "episodes": 473,
+      "completed": 432,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 472,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 469,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 412,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 412,
+        "median": 6.830824851989746,
+        "p95": 9.954724168777465,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "terrain",
+      "level": 4,
+      "episodes": 441,
+      "completed": 391,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 441,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 439,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 352,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 352,
+        "median": 8.578433513641357,
+        "p95": 11.88315191268921,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "terrain",
+      "level": 5,
+      "episodes": 272,
+      "completed": 239,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 272,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 269,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 234,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 234,
+        "median": 9.909770488739014,
+        "p95": 13.764460802078247,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "terrain",
+      "level": 6,
+      "episodes": 125,
+      "completed": 109,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 124,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 122,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 102,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 102,
+        "median": 12.262512683868408,
+        "p95": 16.269757604598993,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "terrain",
+      "level": 7,
+      "episodes": 80,
+      "completed": 71,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 80,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 79,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 61,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 61,
+        "median": 13.625967979431152,
+        "p95": 17.007036209106445,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "terrain",
+      "level": 8,
+      "episodes": 14,
+      "completed": 11,
+      "failures": 1,
+      "demotion_causes": {
+        "base_contact": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 14,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 14,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 11,
+          "failed": 1,
+          "fraction": 0.09090909090909091
+        }
+      },
+      "tilt_first3": {
+        "eligible": 11,
+        "median": 16.461318969726562,
+        "p95": 96.90194320678711,
+        "over45": 1
+      }
+    },
+    {
+      "terrain": "smooth_slope",
+      "spawn": "terrain",
+      "level": 9,
+      "episodes": 1,
+      "completed": 0,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 1,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 1,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 1,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 1,
+        "median": 23.637449264526367,
+        "p95": 23.637449264526367,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "platform",
+      "level": null,
+      "episodes": 1762,
+      "completed": 1549,
+      "failures": 2,
+      "demotion_causes": {
+        "base_contact": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 2,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 1760,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 1753,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 1712,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 1712,
+        "median": 4.527531147003174,
+        "p95": 8.628645372390741,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 75,
+      "completed": 69,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 75,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 75,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 75,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 75,
+        "median": 3.620284080505371,
+        "p95": 6.379498147964477,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "platform",
+      "level": 1,
+      "episodes": 205,
+      "completed": 183,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 205,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 204,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 200,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 200,
+        "median": 3.750582456588745,
+        "p95": 6.549735808372497,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "platform",
+      "level": 2,
+      "episodes": 639,
+      "completed": 569,
+      "failures": 1,
+      "demotion_causes": {
+        "base_contact": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 1,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 638,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 635,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 620,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 620,
+        "median": 3.9366230964660645,
+        "p95": 7.544195485115051,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "platform",
+      "level": 3,
+      "episodes": 630,
+      "completed": 546,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 630,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 628,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 615,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 615,
+        "median": 5.046011447906494,
+        "p95": 8.623871517181396,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "platform",
+      "level": 4,
+      "episodes": 179,
+      "completed": 153,
+      "failures": 1,
+      "demotion_causes": {
+        "base_contact": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 1,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 178,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 177,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 171,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 171,
+        "median": 5.765684127807617,
+        "p95": 12.023433208465576,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "platform",
+      "level": 5,
+      "episodes": 34,
+      "completed": 29,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 34,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 34,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 31,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 31,
+        "median": 8.315739631652832,
+        "p95": 15.32596731185913,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "terrain",
+      "level": null,
+      "episodes": 1718,
+      "completed": 1559,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 1716,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 1708,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 1460,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 1460,
+        "median": 6.717911958694458,
+        "p95": 11.662168121337887,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 65,
+      "completed": 62,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 65,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 65,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 61,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 61,
+        "median": 3.1969008445739746,
+        "p95": 6.667445182800293,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "terrain",
+      "level": 1,
+      "episodes": 226,
+      "completed": 206,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 226,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 226,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 201,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 201,
+        "median": 3.94416880607605,
+        "p95": 6.516530513763428,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "terrain",
+      "level": 2,
+      "episodes": 573,
+      "completed": 523,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 572,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 569,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 492,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 492,
+        "median": 6.066251993179321,
+        "p95": 9.36139726638794,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "terrain",
+      "level": 3,
+      "episodes": 642,
+      "completed": 578,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 641,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 637,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 534,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 534,
+        "median": 7.802642345428467,
+        "p95": 11.452385425567625,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "terrain",
+      "level": 4,
+      "episodes": 190,
+      "completed": 169,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 190,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 189,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 156,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 156,
+        "median": 10.114282131195068,
+        "p95": 13.622372388839722,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "rough_slope",
+      "spawn": "terrain",
+      "level": 5,
+      "episodes": 22,
+      "completed": 21,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 22,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 22,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 16,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 16,
+        "median": 13.009167671203613,
+        "p95": 16.839659214019775,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": null,
+      "episodes": 4518,
+      "completed": 3837,
+      "failures": 301,
+      "demotion_causes": {
+        "base_contact": 301,
+        "tracking": 815
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 5,
+        "3-10s": 98,
+        ">10s": 198
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 4512,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 4495,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 4442,
+          "failed": 5,
+          "fraction": 0.0011256190904997748
+        }
+      },
+      "tilt_first3": {
+        "eligible": 4442,
+        "median": 3.0948113203048706,
+        "p95": 16.49233245849609,
+        "over45": 12
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 502,
+      "completed": 435,
+      "failures": 2,
+      "demotion_causes": {
+        "tracking": 60,
+        "base_contact": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 2
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 502,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 499,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 492,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 492,
+        "median": 3.3412567377090454,
+        "p95": 14.696458721160887,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 1,
+      "episodes": 487,
+      "completed": 418,
+      "failures": 9,
+      "demotion_causes": {
+        "tracking": 60,
+        "base_contact": 9
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 2,
+        ">10s": 7
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 486,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 484,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 476,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 476,
+        "median": 3.3139302730560303,
+        "p95": 17.71165418624878,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 2,
+      "episodes": 477,
+      "completed": 402,
+      "failures": 24,
+      "demotion_causes": {
+        "base_contact": 24,
+        "tracking": 77
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 9,
+        ">10s": 15
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 474,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 472,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 467,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 467,
+        "median": 2.9136290550231934,
+        "p95": 18.460368537902827,
+        "over45": 2
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 3,
+      "episodes": 458,
+      "completed": 395,
+      "failures": 34,
+      "demotion_causes": {
+        "base_contact": 34,
+        "tracking": 84
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 13,
+        ">10s": 21
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 458,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 457,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 452,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 452,
+        "median": 3.002504587173462,
+        "p95": 18.709462356567382,
+        "over45": 2
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 4,
+      "episodes": 462,
+      "completed": 379,
+      "failures": 48,
+      "demotion_causes": {
+        "base_contact": 48,
+        "tracking": 84
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 21,
+        ">10s": 27
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 462,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 460,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 453,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 453,
+        "median": 3.1384353637695312,
+        "p95": 16.7659812927246,
+        "over45": 1
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 5,
+      "episodes": 467,
+      "completed": 399,
+      "failures": 52,
+      "demotion_causes": {
+        "base_contact": 52,
+        "tracking": 94
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 3,
+        "3-10s": 14,
+        ">10s": 35
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 467,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 465,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 461,
+          "failed": 3,
+          "fraction": 0.006507592190889371
+        }
+      },
+      "tilt_first3": {
+        "eligible": 461,
+        "median": 3.046004295349121,
+        "p95": 11.134042739868164,
+        "over45": 4
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 6,
+      "episodes": 429,
+      "completed": 360,
+      "failures": 40,
+      "demotion_causes": {
+        "base_contact": 40,
+        "tracking": 83
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 13,
+        ">10s": 27
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 429,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 428,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 426,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 426,
+        "median": 3.121171712875366,
+        "p95": 13.13131332397461,
+        "over45": 1
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 7,
+      "episodes": 441,
+      "completed": 376,
+      "failures": 46,
+      "demotion_causes": {
+        "base_contact": 46,
+        "tracking": 103
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 12,
+        ">10s": 33
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 441,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 439,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 433,
+          "failed": 1,
+          "fraction": 0.0023094688221709007
+        }
+      },
+      "tilt_first3": {
+        "eligible": 433,
+        "median": 3.133441209793091,
+        "p95": 10.534919357299799,
+        "over45": 1
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 8,
+      "episodes": 389,
+      "completed": 332,
+      "failures": 22,
+      "demotion_causes": {
+        "base_contact": 22,
+        "tracking": 80
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 6,
+        ">10s": 16
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 388,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 388,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 385,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 385,
+        "median": 3.0796878337860107,
+        "p95": 10.398116111755371,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 9,
+      "episodes": 406,
+      "completed": 341,
+      "failures": 24,
+      "demotion_causes": {
+        "base_contact": 24,
+        "tracking": 90
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 8,
+        ">10s": 15
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 405,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 403,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 397,
+          "failed": 1,
+          "fraction": 0.0025188916876574307
+        }
+      },
+      "tilt_first3": {
+        "eligible": 397,
+        "median": 3.0421454906463623,
+        "p95": 12.197414398193358,
+        "over45": 1
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": null,
+      "episodes": 4548,
+      "completed": 3925,
+      "failures": 621,
+      "demotion_causes": {
+        "base_contact": 621,
+        "tracking": 975
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 1,
+        "1-3s": 59,
+        "3-10s": 209,
+        ">10s": 352
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 4545,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 4527,
+          "failed": 1,
+          "fraction": 0.0002208968411751712
+        },
+        "3": {
+          "eligible": 4431,
+          "failed": 60,
+          "fraction": 0.013540961408259987
+        }
+      },
+      "tilt_first3": {
+        "eligible": 4431,
+        "median": 17.12468719482422,
+        "p95": 27.772153854370117,
+        "over45": 75
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 491,
+      "completed": 425,
+      "failures": 9,
+      "demotion_causes": {
+        "tracking": 47,
+        "base_contact": 9
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 6,
+        ">10s": 3
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 490,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 490,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 465,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 465,
+        "median": 12.627591133117676,
+        "p95": 16.367621231079102,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 1,
+      "episodes": 483,
+      "completed": 419,
+      "failures": 10,
+      "demotion_causes": {
+        "tracking": 75,
+        "base_contact": 10
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 2,
+        "3-10s": 2,
+        ">10s": 6
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 483,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 481,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 460,
+          "failed": 2,
+          "fraction": 0.004347826086956522
+        }
+      },
+      "tilt_first3": {
+        "eligible": 460,
+        "median": 14.694979667663574,
+        "p95": 19.07063694000244,
+        "over45": 2
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 2,
+      "episodes": 480,
+      "completed": 422,
+      "failures": 33,
+      "demotion_causes": {
+        "base_contact": 33,
+        "tracking": 69
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 2,
+        "3-10s": 12,
+        ">10s": 19
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 479,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 475,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 459,
+          "failed": 2,
+          "fraction": 0.004357298474945534
+        }
+      },
+      "tilt_first3": {
+        "eligible": 459,
+        "median": 14.567092895507812,
+        "p95": 21.910654830932614,
+        "over45": 5
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 3,
+      "episodes": 453,
+      "completed": 383,
+      "failures": 31,
+      "demotion_causes": {
+        "base_contact": 31,
+        "tracking": 96
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 6,
+        "3-10s": 9,
+        ">10s": 16
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 453,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 451,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 439,
+          "failed": 6,
+          "fraction": 0.01366742596810934
+        }
+      },
+      "tilt_first3": {
+        "eligible": 439,
+        "median": 12.985433578491211,
+        "p95": 22.428446769714355,
+        "over45": 7
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 4,
+      "episodes": 423,
+      "completed": 373,
+      "failures": 58,
+      "demotion_causes": {
+        "base_contact": 58,
+        "tracking": 91
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 2,
+        "3-10s": 24,
+        ">10s": 32
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 423,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 422,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 418,
+          "failed": 2,
+          "fraction": 0.004784688995215311
+        }
+      },
+      "tilt_first3": {
+        "eligible": 418,
+        "median": 14.218516826629639,
+        "p95": 22.728172683715812,
+        "over45": 3
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 5,
+      "episodes": 419,
+      "completed": 354,
+      "failures": 56,
+      "demotion_causes": {
+        "base_contact": 56,
+        "tracking": 92
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 3,
+        "3-10s": 14,
+        ">10s": 39
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 418,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 416,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 414,
+          "failed": 3,
+          "fraction": 0.007246376811594203
+        }
+      },
+      "tilt_first3": {
+        "eligible": 414,
+        "median": 16.686152458190918,
+        "p95": 24.98320369720457,
+        "over45": 4
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 6,
+      "episodes": 433,
+      "completed": 374,
+      "failures": 86,
+      "demotion_causes": {
+        "base_contact": 86,
+        "tracking": 115
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 6,
+        "3-10s": 26,
+        ">10s": 54
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 433,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 432,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 428,
+          "failed": 6,
+          "fraction": 0.014018691588785047
+        }
+      },
+      "tilt_first3": {
+        "eligible": 428,
+        "median": 19.274094581604004,
+        "p95": 28.59184246063231,
+        "over45": 8
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 7,
+      "episodes": 431,
+      "completed": 370,
+      "failures": 101,
+      "demotion_causes": {
+        "base_contact": 101,
+        "tracking": 124
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 20,
+        "3-10s": 31,
+        ">10s": 50
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 431,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 429,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 423,
+          "failed": 20,
+          "fraction": 0.04728132387706856
+        }
+      },
+      "tilt_first3": {
+        "eligible": 423,
+        "median": 21.853038787841797,
+        "p95": 36.44125366210936,
+        "over45": 20
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 8,
+      "episodes": 469,
+      "completed": 400,
+      "failures": 114,
+      "demotion_causes": {
+        "base_contact": 114,
+        "tracking": 135
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 6,
+        "3-10s": 39,
+        ">10s": 69
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 469,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 466,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 463,
+          "failed": 6,
+          "fraction": 0.012958963282937365
+        }
+      },
+      "tilt_first3": {
+        "eligible": 463,
+        "median": 21.783212661743164,
+        "p95": 31.03149414062499,
+        "over45": 9
+      }
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 9,
+      "episodes": 466,
+      "completed": 405,
+      "failures": 123,
+      "demotion_causes": {
+        "base_contact": 123,
+        "tracking": 131
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 1,
+        "1-3s": 12,
+        "3-10s": 46,
+        ">10s": 64
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 466,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 465,
+          "failed": 1,
+          "fraction": 0.002150537634408602
+        },
+        "3": {
+          "eligible": 462,
+          "failed": 13,
+          "fraction": 0.02813852813852814
+        }
+      },
+      "tilt_first3": {
+        "eligible": 462,
+        "median": 21.973098754882812,
+        "p95": 34.9795196533203,
+        "over45": 17
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": null,
+      "episodes": 3521,
+      "completed": 3147,
+      "failures": 417,
+      "demotion_causes": {
+        "base_contact": 417,
+        "tracking": 69
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 22,
+        "3-10s": 234,
+        ">10s": 161
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 3512,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 3496,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 3406,
+          "failed": 22,
+          "fraction": 0.0064591896652965355
+        }
+      },
+      "tilt_first3": {
+        "eligible": 3406,
+        "median": 3.289738178253174,
+        "p95": 21.02948808670044,
+        "over45": 42
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 363,
+      "completed": 318,
+      "failures": 3,
+      "demotion_causes": {
+        "base_contact": 3
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 1,
+        ">10s": 2
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 362,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 359,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 351,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 351,
+        "median": 3.2733917236328125,
+        "p95": 13.08919906616211,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 1,
+      "episodes": 338,
+      "completed": 305,
+      "failures": 5,
+      "demotion_causes": {
+        "base_contact": 5,
+        "tracking": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 2,
+        ">10s": 3
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 338,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 337,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 328,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 328,
+        "median": 3.0877740383148193,
+        "p95": 14.562582445144653,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 2,
+      "episodes": 361,
+      "completed": 316,
+      "failures": 7,
+      "demotion_causes": {
+        "base_contact": 7,
+        "tracking": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 6,
+        ">10s": 1
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 360,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 356,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 346,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 346,
+        "median": 2.974579095840454,
+        "p95": 16.263095378875732,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 3,
+      "episodes": 362,
+      "completed": 316,
+      "failures": 8,
+      "demotion_causes": {
+        "base_contact": 8,
+        "tracking": 3
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 6,
+        ">10s": 2
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 362,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 361,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 347,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 347,
+        "median": 3.3926334381103516,
+        "p95": 16.918956375122068,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 4,
+      "episodes": 360,
+      "completed": 322,
+      "failures": 21,
+      "demotion_causes": {
+        "base_contact": 21,
+        "tracking": 13
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 13,
+        ">10s": 8
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 358,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 358,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 348,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 348,
+        "median": 3.24604070186615,
+        "p95": 16.768739986419675,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 5,
+      "episodes": 339,
+      "completed": 311,
+      "failures": 44,
+      "demotion_causes": {
+        "base_contact": 44,
+        "tracking": 7
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 24,
+        ">10s": 19
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 338,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 338,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 328,
+          "failed": 1,
+          "fraction": 0.003048780487804878
+        }
+      },
+      "tilt_first3": {
+        "eligible": 328,
+        "median": 3.4944634437561035,
+        "p95": 18.285532188415527,
+        "over45": 3
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 6,
+      "episodes": 351,
+      "completed": 314,
+      "failures": 71,
+      "demotion_causes": {
+        "base_contact": 71,
+        "tracking": 11
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 2,
+        "3-10s": 38,
+        ">10s": 31
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 351,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 348,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 340,
+          "failed": 2,
+          "fraction": 0.0058823529411764705
+        }
+      },
+      "tilt_first3": {
+        "eligible": 340,
+        "median": 3.489406943321228,
+        "p95": 24.57895135879517,
+        "over45": 4
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 7,
+      "episodes": 351,
+      "completed": 319,
+      "failures": 91,
+      "demotion_causes": {
+        "base_contact": 91,
+        "tracking": 6
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 10,
+        "3-10s": 46,
+        ">10s": 35
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 349,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 347,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 338,
+          "failed": 10,
+          "fraction": 0.029585798816568046
+        }
+      },
+      "tilt_first3": {
+        "eligible": 338,
+        "median": 3.2614320516586304,
+        "p95": 40.26402778625445,
+        "over45": 17
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 8,
+      "episodes": 358,
+      "completed": 319,
+      "failures": 84,
+      "demotion_causes": {
+        "base_contact": 84,
+        "tracking": 10
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 5,
+        "3-10s": 52,
+        ">10s": 27
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 357,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 356,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 352,
+          "failed": 5,
+          "fraction": 0.014204545454545454
+        }
+      },
+      "tilt_first3": {
+        "eligible": 352,
+        "median": 3.278130054473877,
+        "p95": 26.187794685363766,
+        "over45": 9
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 9,
+      "episodes": 338,
+      "completed": 307,
+      "failures": 83,
+      "demotion_causes": {
+        "base_contact": 83,
+        "tracking": 15
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 4,
+        "3-10s": 46,
+        ">10s": 33
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 337,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 336,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 328,
+          "failed": 4,
+          "fraction": 0.012195121951219513
+        }
+      },
+      "tilt_first3": {
+        "eligible": 328,
+        "median": 3.46526837348938,
+        "p95": 29.33029260635376,
+        "over45": 9
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": null,
+      "episodes": 3435,
+      "completed": 3065,
+      "failures": 322,
+      "demotion_causes": {
+        "base_contact": 322,
+        "tracking": 518
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 42,
+        "3-10s": 136,
+        ">10s": 144
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 3431,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 3410,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 2949,
+          "failed": 42,
+          "fraction": 0.014242115971515769
+        }
+      },
+      "tilt_first3": {
+        "eligible": 2949,
+        "median": 15.87635612487793,
+        "p95": 28.108127975463862,
+        "over45": 60
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 346,
+      "completed": 315,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 14
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 345,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 344,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 293,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 293,
+        "median": 12.48961353302002,
+        "p95": 16.780410766601562,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 1,
+      "episodes": 351,
+      "completed": 308,
+      "failures": 4,
+      "demotion_causes": {
+        "tracking": 18,
+        "base_contact": 4
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 3,
+        ">10s": 1
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 348,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 345,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 306,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 306,
+        "median": 15.026429176330566,
+        "p95": 19.202621936798096,
+        "over45": 1
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 2,
+      "episodes": 327,
+      "completed": 296,
+      "failures": 7,
+      "demotion_causes": {
+        "base_contact": 7,
+        "tracking": 16
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 3,
+        ">10s": 4
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 327,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 325,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 281,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 281,
+        "median": 12.377154350280762,
+        "p95": 19.78346824645996,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 3,
+      "episodes": 340,
+      "completed": 310,
+      "failures": 9,
+      "demotion_causes": {
+        "base_contact": 9,
+        "tracking": 32
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 5,
+        ">10s": 3
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 340,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 337,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 291,
+          "failed": 1,
+          "fraction": 0.003436426116838488
+        }
+      },
+      "tilt_first3": {
+        "eligible": 291,
+        "median": 12.265239715576172,
+        "p95": 20.922147750854492,
+        "over45": 2
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 4,
+      "episodes": 315,
+      "completed": 277,
+      "failures": 18,
+      "demotion_causes": {
+        "base_contact": 18,
+        "tracking": 38
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 10,
+        ">10s": 8
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 315,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 314,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 279,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 279,
+        "median": 13.716262817382812,
+        "p95": 19.565119743347147,
+        "over45": 1
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 5,
+      "episodes": 375,
+      "completed": 327,
+      "failures": 39,
+      "demotion_causes": {
+        "base_contact": 39,
+        "tracking": 82
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 11,
+        "3-10s": 10,
+        ">10s": 18
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 375,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 371,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 313,
+          "failed": 11,
+          "fraction": 0.03514376996805112
+        }
+      },
+      "tilt_first3": {
+        "eligible": 313,
+        "median": 15.665412902832031,
+        "p95": 28.54300003051757,
+        "over45": 13
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 6,
+      "episodes": 331,
+      "completed": 296,
+      "failures": 58,
+      "demotion_causes": {
+        "base_contact": 58,
+        "tracking": 59
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 7,
+        "3-10s": 24,
+        ">10s": 27
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 331,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 329,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 285,
+          "failed": 7,
+          "fraction": 0.02456140350877193
+        }
+      },
+      "tilt_first3": {
+        "eligible": 285,
+        "median": 18.587129592895508,
+        "p95": 31.985620498657237,
+        "over45": 11
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 7,
+      "episodes": 361,
+      "completed": 321,
+      "failures": 62,
+      "demotion_causes": {
+        "base_contact": 62,
+        "tracking": 91
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 7,
+        "3-10s": 28,
+        ">10s": 27
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 361,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 360,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 308,
+          "failed": 7,
+          "fraction": 0.022727272727272728
+        }
+      },
+      "tilt_first3": {
+        "eligible": 308,
+        "median": 20.17530345916748,
+        "p95": 30.939166259765614,
+        "over45": 8
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 8,
+      "episodes": 318,
+      "completed": 285,
+      "failures": 45,
+      "demotion_causes": {
+        "base_contact": 45,
+        "tracking": 82
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 6,
+        "3-10s": 20,
+        ">10s": 19
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 318,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 315,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 276,
+          "failed": 6,
+          "fraction": 0.021739130434782608
+        }
+      },
+      "tilt_first3": {
+        "eligible": 276,
+        "median": 20.74508285522461,
+        "p95": 32.77042770385742,
+        "over45": 8
+      }
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 9,
+      "episodes": 371,
+      "completed": 330,
+      "failures": 80,
+      "demotion_causes": {
+        "base_contact": 80,
+        "tracking": 86
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 10,
+        "3-10s": 33,
+        ">10s": 37
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 371,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 370,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 317,
+          "failed": 10,
+          "fraction": 0.031545741324921134
+        }
+      },
+      "tilt_first3": {
+        "eligible": 317,
+        "median": 20.81475067138672,
+        "p95": 40.884480285644464,
+        "over45": 16
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "platform",
+      "level": null,
+      "episodes": 4151,
+      "completed": 3654,
+      "failures": 56,
+      "demotion_causes": {
+        "base_contact": 56,
+        "tracking": 49
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 3,
+        "3-10s": 22,
+        ">10s": 31
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 4146,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 4106,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 3996,
+          "failed": 3,
+          "fraction": 0.0007507507507507507
+        }
+      },
+      "tilt_first3": {
+        "eligible": 3996,
+        "median": 3.083911657333374,
+        "p95": 10.59775185585022,
+        "over45": 7
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 1706,
+      "completed": 1525,
+      "failures": 4,
+      "demotion_causes": {
+        "tracking": 8,
+        "base_contact": 4
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 1,
+        "3-10s": 2,
+        ">10s": 1
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 1704,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 1692,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 1654,
+          "failed": 1,
+          "fraction": 0.0006045949214026602
+        }
+      },
+      "tilt_first3": {
+        "eligible": 1654,
+        "median": 2.998851776123047,
+        "p95": 9.740372419357298,
+        "over45": 1
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "platform",
+      "level": 1,
+      "episodes": 1953,
+      "completed": 1699,
+      "failures": 24,
+      "demotion_causes": {
+        "base_contact": 24,
+        "tracking": 20
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 2,
+        "3-10s": 10,
+        ">10s": 12
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 1951,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 1925,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 1874,
+          "failed": 2,
+          "fraction": 0.0010672358591248667
+        }
+      },
+      "tilt_first3": {
+        "eligible": 1874,
+        "median": 3.123771905899048,
+        "p95": 10.097617244720459,
+        "over45": 3
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "platform",
+      "level": 2,
+      "episodes": 435,
+      "completed": 380,
+      "failures": 24,
+      "demotion_causes": {
+        "base_contact": 24,
+        "tracking": 18
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 10,
+        ">10s": 14
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 434,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 432,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 411,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 411,
+        "median": 3.162792921066284,
+        "p95": 14.89995288848877,
+        "over45": 3
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "platform",
+      "level": 3,
+      "episodes": 53,
+      "completed": 46,
+      "failures": 4,
+      "demotion_causes": {
+        "base_contact": 4,
+        "tracking": 3
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 4
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 53,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 53,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 53,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 53,
+        "median": 3.8376753330230713,
+        "p95": 20.803081512451172,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "platform",
+      "level": 4,
+      "episodes": 4,
+      "completed": 4,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 4,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 4,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 4,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 4,
+        "median": 4.228715896606445,
+        "p95": 14.968096232414242,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "terrain",
+      "level": null,
+      "episodes": 4192,
+      "completed": 3758,
+      "failures": 91,
+      "demotion_causes": {
+        "base_contact": 91,
+        "tracking": 89
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 1,
+        "1-3s": 23,
+        "3-10s": 34,
+        ">10s": 33
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 4188,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 4165,
+          "failed": 1,
+          "fraction": 0.00024009603841536616
+        },
+        "3": {
+          "eligible": 3576,
+          "failed": 24,
+          "fraction": 0.006711409395973154
+        }
+      },
+      "tilt_first3": {
+        "eligible": 3576,
+        "median": 6.188778877258301,
+        "p95": 17.82906675338745,
+        "over45": 30
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 1743,
+      "completed": 1564,
+      "failures": 11,
+      "demotion_causes": {
+        "base_contact": 11,
+        "tracking": 12
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 4,
+        "3-10s": 6,
+        ">10s": 1
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 1741,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 1730,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 1470,
+          "failed": 4,
+          "fraction": 0.0027210884353741495
+        }
+      },
+      "tilt_first3": {
+        "eligible": 1470,
+        "median": 5.685272455215454,
+        "p95": 13.308620500564574,
+        "over45": 5
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "terrain",
+      "level": 1,
+      "episodes": 1972,
+      "completed": 1766,
+      "failures": 40,
+      "demotion_causes": {
+        "base_contact": 40,
+        "tracking": 42
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 1,
+        "1-3s": 10,
+        "3-10s": 15,
+        ">10s": 14
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 1971,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 1962,
+          "failed": 1,
+          "fraction": 0.0005096839959225281
+        },
+        "3": {
+          "eligible": 1693,
+          "failed": 11,
+          "fraction": 0.006497341996455995
+        }
+      },
+      "tilt_first3": {
+        "eligible": 1693,
+        "median": 6.365102291107178,
+        "p95": 18.502739715576165,
+        "over45": 11
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "terrain",
+      "level": 2,
+      "episodes": 423,
+      "completed": 381,
+      "failures": 33,
+      "demotion_causes": {
+        "base_contact": 33,
+        "tracking": 33
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 6,
+        "3-10s": 12,
+        ">10s": 15
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 422,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 420,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 367,
+          "failed": 6,
+          "fraction": 0.01634877384196185
+        }
+      },
+      "tilt_first3": {
+        "eligible": 367,
+        "median": 8.221226692199707,
+        "p95": 23.190376472473144,
+        "over45": 11
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "terrain",
+      "level": 3,
+      "episodes": 51,
+      "completed": 45,
+      "failures": 7,
+      "demotion_causes": {
+        "base_contact": 7,
+        "tracking": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 3,
+        "3-10s": 1,
+        ">10s": 3
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 51,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 50,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 43,
+          "failed": 3,
+          "fraction": 0.06976744186046512
+        }
+      },
+      "tilt_first3": {
+        "eligible": 43,
+        "median": 15.411348342895508,
+        "p95": 137.46765441894516,
+        "over45": 3
+      }
+    },
+    {
+      "terrain": "obstacles",
+      "spawn": "terrain",
+      "level": 4,
+      "episodes": 3,
+      "completed": 2,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 3,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 3,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 3,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 3,
+        "median": 17.869808197021484,
+        "p95": 19.149499130249023,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "platform",
+      "level": null,
+      "episodes": 1725,
+      "completed": 1524,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 1725,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 1719,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 1671,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 1671,
+        "median": 2.829784870147705,
+        "p95": 6.070795774459839,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 71,
+      "completed": 67,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 71,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 71,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 70,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 70,
+        "median": 2.4966630935668945,
+        "p95": 6.0480331659317,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "platform",
+      "level": 1,
+      "episodes": 232,
+      "completed": 204,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 232,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 231,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 224,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 224,
+        "median": 2.7569406032562256,
+        "p95": 5.569011282920838,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "platform",
+      "level": 2,
+      "episodes": 531,
+      "completed": 473,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 531,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 528,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 517,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 517,
+        "median": 2.8218183517456055,
+        "p95": 5.821863269805908,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "platform",
+      "level": 3,
+      "episodes": 495,
+      "completed": 434,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 495,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 494,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 475,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 475,
+        "median": 2.7743167877197266,
+        "p95": 5.7204562187194785,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "platform",
+      "level": 4,
+      "episodes": 255,
+      "completed": 222,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 255,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 254,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 248,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 248,
+        "median": 2.8582406044006348,
+        "p95": 6.720287299156186,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "platform",
+      "level": 5,
+      "episodes": 122,
+      "completed": 107,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 122,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 122,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 118,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 118,
+        "median": 3.0553117990493774,
+        "p95": 7.337181210517881,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "platform",
+      "level": 6,
+      "episodes": 19,
+      "completed": 17,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 19,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 19,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 19,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 19,
+        "median": 4.062836170196533,
+        "p95": 10.99890356063841,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "terrain",
+      "level": null,
+      "episodes": 1634,
+      "completed": 1463,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 3
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 1632,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 1621,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 1399,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 1399,
+        "median": 4.175044536590576,
+        "p95": 7.81447410583496,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 67,
+      "completed": 62,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 67,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 67,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 55,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 55,
+        "median": 2.8431732654571533,
+        "p95": 5.3882195949554434,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "terrain",
+      "level": 1,
+      "episodes": 226,
+      "completed": 214,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 226,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 225,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 204,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 204,
+        "median": 3.2785866260528564,
+        "p95": 6.25909366607666,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "terrain",
+      "level": 2,
+      "episodes": 463,
+      "completed": 416,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 462,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 459,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 391,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 391,
+        "median": 3.6282260417938232,
+        "p95": 6.544904708862305,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "terrain",
+      "level": 3,
+      "episodes": 509,
+      "completed": 448,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 508,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 503,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 434,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 434,
+        "median": 4.524285316467285,
+        "p95": 7.828475427627564,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "terrain",
+      "level": 4,
+      "episodes": 214,
+      "completed": 187,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 2
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 214,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 214,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 186,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 186,
+        "median": 5.125072717666626,
+        "p95": 8.269454717636108,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "terrain",
+      "level": 5,
+      "episodes": 136,
+      "completed": 120,
+      "failures": 0,
+      "demotion_causes": {
+        "tracking": 1
+      },
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 136,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 134,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 113,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 113,
+        "median": 5.621763229370117,
+        "p95": 10.642891120910642,
+        "over45": 0
+      }
+    },
+    {
+      "terrain": "pebbles",
+      "spawn": "terrain",
+      "level": 6,
+      "episodes": 19,
+      "completed": 16,
+      "failures": 0,
+      "demotion_causes": {},
+      "failures_by_age": {
+        "0-.2s": 0,
+        ".2-1s": 0,
+        "1-3s": 0,
+        "3-10s": 0,
+        ">10s": 0
+      },
+      "horizons": {
+        "0.2": {
+          "eligible": 19,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "1": {
+          "eligible": 19,
+          "failed": 0,
+          "fraction": 0.0
+        },
+        "3": {
+          "eligible": 16,
+          "failed": 0,
+          "fraction": 0.0
+        }
+      },
+      "tilt_first3": {
+        "eligible": 16,
+        "median": 6.827742576599121,
+        "p95": 11.253658056259155,
+        "over45": 0
+      }
+    }
+  ]
+}
