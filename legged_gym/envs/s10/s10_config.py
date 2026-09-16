@@ -4,6 +4,7 @@ from legged_gym.envs.go2w.go2w_config import GO2WRoughCfg, GO2WRoughCfgPPO
 
 class S10RoughCfg(GO2WRoughCfg):
     class commands(GO2WRoughCfg.commands):
+        extended_speed_fraction = .2  # Random membership within every terrain column.
         heading_command = False  # Sample yaw rate directly; actor input remains vx/vy/yaw rate.
         parking_probability = .2
         parking_thresholds = [.03, .03, .05]  # Command vx/vy (m/s), yaw rate (rad/s).

@@ -44,6 +44,7 @@ from typing import Tuple, Dict
 from legged_gym import LEGGED_GYM_ROOT_DIR
 from legged_gym.envs.base.base_task import BaseTask
 from legged_gym.utils.terrain import Terrain
+from legged_gym.utils.curriculum import stratified_extended_mask
 from legged_gym.utils.math import quat_apply_yaw, wrap_to_pi, torch_rand_sqrt_float, get_scale_shift
 from legged_gym.utils.helpers import class_to_dict
 from .legged_robot_config import LeggedRobotCfg
@@ -510,7 +511,7 @@ class LeggedRobot(BaseTask):
         else:
             self.commands[env_ids, 2] = torch_rand_float(self.command_ranges["ang_vel_yaw"][0], self.command_ranges["ang_vel_yaw"][1], (len(env_ids), 1), device=self.device).squeeze(1)
 
-        high_vel_env_ids = (env_ids < (self.num_envs * 0.2))
+        high_vel_env_ids = self.extended_speed_envs[env_ids] if hasattr(self, 'extended_speed_envs') else (env_ids < (self.num_envs * 0.2))
         high_vel_env_ids = env_ids[high_vel_env_ids.nonzero(as_tuple=True)]
 
         self.commands[high_vel_env_ids, 0] = torch_rand_float(self.command_ranges["lin_vel_x"][0], self.command_ranges["lin_vel_x"][1], (len(high_vel_env_ids), 1), device=self.device).squeeze(1)
@@ -647,8 +648,8 @@ class LeggedRobot(BaseTask):
         Args:
             env_ids (List[int]): ids of environments being reset
         """
-        low_vel_env_ids = (env_ids > (self.num_envs * 0.2))
-        high_vel_env_ids = (env_ids < (self.num_envs * 0.2))
+        high_vel_env_ids = self.extended_speed_envs[env_ids] if hasattr(self, 'extended_speed_envs') else (env_ids < (self.num_envs * 0.2))
+        low_vel_env_ids = ~high_vel_env_ids
         low_vel_env_ids = env_ids[low_vel_env_ids.nonzero(as_tuple=True)]
         high_vel_env_ids = env_ids[high_vel_env_ids.nonzero(as_tuple=True)]
         # If the tracking reward is above 80% of the maximum, increase the range of commands
@@ -735,6 +736,9 @@ class LeggedRobot(BaseTask):
         self.last_root_vel = torch.zeros_like(self.root_states[:, 7:13])
         self.commands = torch.zeros(self.num_envs, self.cfg.commands.num_commands, dtype=torch.float, device=self.device, requires_grad=False) # x vel, y vel, yaw vel, heading
         self.parking_commands = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
+        if hasattr(self.cfg.commands, 'extended_speed_fraction'):
+            columns = getattr(self, 'terrain_types', torch.zeros(self.num_envs, dtype=torch.long, device=self.device))
+            self.extended_speed_envs = stratified_extended_mask(columns, self.cfg.commands.extended_speed_fraction)
         self.commands_scale = torch.tensor([self.obs_scales.lin_vel, self.obs_scales.lin_vel, self.obs_scales.ang_vel], device=self.device, requires_grad=False,) # TODO change this
         self.feet_air_time = torch.zeros(self.num_envs, self.feet_indices.shape[0], dtype=torch.float, device=self.device, requires_grad=False)
         self.last_contacts = torch.zeros(self.num_envs, len(self.feet_indices), dtype=torch.bool, device=self.device, requires_grad=False)
