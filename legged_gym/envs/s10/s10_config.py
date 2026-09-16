@@ -5,6 +5,8 @@ from legged_gym.envs.go2w.go2w_config import GO2WRoughCfg, GO2WRoughCfgPPO
 class S10RoughCfg(GO2WRoughCfg):
     class commands(GO2WRoughCfg.commands):
         heading_command = False  # Sample yaw rate directly; actor input remains vx/vy/yaw rate.
+        parking_probability = .2
+        parking_thresholds = [.03, .03, .05]  # Command vx/vy (m/s), yaw rate (rad/s).
 
     class init_state(GO2WRoughCfg.init_state):
         pos = [0., 0., 0.45]
@@ -39,6 +41,15 @@ class S10RoughCfg(GO2WRoughCfg):
 
     class rewards(GO2WRoughCfg.rewards):
         base_height_target = .425  # FK: 2 * .18 * cos(.3) + .081 = .424921 m.
+        soft_torque_limit = .8  # Wheel reward budget: 11.2 Nm for the 14 Nm asset; calibrate to hardware.
+
+        class scales(GO2WRoughCfg.rewards.scales):
+            # Initial tuning values; wheel action penalty totals -.03 with inherited action_rate.
+            wheel_action_rate = -.02
+            wheel_torque_excess = -.1
+            parking_lin_vel = -.5
+            parking_ang_vel = -.25
+            parking_wheel_vel = -.002
 
 
 class S10RoughCfgPPO(GO2WRoughCfgPPO):

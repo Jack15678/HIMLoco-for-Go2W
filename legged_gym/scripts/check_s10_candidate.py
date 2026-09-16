@@ -41,7 +41,7 @@ def self_check():
     for cfg, stride in [(GO2WRoughCfg(), 1), (S10RoughCfg(), 2)]:
         seen = []
         env = NS(cfg=cfg, device='cpu', num_envs=4, num_actions=16,
-                 last_actions=torch.zeros(4, 16), torques=torch.zeros(4, 16),
+                 last_actions=torch.zeros(4, 16), torques=torch.zeros(4, 16), reward_scales={},
                  render=lambda: None, gym=Mock(), sim=None,
                  post_physics_step=lambda: ([], None), obs_buf=torch.zeros(4, 342),
                  privileged_obs_buf=None, rew_buf=None, reset_buf=None, extras={})

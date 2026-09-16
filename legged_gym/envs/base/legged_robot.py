@@ -87,6 +87,9 @@ class LeggedRobot(BaseTask):
         """
         clip_actions = self.cfg.normalization.clip_actions
         self.actions = torch.clip(actions, -clip_actions, clip_actions).to(self.device)
+        penalize_wheel_torque = "wheel_torque_excess" in self.reward_scales
+        if penalize_wheel_torque:
+            self.wheel_torque_excess.zero_()
 
         self.delayed_actions = self.actions.clone().view(self.num_envs, 1, self.num_actions).repeat(1, self.cfg.control.decimation, 1)
         delay_stride = getattr(self.cfg.control, 'delay_stride', 1)
@@ -98,6 +101,9 @@ class LeggedRobot(BaseTask):
         self.render()
         for _ in range(self.cfg.control.decimation):
             self.torques = self._compute_torques(self.delayed_actions[:, _]).view(self.torques.shape)
+            if penalize_wheel_torque:
+                excess = (self.raw_torques[:, self.wheel_indices].abs() / self.wheel_torque_budget - 1.).clamp(min=0.)
+                self.wheel_torque_excess += torch.sum(torch.square(excess), dim=1)
             self.gym.set_dof_actuation_force_tensor(self.sim, gymtorch.unwrap_tensor(self.torques))
             self.gym.simulate(self.sim)
             if self.device == 'cpu':
@@ -559,6 +565,7 @@ class LeggedRobot(BaseTask):
             torques = actions_scaled
         else:
             raise NameError(f"Unknown controller type: {control_type}")
+        self.raw_torques = torques
         return torch.clip(torques, -self.torque_limits, self.torque_limits)
 
     def _reset_dofs(self, env_ids):
@@ -800,6 +807,14 @@ class LeggedRobot(BaseTask):
                 self.reward_scales.pop(key) 
             else:
                 self.reward_scales[key] *= self.dt
+        if "wheel_torque_excess" in self.reward_scales:
+            fraction = self.cfg.rewards.soft_torque_limit
+            if not 0. < fraction <= 1.:
+                raise ValueError('Wheel torque reward requires 0 < soft_torque_limit <= 1')
+            self.wheel_torque_budget = self.torque_limits[self.wheel_indices] * fraction
+            if not torch.all(torch.isfinite(self.wheel_torque_budget) & (self.wheel_torque_budget > 0)):
+                raise ValueError('Wheel torque reward requires finite positive torque limits')
+            self.wheel_torque_excess = torch.zeros(self.num_envs, device=self.device)
         # prepare list of functions
         self.reward_functions = []
         self.reward_names = []
@@ -1266,6 +1281,14 @@ class LeggedRobot(BaseTask):
     def _reward_action_rate(self):
         # Penalize changes in actions
         return torch.sum(torch.square(self.last_actions - self.actions), dim=1)
+
+    def _reward_wheel_action_rate(self):
+        # Additional wheel-only penalty; targets are actions * vel_scale.
+        return torch.sum(torch.square(self.last_actions[:, self.wheel_indices] - self.actions[:, self.wheel_indices]), dim=1)
+
+    def _reward_wheel_torque_excess(self):
+        # Mean squared normalized excess BEFORE clipping, over every PD substep.
+        return self.wheel_torque_excess / self.cfg.control.decimation
             
     def _reward_torques(self):
         # Penalize torques

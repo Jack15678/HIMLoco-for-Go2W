@@ -6,6 +6,7 @@ Outputs live beside the checkpoint in evaluation_<iteration>/.
 """
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import isaacgym  # Must precede torch.
 import numpy as np
@@ -31,7 +32,12 @@ SCHEDULE = [
 def restore_config(obj, values):
     for key, value in values.items():
         current = getattr(obj, key, None)
-        if isinstance(value, dict) and hasattr(current, '__dict__'):
+        if key in ('commands', 'scales') and isinstance(value, dict):
+            # Saved sampling/reward recipes must not inherit new default features.
+            setattr(obj, key, SimpleNamespace(**{
+                name: SimpleNamespace(**item) if isinstance(item, dict) else item
+                for name, item in value.items()}))
+        elif isinstance(value, dict) and hasattr(current, '__dict__'):
             restore_config(current, value)
         else:
             setattr(obj, key, value)
