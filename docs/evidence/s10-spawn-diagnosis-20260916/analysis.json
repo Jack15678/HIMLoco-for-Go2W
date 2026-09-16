@@ -1,0 +1,190 @@
+{
+  "stairs_level0": [
+    {
+      "terrain": "stairs_up",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 5350,
+      "completed": 4686,
+      "early3_eligible": 5216,
+      "early3_fail": 0,
+      "max_tilt_first3_quantiles": [
+        3.2945847511291504,
+        17.12703800201416,
+        19.335548210144044,
+        29.618562698364258
+      ],
+      "tilt_over45_first3": 0,
+      "contact_by_02_counts": {
+        "2": 2442,
+        "1": 689,
+        "0": 78,
+        "3": 1644,
+        "4": 488
+      },
+      "first_contact_quantiles": [
+        0.05999999865889549,
+        0.11999999731779099,
+        0.14000000059604645
+      ],
+      "support_height_range_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "grade_counts": {
+        "0": 4405,
+        "-1": 254,
+        "1": 27
+      },
+      "held_insufficient_scoring_seconds": 386,
+      "held_sufficient_seconds_but_low_axis": 3536,
+      "held_sufficient_scores_but_low_target": 483
+    },
+    {
+      "terrain": "stairs_up",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 5177,
+      "completed": 4581,
+      "early3_eligible": 4551,
+      "early3_fail": 7,
+      "max_tilt_first3_quantiles": [
+        16.435279846191406,
+        19.824091911315918,
+        22.535484313964844,
+        178.75181579589844
+      ],
+      "tilt_over45_first3": 8,
+      "contact_by_02_counts": {
+        "1": 1485,
+        "2": 2348,
+        "0": 211,
+        "3": 951,
+        "4": 174
+      },
+      "first_contact_quantiles": [
+        0.07999999821186066,
+        0.1599999964237213,
+        0.19999998807907104
+      ],
+      "support_height_range_quantiles": [
+        0.09999999403953552,
+        0.15000000596046448,
+        0.15000000596046448,
+        0.15000000596046448
+      ],
+      "grade_counts": {
+        "-1": 219,
+        "0": 4360,
+        "1": 2
+      },
+      "held_insufficient_scoring_seconds": 920,
+      "held_sufficient_seconds_but_low_axis": 3440,
+      "held_sufficient_scores_but_low_target": 0
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "platform",
+      "level": 0,
+      "episodes": 3426,
+      "completed": 3050,
+      "early3_eligible": 3296,
+      "early3_fail": 1,
+      "max_tilt_first3_quantiles": [
+        3.4315627813339233,
+        16.975883960723877,
+        18.832174587249785,
+        169.24432373046875
+      ],
+      "tilt_over45_first3": 1,
+      "contact_by_02_counts": {
+        "1": 476,
+        "2": 1618,
+        "3": 966,
+        "0": 40,
+        "4": 319
+      },
+      "first_contact_quantiles": [
+        0.05999999865889549,
+        0.11999999731779099,
+        0.14000000059604645
+      ],
+      "support_height_range_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "grade_counts": {
+        "0": 2925,
+        "-1": 106,
+        "1": 19
+      },
+      "held_insufficient_scoring_seconds": 327,
+      "held_sufficient_seconds_but_low_axis": 2327,
+      "held_sufficient_scores_but_low_target": 271
+    },
+    {
+      "terrain": "stairs_down",
+      "spawn": "terrain",
+      "level": 0,
+      "episodes": 3412,
+      "completed": 3075,
+      "early3_eligible": 2868,
+      "early3_fail": 4,
+      "max_tilt_first3_quantiles": [
+        16.516679763793945,
+        20.739613246917724,
+        23.55498954772949,
+        131.2976837158203
+      ],
+      "tilt_over45_first3": 6,
+      "contact_by_02_counts": {
+        "1": 958,
+        "0": 158,
+        "2": 1543,
+        "3": 655,
+        "4": 89
+      },
+      "first_contact_quantiles": [
+        0.09999999403953552,
+        0.1599999964237213,
+        0.2199999988079071
+      ],
+      "support_height_range_quantiles": [
+        0.09999999403953552,
+        0.15000000596046448,
+        0.15000000596046448,
+        0.15000000596046448
+      ],
+      "grade_counts": {
+        "0": 2993,
+        "-1": 82
+      },
+      "held_insufficient_scoring_seconds": 797,
+      "held_sufficient_seconds_but_low_axis": 2196,
+      "held_sufficient_scores_but_low_target": 0
+    }
+  ],
+  "additional": {
+    "stair_demotion_causes": {
+      "base_contact": 185,
+      "tracking": 532
+    },
+    "stair_early3_demotions": 14,
+    "first_failure_seconds": 1.1399999856948853,
+    "max_tilt_first3_over45_all": 47,
+    "initial_mode_counts": {
+      "mixed": 3663,
+      "forward": 6517,
+      "reverse": 4420,
+      "left": 3741,
+      "right": 3616,
+      "yaw_right": 3555,
+      "yaw_left": 3646,
+      "parking": 7409
+    }
+  }
+}
