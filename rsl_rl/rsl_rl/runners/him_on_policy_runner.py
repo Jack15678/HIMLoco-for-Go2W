@@ -32,6 +32,10 @@ import time
 import os
 from collections import deque
 import statistics
+import logging
+import json
+import subprocess
+import sys
 
 from torch.utils.tensorboard import SummaryWriter
 import torch
@@ -227,7 +231,7 @@ class HIMOnPolicyRunner:
         print(log_string)
 
     def save(self, path, infos=None):
-        torch.save({
+        checkpoint = {
             'model_state_dict': self.alg.actor_critic.state_dict(),
             'optimizer_state_dict': self.alg.optimizer.state_dict(),
             'estimator_optimizer_state_dict': self.alg.actor_critic.estimator.optimizer.state_dict(),
@@ -235,7 +239,35 @@ class HIMOnPolicyRunner:
             'tot_timesteps': self.tot_timesteps,
             'tot_time': self.tot_time,
             'infos': infos,
-            }, path)
+            }
+        is_s10 = self.env.cfg.asset.name == 's10'
+        export_error = None
+        if is_s10:
+            try:
+                from rsl_rl.export_s10 import policy_metadata
+                checkpoint['s10_export'] = dict(
+                    metadata=policy_metadata(self.env), policy=self.policy_cfg,
+                    dimensions=[self.num_actor_obs, self.num_critic_obs,
+                                self.env.num_one_step_obs, self.env.num_actions])
+            except Exception as exc:
+                export_error = exc
+        torch.save(checkpoint, path)
+        if is_s10:
+            try:
+                if export_error is not None:
+                    raise export_error
+                # Isolate native ONNX/DLL failures as well as Python exceptions from training.
+                completed = subprocess.run(
+                    [sys.executable, '-m', 'rsl_rl.export_s10', '--checkpoint', os.fspath(path)],
+                    env=dict(os.environ, PYTHONPATH=os.pathsep.join(sys.path)),
+                    capture_output=True, text=True, check=True)
+                report = json.loads(completed.stdout)
+                print(f'ONNX verified for {path}: max_abs_error={report["max_abs_error"]:.3g}')
+            except subprocess.CalledProcessError as exc:
+                logging.error('Checkpoint saved at %s; ONNX export FAILED (exit %s). Retry export_s10_onnx.py.\n%s',
+                              path, exc.returncode, exc.stderr)
+            except Exception:
+                logging.exception('Checkpoint saved at %s; ONNX export FAILED. Retry export_s10_onnx.py.', path)
 
     def load(self, path, load_optimizer=True):
         loaded_dict = torch.load(path)

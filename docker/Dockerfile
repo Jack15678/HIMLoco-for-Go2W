@@ -11,6 +11,7 @@ RUN pip install --no-cache-dir --no-deps triton==2.0.0 --index-url https://downl
 RUN --mount=type=cache,target=/root/.cache/pip pip install torch==2.0.1+cu118 torchvision==0.15.2+cu118 \
     numpy==1.23.5 scipy==1.10.1 matplotlib==3.7.5 \
     tensorboard==2.14.0 ninja==1.11.1.4 pyyaml==6.0.2 mujoco==3.2.3 imageio==2.35.1 \
+    onnx==1.16.2 onnxruntime==1.19.2 \
     --index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 ENV LD_LIBRARY_PATH=/usr/local/lib
