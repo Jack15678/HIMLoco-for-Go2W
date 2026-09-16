@@ -317,5 +317,5 @@ if __name__=='__main__':
     elif args.scene.startswith('pebbles'):
         parser.error('Pebble probes require --protocol v2')
     args.output.mkdir(parents=True,exist_ok=False)
-    write_json(args.output/'invocation.json',dict(protocol=VERSION,**{k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()}))
+    write_json(args.output/'invocation.json',{**{k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()}, 'protocol':VERSION})
     (gym_run if args.backend=='gym' else mujoco_run)(args)

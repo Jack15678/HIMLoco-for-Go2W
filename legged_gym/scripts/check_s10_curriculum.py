@@ -6,6 +6,8 @@ import numpy as np
 from types import SimpleNamespace
 import ast
 import inspect
+import json
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[2]
 spec = importlib.util.spec_from_file_location('curriculum', ROOT / 'legged_gym/utils/curriculum.py')
@@ -96,6 +98,17 @@ def main():
     # A short fall fails even before there was enough tracking opportunity.
     assert (course.finish(ids[:1], torch.ones(1, dtype=torch.bool)) == -1).all()
     print('Mode isolation, low-speed sideways, yaw promotion, cross-axis drift, terrain exposure, failure and independent speed progression passed.')
+    spec = importlib.util.spec_from_file_location('diagnostics', ROOT / 'legged_gym/scripts/report_s10_task_diagnostics.py')
+    diagnostics = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(diagnostics)
+    with tempfile.TemporaryDirectory() as directory:
+        run = Path(directory)
+        (run/'metrics.jsonl').write_text(json.dumps(dict(iteration=1, curriculum=course.report()))+'\n')
+        result = diagnostics.report(run, None)
+        assert result['iteration'] == 1 and len(result['terrain_mode_cells']) == 48
+        assert result['evaluation_status'] == 'not_run_or_no_v2_results'
+        assert any(x['coverage'] == 'not_sampled' for x in result['terrain_mode_cells'])
+    print('Diagnostics distinguish missing task coverage and absent evaluation from success.')
 
 
 if __name__ == '__main__':

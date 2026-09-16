@@ -72,3 +72,5 @@ python legged_gym/scripts/evaluate_s10_follow.py --run /output/training --iterat
 ```
 
 评估入口、场景和门槛在训练启动前固定。启动记录将在完成真实预检后追加。
+
+分项诊断入口：`python legged_gym/scripts/report_s10_task_diagnostics.py --run <训练目录> --evaluations <评估目录> --window 200 --output <诊断.json>`。它按最近200轮计数差值输出48个地形×任务单元及每个固定评估初态的不足；尚未评估、未采样和目标接触不足都有独立标签。
