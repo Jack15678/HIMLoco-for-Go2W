@@ -1,0 +1,890 @@
+{
+  "iteration": 1300,
+  "window_start_iteration": 1200,
+  "speed_limits": [
+    [
+      1.5,
+      0.8999999761581421,
+      1.5
+    ],
+    [
+      1.5,
+      0.8999999761581421,
+      1.5
+    ],
+    [
+      1.5,
+      0.6000000238418579,
+      1.0
+    ],
+    [
+      1.5,
+      0.6000000238418579,
+      1.0
+    ],
+    [
+      1.5,
+      0.6000000238418579,
+      1.0
+    ],
+    [
+      1.5,
+      0.7000000476837158,
+      1.5
+    ]
+  ],
+  "terrain_mode_cells": [
+    {
+      "terrain": "smooth_slope",
+      "mode": "forward",
+      "seconds": 4544.609375,
+      "target_contact_seconds": 3011.69921875,
+      "sample_counts_normal_extended": [
+        732.0,
+        156.0
+      ],
+      "rmse": [
+        0.10858954640109329,
+        0.05541663788085962,
+        0.16871764695269542
+      ],
+      "simultaneous_success_fraction": 0.5989281600797648,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "smooth_slope",
+      "mode": "reverse",
+      "seconds": 3126.2890625,
+      "target_contact_seconds": 2099.62890625,
+      "sample_counts_normal_extended": [
+        503.0,
+        112.0
+      ],
+      "rmse": [
+        0.11030488902571826,
+        0.05390726908708671,
+        0.17093817850290546
+      ],
+      "simultaneous_success_fraction": 0.5943985605937551,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "smooth_slope",
+      "mode": "left",
+      "seconds": 3404.51171875,
+      "target_contact_seconds": 2350.29296875,
+      "sample_counts_normal_extended": [
+        357.0,
+        114.0
+      ],
+      "rmse": [
+        0.06806140104435325,
+        0.1073920393840061,
+        0.17645593434658102
+      ],
+      "simultaneous_success_fraction": 0.5241493652150466,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "smooth_slope",
+      "mode": "right",
+      "seconds": 3789.2578125,
+      "target_contact_seconds": 2593.22265625,
+      "sample_counts_normal_extended": [
+        434.0,
+        98.0
+      ],
+      "rmse": [
+        0.06946521239035026,
+        0.11215466385901476,
+        0.1753459215567539
+      ],
+      "simultaneous_success_fraction": 0.502489562393691,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "smooth_slope",
+      "mode": "yaw_left",
+      "seconds": 4140.25390625,
+      "target_contact_seconds": 2192.734375,
+      "sample_counts_normal_extended": [
+        383.0,
+        114.0
+      ],
+      "rmse": [
+        0.06545339733810754,
+        0.06335720019325253,
+        0.19759690536643645
+      ],
+      "simultaneous_success_fraction": 0.6839245026676919,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "smooth_slope",
+      "mode": "yaw_right",
+      "seconds": 4146.50390625,
+      "target_contact_seconds": 2322.63671875,
+      "sample_counts_normal_extended": [
+        404.0,
+        117.0
+      ],
+      "rmse": [
+        0.06227819318456295,
+        0.06112952866074705,
+        0.1886388561931484
+      ],
+      "simultaneous_success_fraction": 0.6963556459931889,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "smooth_slope",
+      "mode": "mixed",
+      "seconds": 3298.22265625,
+      "target_contact_seconds": 2102.01171875,
+      "sample_counts_normal_extended": [
+        414.0,
+        122.0
+      ],
+      "rmse": [
+        0.14396339391519258,
+        0.1353963940689554,
+        0.24069044025791944
+      ],
+      "simultaneous_success_fraction": 0.6584867560061349,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "smooth_slope",
+      "mode": "parking",
+      "seconds": 10222.921875,
+      "target_contact_seconds": 4628.10546875,
+      "sample_counts_normal_extended": [
+        811.0,
+        208.0
+      ],
+      "rmse": [
+        0.05077331629701466,
+        0.04352813402460791,
+        0.13491612013584192
+      ],
+      "simultaneous_success_fraction": 0.02918452061620103,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "rough_slope",
+      "mode": "forward",
+      "seconds": 4942.6171875,
+      "target_contact_seconds": 3312.12890625,
+      "sample_counts_normal_extended": [
+        738.0,
+        194.0
+      ],
+      "rmse": [
+        0.11217698135893107,
+        0.06422646667891543,
+        0.18392879757673716
+      ],
+      "simultaneous_success_fraction": 0.5302811168804483,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "rough_slope",
+      "mode": "reverse",
+      "seconds": 2951.6015625,
+      "target_contact_seconds": 1921.15234375,
+      "sample_counts_normal_extended": [
+        466.0,
+        110.0
+      ],
+      "rmse": [
+        0.11760018313341973,
+        0.06596490302277606,
+        0.1872958318539116
+      ],
+      "simultaneous_success_fraction": 0.5135387302973756,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "rough_slope",
+      "mode": "left",
+      "seconds": 3536.9140625,
+      "target_contact_seconds": 2466.26953125,
+      "sample_counts_normal_extended": [
+        393.0,
+        108.0
+      ],
+      "rmse": [
+        0.07061922399079612,
+        0.11287224203853816,
+        0.1886083948877186
+      ],
+      "simultaneous_success_fraction": 0.4789828262190071,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "rough_slope",
+      "mode": "right",
+      "seconds": 3842.08984375,
+      "target_contact_seconds": 2583.45703125,
+      "sample_counts_normal_extended": [
+        412.0,
+        102.0
+      ],
+      "rmse": [
+        0.07153362439943109,
+        0.1171013732490189,
+        0.18915744527984163
+      ],
+      "simultaneous_success_fraction": 0.446915588541799,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "rough_slope",
+      "mode": "yaw_left",
+      "seconds": 4192.20703125,
+      "target_contact_seconds": 2340.703125,
+      "sample_counts_normal_extended": [
+        426.0,
+        95.0
+      ],
+      "rmse": [
+        0.0653551273880635,
+        0.06597723269357536,
+        0.19940813743622923
+      ],
+      "simultaneous_success_fraction": 0.6460508476945225,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "rough_slope",
+      "mode": "yaw_right",
+      "seconds": 3942.578125,
+      "target_contact_seconds": 2076.9140625,
+      "sample_counts_normal_extended": [
+        404.0,
+        103.0
+      ],
+      "rmse": [
+        0.06563808384902958,
+        0.06520922634668487,
+        0.19670606884148903
+      ],
+      "simultaneous_success_fraction": 0.6584959873179431,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "rough_slope",
+      "mode": "mixed",
+      "seconds": 3286.7578125,
+      "target_contact_seconds": 2033.6328125,
+      "sample_counts_normal_extended": [
+        395.0,
+        114.0
+      ],
+      "rmse": [
+        0.13336093481022446,
+        0.14912674702917067,
+        0.2549080852879862
+      ],
+      "simultaneous_success_fraction": 0.603510773582439,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "rough_slope",
+      "mode": "parking",
+      "seconds": 9816.28125,
+      "target_contact_seconds": 4292.24609375,
+      "sample_counts_normal_extended": [
+        776.0,
+        213.0
+      ],
+      "rmse": [
+        0.05097660461747816,
+        0.0446121963173952,
+        0.1349647643742767
+      ],
+      "simultaneous_success_fraction": 0.029339112157417045,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_up",
+      "mode": "forward",
+      "seconds": 13227.703125,
+      "target_contact_seconds": 7979.25,
+      "sample_counts_normal_extended": [
+        2450.0,
+        628.0
+      ],
+      "rmse": [
+        0.1496106031186689,
+        0.08516899855231405,
+        0.2299577241495353
+      ],
+      "simultaneous_success_fraction": 0.624019133612813,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_up",
+      "mode": "reverse",
+      "seconds": 9268.78125,
+      "target_contact_seconds": 8320.6875,
+      "sample_counts_normal_extended": [
+        1705.0,
+        437.0
+      ],
+      "rmse": [
+        0.15599742609443437,
+        0.0871655217675128,
+        0.2368803812671741
+      ],
+      "simultaneous_success_fraction": 0.5153472173054036,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_up",
+      "mode": "left",
+      "seconds": 10879.546875,
+      "target_contact_seconds": 10962.609375,
+      "sample_counts_normal_extended": [
+        1402.0,
+        361.0
+      ],
+      "rmse": [
+        0.11121993082565676,
+        0.1977515775299744,
+        0.24985122122075848
+      ],
+      "simultaneous_success_fraction": 0.3269394549118113,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_up",
+      "mode": "right",
+      "seconds": 11162.953125,
+      "target_contact_seconds": 11186.8359375,
+      "sample_counts_normal_extended": [
+        1409.0,
+        386.0
+      ],
+      "rmse": [
+        0.10660423291936981,
+        0.22238059650558936,
+        0.24148311730295757
+      ],
+      "simultaneous_success_fraction": 0.30532775125309863,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_up",
+      "mode": "yaw_left",
+      "seconds": 10688.59375,
+      "target_contact_seconds": 8274.703125,
+      "sample_counts_normal_extended": [
+        1398.0,
+        325.0
+      ],
+      "rmse": [
+        0.08788227112115202,
+        0.09254737021136267,
+        0.21825804058639983
+      ],
+      "simultaneous_success_fraction": 0.6669639072024793,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_up",
+      "mode": "yaw_right",
+      "seconds": 10977.03125,
+      "target_contact_seconds": 8605.921875,
+      "sample_counts_normal_extended": [
+        1447.0,
+        376.0
+      ],
+      "rmse": [
+        0.09006607464254991,
+        0.0901372273972142,
+        0.235729979858275
+      ],
+      "simultaneous_success_fraction": 0.6898815708937697,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_up",
+      "mode": "mixed",
+      "seconds": 9562.1875,
+      "target_contact_seconds": 8717.34375,
+      "sample_counts_normal_extended": [
+        1437.0,
+        379.0
+      ],
+      "rmse": [
+        0.17970602075942302,
+        0.22055883022032122,
+        0.34225103712167637
+      ],
+      "simultaneous_success_fraction": 0.47613892610869635,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_up",
+      "mode": "parking",
+      "seconds": 44066.40625,
+      "target_contact_seconds": 11967.25,
+      "sample_counts_normal_extended": [
+        2790.0,
+        683.0
+      ],
+      "rmse": [
+        0.046884031647715756,
+        0.036739925921586924,
+        0.11193285769064927
+      ],
+      "simultaneous_success_fraction": 0.020392784327630527,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_down",
+      "mode": "forward",
+      "seconds": 9294.875,
+      "target_contact_seconds": 7370.5546875,
+      "sample_counts_normal_extended": [
+        1425.0,
+        381.0
+      ],
+      "rmse": [
+        0.13810583185990724,
+        0.07769170970908637,
+        0.20478759977974234
+      ],
+      "simultaneous_success_fraction": 0.45060744160088223,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_down",
+      "mode": "reverse",
+      "seconds": 7325.015625,
+      "target_contact_seconds": 4053.2421875,
+      "sample_counts_normal_extended": [
+        1000.0,
+        237.0
+      ],
+      "rmse": [
+        0.1345896076623093,
+        0.07527732150131446,
+        0.19241371718271888
+      ],
+      "simultaneous_success_fraction": 0.36318981828110436,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_down",
+      "mode": "left",
+      "seconds": 9107.8359375,
+      "target_contact_seconds": 5215.0,
+      "sample_counts_normal_extended": [
+        768.0,
+        223.0
+      ],
+      "rmse": [
+        0.08353809068791086,
+        0.11278149753913025,
+        0.2136609257800865
+      ],
+      "simultaneous_success_fraction": 0.2858802044599302,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_down",
+      "mode": "right",
+      "seconds": 9591.6796875,
+      "target_contact_seconds": 5471.9140625,
+      "sample_counts_normal_extended": [
+        863.0,
+        223.0
+      ],
+      "rmse": [
+        0.0811123146981672,
+        0.12483459634586642,
+        0.19866338030463088
+      ],
+      "simultaneous_success_fraction": 0.27492292717891076,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_down",
+      "mode": "yaw_left",
+      "seconds": 10192.5,
+      "target_contact_seconds": 4480.703125,
+      "sample_counts_normal_extended": [
+        836.0,
+        217.0
+      ],
+      "rmse": [
+        0.07633904174181211,
+        0.07934761239309777,
+        0.1924849362912418
+      ],
+      "simultaneous_success_fraction": 0.4424630549423596,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_down",
+      "mode": "yaw_right",
+      "seconds": 10129.8046875,
+      "target_contact_seconds": 4587.44140625,
+      "sample_counts_normal_extended": [
+        833.0,
+        206.0
+      ],
+      "rmse": [
+        0.07609065155282718,
+        0.07580619893015787,
+        0.18756092601271734
+      ],
+      "simultaneous_success_fraction": 0.43968140118693677,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_down",
+      "mode": "mixed",
+      "seconds": 6444.9609375,
+      "target_contact_seconds": 3498.4765625,
+      "sample_counts_normal_extended": [
+        779.0,
+        191.0
+      ],
+      "rmse": [
+        0.15213920692943875,
+        0.18102875115159808,
+        0.28954933163545676
+      ],
+      "simultaneous_success_fraction": 0.3293088713929851,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "stairs_down",
+      "mode": "parking",
+      "seconds": 13164.6875,
+      "target_contact_seconds": 10788.796875,
+      "sample_counts_normal_extended": [
+        1569.0,
+        416.0
+      ],
+      "rmse": [
+        0.06925354736308062,
+        0.05662192284236679,
+        0.16617217563502648
+      ],
+      "simultaneous_success_fraction": 0.0404369154580198,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "obstacles",
+      "mode": "forward",
+      "seconds": 9763.046875,
+      "target_contact_seconds": 5149.9609375,
+      "sample_counts_normal_extended": [
+        1846.0,
+        489.0
+      ],
+      "rmse": [
+        0.21239611483483775,
+        0.07700622870420575,
+        0.21032838334284237
+      ],
+      "simultaneous_success_fraction": 0.6440160202293406,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "obstacles",
+      "mode": "reverse",
+      "seconds": 9788.2734375,
+      "target_contact_seconds": 3874.51171875,
+      "sample_counts_normal_extended": [
+        1213.0,
+        312.0
+      ],
+      "rmse": [
+        0.16271645695525588,
+        0.06263446815250806,
+        0.17164417372422358
+      ],
+      "simultaneous_success_fraction": 0.4265846648452908,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "obstacles",
+      "mode": "left",
+      "seconds": 10250.8515625,
+      "target_contact_seconds": 4592.01171875,
+      "sample_counts_normal_extended": [
+        1014.0,
+        256.0
+      ],
+      "rmse": [
+        0.06888972889506227,
+        0.13478442254110853,
+        0.19853350247332452
+      ],
+      "simultaneous_success_fraction": 0.3960684668727979,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "obstacles",
+      "mode": "right",
+      "seconds": 9758.84375,
+      "target_contact_seconds": 4906.50390625,
+      "sample_counts_normal_extended": [
+        993.0,
+        266.0
+      ],
+      "rmse": [
+        0.07406088741330923,
+        0.16059984489466084,
+        0.1974501766922185
+      ],
+      "simultaneous_success_fraction": 0.3777603167639609,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "obstacles",
+      "mode": "yaw_left",
+      "seconds": 8812.4140625,
+      "target_contact_seconds": 3985.703125,
+      "sample_counts_normal_extended": [
+        1012.0,
+        247.0
+      ],
+      "rmse": [
+        0.06863216409732484,
+        0.06835139818223387,
+        0.21035733856178762
+      ],
+      "simultaneous_success_fraction": 0.765619168272031,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "obstacles",
+      "mode": "yaw_right",
+      "seconds": 8481.3984375,
+      "target_contact_seconds": 3948.7109375,
+      "sample_counts_normal_extended": [
+        992.0,
+        269.0
+      ],
+      "rmse": [
+        0.07249347518300737,
+        0.07285391829129961,
+        0.21069617063955376
+      ],
+      "simultaneous_success_fraction": 0.7876105705592846,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "obstacles",
+      "mode": "mixed",
+      "seconds": 9082.734375,
+      "target_contact_seconds": 3198.1640625,
+      "sample_counts_normal_extended": [
+        1001.0,
+        240.0
+      ],
+      "rmse": [
+        0.1605323620406075,
+        0.13871225977651985,
+        0.2576356953602373
+      ],
+      "simultaneous_success_fraction": 0.46083959091339166,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "obstacles",
+      "mode": "parking",
+      "seconds": 16034.5625,
+      "target_contact_seconds": 9989.15625,
+      "sample_counts_normal_extended": [
+        1994.0,
+        510.0
+      ],
+      "rmse": [
+        0.05773928232874686,
+        0.053046477718487264,
+        0.1598318681371009
+      ],
+      "simultaneous_success_fraction": 0.04332751785206176,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "pebbles",
+      "mode": "forward",
+      "seconds": 4702.91015625,
+      "target_contact_seconds": 1969.66796875,
+      "sample_counts_normal_extended": [
+        741.0,
+        177.0
+      ],
+      "rmse": [
+        0.10751945209077357,
+        0.060998800243836526,
+        0.18463185600386448
+      ],
+      "simultaneous_success_fraction": 0.5368476134707151,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "pebbles",
+      "mode": "reverse",
+      "seconds": 3114.12109375,
+      "target_contact_seconds": 1259.55078125,
+      "sample_counts_normal_extended": [
+        489.0,
+        103.0
+      ],
+      "rmse": [
+        0.11036933832305172,
+        0.06080300933449351,
+        0.18472934316412412
+      ],
+      "simultaneous_success_fraction": 0.5359407437140545,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "pebbles",
+      "mode": "left",
+      "seconds": 3355.80078125,
+      "target_contact_seconds": 1262.3828125,
+      "sample_counts_normal_extended": [
+        373.0,
+        115.0
+      ],
+      "rmse": [
+        0.065475334298163,
+        0.10726191690566408,
+        0.1865339254273273
+      ],
+      "simultaneous_success_fraction": 0.49303037534120603,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "pebbles",
+      "mode": "right",
+      "seconds": 3849.140625,
+      "target_contact_seconds": 1439.609375,
+      "sample_counts_normal_extended": [
+        402.0,
+        98.0
+      ],
+      "rmse": [
+        0.06759873250184664,
+        0.11883293062173547,
+        0.18851517549456687
+      ],
+      "simultaneous_success_fraction": 0.4452038807363657,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "pebbles",
+      "mode": "yaw_left",
+      "seconds": 4058.69140625,
+      "target_contact_seconds": 1115.5859375,
+      "sample_counts_normal_extended": [
+        385.0,
+        104.0
+      ],
+      "rmse": [
+        0.06342465240778075,
+        0.062133407931052174,
+        0.18675880908440787
+      ],
+      "simultaneous_success_fraction": 0.6848199032747047,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "pebbles",
+      "mode": "yaw_right",
+      "seconds": 4420.546875,
+      "target_contact_seconds": 1306.15234375,
+      "sample_counts_normal_extended": [
+        426.0,
+        116.0
+      ],
+      "rmse": [
+        0.06280711727496843,
+        0.06341963869123263,
+        0.19168617337683252
+      ],
+      "simultaneous_success_fraction": 0.6836947493063288,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "pebbles",
+      "mode": "mixed",
+      "seconds": 3091.9140625,
+      "target_contact_seconds": 1070.17578125,
+      "sample_counts_normal_extended": [
+        368.0,
+        103.0
+      ],
+      "rmse": [
+        0.1318497990601826,
+        0.12982321610178404,
+        0.23581308316204755
+      ],
+      "simultaneous_success_fraction": 0.6289464707591627,
+      "coverage": "exercised"
+    },
+    {
+      "terrain": "pebbles",
+      "mode": "parking",
+      "seconds": 9938.25,
+      "target_contact_seconds": 1951.71875,
+      "sample_counts_normal_extended": [
+        830.0,
+        213.0
+      ],
+      "rmse": [
+        0.04823507805411352,
+        0.042118596288726995,
+        0.13997608045579094
+      ],
+      "simultaneous_success_fraction": 0.027897314746685786,
+      "coverage": "exercised"
+    }
+  ],
+  "old_new_grade_matrix": [
+    [
+      453.0,
+      13896.0,
+      481.0
+    ],
+    [
+      211.0,
+      5626.0,
+      322.0
+    ],
+    [
+      136.0,
+      4447.0,
+      120.0
+    ]
+  ],
+  "promotions": [
+    273.0,
+    168.0,
+    28.0,
+    13.0,
+    248.0,
+    193.0
+  ],
+  "demotions": [
+    6.0,
+    2.0,
+    472.0,
+    182.0,
+    138.0,
+    0.0
+  ],
+  "task_evaluations": [],
+  "evaluation_status": "not_run_or_no_v2_results",
+  "interpretation": "Coverage and same-trajectory grade changes diagnose implementation effects. Fixed-case behavior diagnoses deficits. A single combined run does not identify isolated causal contributions."
+}

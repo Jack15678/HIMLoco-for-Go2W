@@ -1,0 +1,209 @@
+{
+  "iteration": 1300,
+  "environment_steps": 255590400,
+  "optimizer_steps": [
+    26000,
+    26000
+  ],
+  "mean_level": 0.58837890625,
+  "histogram": [
+    2745,
+    706,
+    384,
+    158,
+    60,
+    36,
+    7,
+    0,
+    0,
+    0
+  ],
+  "terrain": [
+    {
+      "name": "smooth_slope",
+      "environments": 373,
+      "baseline_mean_level": 1.3512064218521118,
+      "mean_level": 2.0723860263824463,
+      "baseline_level0_fraction": 0.2815013527870178,
+      "level0_fraction": 0.0965147465467453,
+      "histogram": [
+        36,
+        105,
+        116,
+        63,
+        25,
+        21,
+        7,
+        0,
+        0,
+        0
+      ],
+      "promotions": 273.0,
+      "demotion_decisions": 6.0,
+      "speed_limits": [
+        1.5,
+        0.8999999761581421,
+        1.5
+      ]
+    },
+    {
+      "name": "rough_slope",
+      "environments": 372,
+      "baseline_mean_level": 0.9704301357269287,
+      "mean_level": 1.4166666269302368,
+      "baseline_level0_fraction": 0.4327957034111023,
+      "level0_fraction": 0.23655913770198822,
+      "histogram": [
+        88,
+        128,
+        93,
+        42,
+        18,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "promotions": 168.0,
+      "demotion_decisions": 2.0,
+      "speed_limits": [
+        1.5,
+        0.8999999761581421,
+        1.5
+      ]
+    },
+    {
+      "name": "stairs_up",
+      "environments": 1304,
+      "baseline_mean_level": 0.023773005232214928,
+      "mean_level": 0.024539876729249954,
+      "baseline_level0_fraction": 0.9762269854545593,
+      "level0_fraction": 0.9754601120948792,
+      "histogram": [
+        1272,
+        32,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "promotions": 28.0,
+      "demotion_decisions": 472.0,
+      "speed_limits": [
+        1.5,
+        0.6000000238418579,
+        1.0
+      ]
+    },
+    {
+      "name": "stairs_down",
+      "environments": 744,
+      "baseline_mean_level": 0.02688172087073326,
+      "mean_level": 0.02150537632405758,
+      "baseline_level0_fraction": 0.9744623899459839,
+      "level0_fraction": 0.9784946441650391,
+      "histogram": [
+        728,
+        16,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "promotions": 13.0,
+      "demotion_decisions": 182.0,
+      "speed_limits": [
+        1.5,
+        0.6000000238418579,
+        1.0
+      ]
+    },
+    {
+      "name": "obstacles",
+      "environments": 931,
+      "baseline_mean_level": 0.33404940366744995,
+      "mean_level": 0.5016111731529236,
+      "baseline_level0_fraction": 0.7196562886238098,
+      "level0_fraction": 0.5832438468933105,
+      "histogram": [
+        543,
+        317,
+        64,
+        6,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "promotions": 248.0,
+      "demotion_decisions": 138.0,
+      "speed_limits": [
+        1.5,
+        0.6000000238418579,
+        1.0
+      ]
+    },
+    {
+      "name": "pebbles",
+      "environments": 372,
+      "baseline_mean_level": 1.080645203590393,
+      "mean_level": 1.5994623899459839,
+      "baseline_level0_fraction": 0.4032258093357086,
+      "level0_fraction": 0.20967741310596466,
+      "histogram": [
+        78,
+        108,
+        111,
+        47,
+        16,
+        12,
+        0,
+        0,
+        0,
+        0
+      ],
+      "promotions": 193.0,
+      "demotion_decisions": 0.0,
+      "speed_limits": [
+        1.5,
+        0.7000000476837158,
+        1.5
+      ]
+    }
+  ],
+  "windows": [
+    {
+      "start": 1222,
+      "end": 1241,
+      "reward": 22.70556316447258,
+      "episode_steps": 634.4385,
+      "reward_per_second": 1.788884077969581,
+      "mean_level": 0.448876953125,
+      "tracking_lin": 1.377022678901752,
+      "tracking_yaw": 0.648182011116296,
+      "falls_per_1000_env_seconds": 0.4748175271029975
+    },
+    {
+      "start": 1281,
+      "end": 1300,
+      "reward": 25.44733568227291,
+      "episode_steps": 708.5895,
+      "reward_per_second": 1.79515494535885,
+      "mean_level": 0.57216796875,
+      "tracking_lin": 1.3885851028064886,
+      "tracking_yaw": 0.6534377340227365,
+      "falls_per_1000_env_seconds": 0.7255135069179361
+    }
+  ]
+}
