@@ -22,11 +22,14 @@ def main():
     parser.add_argument('--source-commit', required=True)
     parser.add_argument('--check-only', action='store_true')
     parser.add_argument('--resume-from', type=Path)
+    parser.add_argument('--use-current-stairs', action='store_true',
+                        help='Explicitly replace a resumed run\'s saved stair geometry with the current S10 curriculum')
     options, remaining = parser.parse_known_args()
     sys.argv = [sys.argv[0]] + remaining
     args = get_args()
     assert args.task == 's10' and args.resume == bool(options.resume_from)
     assert args.max_iterations > 0 and args.seed == 1 and args.headless
+    assert not options.use_current_stairs or options.resume_from
     if options.resume_from:
         assert not options.check_only and args.initialization is None
     else:
@@ -39,7 +42,10 @@ def main():
     cfg, train_cfg = task_registry.get_cfgs('s10')
     if options.resume_from:
         saved_config = json.loads((options.resume_from.parent/'config.json').read_text())
-        restore_config(cfg, saved_config['env'])
+        resumed_env = dict(saved_config['env'])
+        if options.use_current_stairs:
+            resumed_env['terrain'] = dict(resumed_env['terrain'], stair_dimensions=cfg.terrain.stair_dimensions)
+        restore_config(cfg, resumed_env)
     env, cfg = task_registry.make_env('s10', args=args, env_cfg=cfg)
     train_cfg.seed = 1
     train_cfg.runner.max_iterations = args.max_iterations
@@ -50,7 +56,7 @@ def main():
     actor = runner.alg.actor_critic
     optimizers = [runner.alg.optimizer, actor.estimator.optimizer]
     if options.resume_from:
-        assert class_to_dict(cfg) == saved_config['env'], 'Continuation must preserve the saved recipe'
+        assert class_to_dict(cfg) == resumed_env, 'Continuation must preserve the explicitly selected recipe'
         runner.load(str(options.resume_from), load_optimizer=True)
         source = torch.load(options.resume_from, map_location='cpu')
         equal_state(actor.state_dict(), source['model_state_dict'])
@@ -75,6 +81,10 @@ def main():
             iteration=source['iter'], environment_steps=source['tot_timesteps'],
             all_model_and_optimizer_tensors_equal_source=True,
             optimizer_steps=[20*source['iter']]*2, additional_iterations=args.max_iterations,
+            stair_recipe_change=(dict(previous=saved_config['env']['terrain'].get('stair_dimensions'),
+                                      current=cfg.terrain.stair_dimensions,
+                                      level_handling='Retain saved level indices; geometric meaning changes. Compare within each recipe.')
+                                 if options.use_current_stairs else None),
             initial_terrain_histogram=torch.bincount(env.terrain_levels, minlength=cfg.terrain.num_rows).tolist(),
             initial_curriculum=env.task_curriculum.report(),
             environment_handling='Fresh simulator/RNG/episodes; restored terrain levels, membership, speed caps and cumulative counters. Episode/window scores restart; no seamless physics resume.'))

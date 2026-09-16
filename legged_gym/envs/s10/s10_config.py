@@ -11,6 +11,9 @@ class S10RoughCfg(GO2WRoughCfg):
         pebble_height_range = [.01, .08]
         pebble_density_range = [8., 15.]
         task_spawn_fraction = .5  # Half start on terrain for turning/sideways/parking coverage.
+        # [riser height, tread depth] in metres; final levels cover the competition stairs.
+        stair_dimensions = [[.05, .30], [.06, .35], [.07, .40], [.08, .45], [.10, .50],
+                            [.12, .55], [.14, .56], [.16, .55], [.16, .56], [.16, .57]]
 
     class commands(GO2WRoughCfg.commands):
         extended_speed_fraction = .2  # Random membership within every terrain column.

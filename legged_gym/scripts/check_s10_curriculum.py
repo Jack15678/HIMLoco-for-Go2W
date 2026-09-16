@@ -44,6 +44,53 @@ def main():
         nodes = [x for x in ast.parse(path.read_text()).body if isinstance(x, ast.ClassDef) and x.name in names]
         exec(compile(ast.Module(body=nodes, type_ignores=[]), str(path), 'exec'), scope)
     cfg = scope['S10RoughCfg']()
+    spec = importlib.util.spec_from_file_location('stairs', ROOT / 'legged_gym/utils/stairs.py')
+    stairs = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(stairs)
+    assert cfg.terrain.stair_dimensions[-3:] == [[.16, .55], [.16, .56], [.16, .57]]
+    robot_path = ROOT / 'legged_gym/envs/base/legged_robot.py'
+    robot_class = next(x for x in ast.parse(robot_path.read_text()).body if isinstance(x, ast.ClassDef))
+    query = next(x for x in robot_class.body if isinstance(x, ast.FunctionDef) and x.name == '_detail_heights')
+    query_scope = dict(torch=torch)
+    exec(compile(ast.Module(body=[query], type_ignores=[]), str(robot_path), 'exec'), query_scope)
+    dimensions = torch.zeros(cfg.terrain.num_rows, cfg.terrain.num_cols, 2)
+    fake = SimpleNamespace(cfg=cfg, terrain=SimpleNamespace(env_length=8.), stair_dimensions=dimensions)
+    for row, (height, depth) in enumerate(cfg.terrain.stair_dimensions):
+        for column, sign in [(4, -1), (11, 1)]:
+            dimensions[row, column] = torch.tensor([sign*height, depth])
+            vertices, triangles = stairs.stair_mesh(8., sign*height, depth)
+            faces = vertices[triangles].astype(float)
+            normals = np.cross(faces[:, 1]-faces[:, 0], faces[:, 2]-faces[:, 0])
+            assert (np.linalg.norm(normals, axis=1) > 1e-8).all()
+            flat = np.ptp(faces[:, :, 2], axis=1) < 1e-7
+            assert (normals[flat, 2] > 0).all()  # All treads face up.
+            assert np.allclose(normals[~flat, 2], 0)  # True risers, no smoothed ramps.
+            assert np.allclose(np.ptp(faces[~flat, :, 2], axis=1), height, atol=1e-6)
+            # Measure consecutive physical riser positions on the +x centerline.
+            risers = np.unique(np.round(faces[~flat, :, 0][np.ptp(faces[~flat, :, 0], axis=1) < 1e-7], 6))
+            assert np.allclose(np.diff(risers[risers >= 5.5]), depth, atol=1e-6)
+            boundary = 5.5 + np.arange(int(np.ceil(2.5/depth)))*depth
+            x = np.r_[np.linspace(.001, 7.999, 101), boundary-.001, boundary+.001]
+            points = np.c_[x, np.full_like(x, 4.123)]
+            # Independent vertical ray/triangle intersection checks the actual collision mesh.
+            a, b, c = faces[flat, 0], faces[flat, 1], faces[flat, 2]
+            u, v = b-a, c-a
+            q = points[:, None, :]-a[None, :, :2]
+            den = u[:, 0]*v[:, 1]-u[:, 1]*v[:, 0]
+            s = (q[:, :, 0]*v[:, 1]-q[:, :, 1]*v[:, 0])/den
+            t = (u[:, 0]*q[:, :, 1]-u[:, 1]*q[:, :, 0])/den
+            hit = (s >= -1e-6) & (t >= -1e-6) & (s+t <= 1+1e-6)
+            measured = np.where(hit, a[:, 2], -np.inf).max(axis=1)
+            expected = stairs.stair_height(points, 8., sign*height, depth)
+            np.testing.assert_allclose(measured, expected, atol=1e-6)
+            world = torch.tensor(np.c_[points+[row*8, column*8], np.zeros(len(points))], dtype=torch.float32)
+            queried = query_scope['_detail_heights'](fake, world, torch.zeros(len(world)))
+            np.testing.assert_allclose(queried.numpy(), measured, atol=1e-6)
+            assert stairs.stair_height([[4, 4]], 8., sign*height, depth)[0] == sign*height*np.ceil(2.5/depth)
+    # Unrelated tiles and points outside the terrain keep the original queried height.
+    points = torch.tensor([[4., 4., 0.], [-.01, 35., 0.], [81., 35., 0.]])
+    torch.testing.assert_close(query_scope['_detail_heights'](fake, points, torch.ones(3)), torch.ones(3))
+    print('All ten stair levels: exact tread/riser dimensions, vertical collision faces, 3m platform and height queries passed.')
     n = 4096
     env = SimpleNamespace(cfg=cfg, num_envs=n, device='cpu', dt=.02, common_step_counter=1,
         terrain_types=columns, terrain_levels=torch.ones(n, dtype=torch.long),

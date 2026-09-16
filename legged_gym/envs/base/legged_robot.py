@@ -908,6 +908,8 @@ class LeggedRobot(BaseTask):
         self.height_samples = torch.tensor(self.terrain.heightsamples).view(self.terrain.tot_rows, self.terrain.tot_cols).to(self.device)
         if self.terrain.pebble_columns:
             self.pebble_height_samples = torch.tensor(self.terrain.pebble_height_field, dtype=torch.float, device=self.device)
+        if self.terrain.stair_meshes:
+            self.stair_dimensions = torch.tensor(self.terrain.stair_dimensions, dtype=torch.float, device=self.device)
 
     def _create_envs(self):
         """ Creates environments:
@@ -1160,7 +1162,7 @@ class LeggedRobot(BaseTask):
         heights = torch.min(heights, heights3)
 
         heights = heights.view(points.shape[:2]) * self.terrain.cfg.vertical_scale
-        return self._pebble_heights(query_points, heights)
+        return self._detail_heights(query_points, heights)
     
     def _get_base_heights(self, env_ids=None):
         """ Samples heights of the terrain at required points around each robot.
@@ -1201,7 +1203,7 @@ class LeggedRobot(BaseTask):
         heights = torch.min(heights, heights3)
         # heights = (heights1 + heights2 + heights3) / 3
 
-        base_height = self._pebble_heights(query_points, heights.view(points.shape[:2]) * self.terrain.cfg.vertical_scale)
+        base_height = self._detail_heights(query_points, heights.view(points.shape[:2]) * self.terrain.cfg.vertical_scale)
         base_height = torch.mean(self.root_states[:, 2].unsqueeze(1) - base_height, dim=1)
 
         return base_height
@@ -1244,7 +1246,7 @@ class LeggedRobot(BaseTask):
         # heights = torch.min(heights, heights3)
         heights = (heights1 + heights2 + heights3) / 3
 
-        heights = self._pebble_heights(query_points, heights.view(points.shape[:2]) * self.terrain.cfg.vertical_scale)
+        heights = self._detail_heights(query_points, heights.view(points.shape[:2]) * self.terrain.cfg.vertical_scale)
 
         feet_height =  self.feet_pos[:, :, 2] - heights
 
@@ -1255,7 +1257,7 @@ class LeggedRobot(BaseTask):
         x = grid[..., 0].clamp(0, self.height_samples.shape[0]-2)
         y = grid[..., 1].clamp(0, self.height_samples.shape[1]-2)
         heights = self.height_samples[x, y] * self.cfg.terrain.vertical_scale
-        return self._pebble_heights(points, heights)
+        return self._detail_heights(points, heights)
 
     def _curriculum_surface(self):
         local = self.feet_pos[..., :2]-self.env_origins[:, None, :2]
@@ -1269,8 +1271,21 @@ class LeggedRobot(BaseTask):
         loaded = self.contact_forces[:, self.feet_indices].norm(dim=2) > 1.
         return (outside_platform & surface & loaded).any(dim=1) & inside, inside
 
-    def _pebble_heights(self, points, heights):
-        """Use the exact fine mesh triangles for pebble-region height queries."""
+    def _detail_heights(self, points, heights):
+        """Query the actual stair surfaces and fine pebble triangles."""
+        if hasattr(self, 'stair_dimensions'):
+            size = self.terrain.env_length  # Exact stairs require square tiles.
+            tiles = torch.floor(points[..., :2]/size).long()
+            row, col = tiles.unbind(-1)
+            dimensions = self.stair_dimensions[row.clamp(0, self.cfg.terrain.num_rows-1),
+                                                col.clamp(0, self.cfg.terrain.num_cols-1)]
+            mask = ((row >= 0) & (row < self.cfg.terrain.num_rows)
+                    & (col >= 0) & (col < self.cfg.terrain.num_cols) & (dimensions[..., 0] != 0))
+            height, depth = dimensions[mask].unbind(-1)
+            count = torch.ceil((size-3.)/2/depth)
+            radius = (points[..., :2][mask]-(tiles[mask]+.5)*size).abs().amax(dim=-1)
+            level = (count-1-torch.floor((radius-1.5)/depth+1e-6)).clamp(min=0)
+            heights[mask] = torch.minimum(level, count)*height
         if not hasattr(self, 'pebble_height_samples'):
             return heights
         start_y = self.terrain.base_columns * self.terrain.env_width

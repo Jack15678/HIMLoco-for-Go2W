@@ -35,6 +35,7 @@ from scipy import interpolate
 from isaacgym import terrain_utils
 from legged_gym.envs.base.legged_robot_config import LeggedRobotCfg
 from legged_gym.utils.pebbles import pebble_heightfield
+from legged_gym.utils.stairs import stair_height, stair_mesh
 
 class Terrain:
     def __init__(self, cfg: LeggedRobotCfg.terrain, num_robots) -> None:
@@ -55,6 +56,14 @@ class Terrain:
         if self.pebble_columns and (not cfg.curriculum or self.base_columns <= 0 or self.type != 'trimesh'):
             raise ValueError('Pebble columns require a curriculum trimesh with original columns')
         self.column_categories = np.zeros(cfg.num_cols, dtype=np.int64)
+        self.stair_meshes = []
+        self.stair_dimensions = np.zeros((cfg.num_rows, cfg.num_cols, 2))
+        if getattr(cfg, 'stair_dimensions', None) is not None:
+            dimensions = np.asarray(cfg.stair_dimensions)
+            if (self.type != 'trimesh' or self.env_length != self.env_width
+                    or dimensions.shape != (cfg.num_rows, 2) or not np.isfinite(dimensions).all()
+                    or (dimensions <= 0).any() or (np.diff(dimensions[:, 0]) < 0).any()):
+                raise ValueError('Stair curriculum requires square trimesh tiles and one positive height/depth pair per level')
         if self.pebble_columns:
             self.pebble_height_field = np.zeros((round(cfg.num_rows * self.env_length / cfg.pebble_horizontal_scale)+1,
                 round(self.pebble_columns * self.env_width / cfg.pebble_horizontal_scale)+1), dtype=np.int16)
@@ -80,6 +89,15 @@ class Terrain:
                                                                                             self.cfg.horizontal_scale,
                                                                                             self.cfg.vertical_scale,
                                                                                             self.cfg.slope_treshold)
+            if self.stair_meshes:
+                rows = (self.triangles // self.tot_cols).min(axis=1) - self.border
+                cols = (self.triangles % self.tot_cols).min(axis=1) - self.border
+                inside = ((rows >= 0) & (rows < cfg.num_rows*self.length_per_env_pixels)
+                          & (cols >= 0) & (cols < cfg.num_cols*self.width_per_env_pixels))
+                tile_r = (rows // self.length_per_env_pixels).clip(0, cfg.num_rows-1)
+                tile_c = (cols // self.width_per_env_pixels).clip(0, cfg.num_cols-1)
+                replace = inside & (self.stair_dimensions[tile_r, tile_c, 0] != 0)
+                self.triangles = self.triangles[~replace]
             if self.pebble_columns:
                 # Replace only pebble cells with a finer mesh; no overlapping coarse surface.
                 rows = (self.triangles // self.tot_cols).min(axis=1)
@@ -93,6 +111,13 @@ class Terrain:
                 fine_vertices[:, 1] += cfg.border_size + self.base_columns*self.env_width
                 self.triangles = np.concatenate((self.triangles[~replace], fine_triangles + len(self.vertices)))
                 self.vertices = np.concatenate((self.vertices, fine_vertices))
+            if self.stair_meshes:
+                vertices, triangles, offset = [self.vertices], [self.triangles], len(self.vertices)
+                for v, t in self.stair_meshes:
+                    vertices.append(v)
+                    triangles.append(t+offset)
+                    offset += len(v)
+                self.vertices, self.triangles = np.concatenate(vertices), np.concatenate(triangles)
     
     def randomized_terrain(self):
         for k in range(self.cfg.num_sub_terrains):
@@ -168,9 +193,21 @@ class Terrain:
             terrain_utils.pyramid_sloped_terrain(terrain, slope=slope, platform_size=3.)
             terrain_utils.random_uniform_terrain(terrain, min_height=-amplitude, max_height=amplitude, step=0.005, downsampled_scale=0.2)
         elif choice < self.proportions[3]:
+            dimensions = getattr(self.cfg, 'stair_dimensions', None)
+            if dimensions is not None:
+                level = int(np.clip(round(difficulty*self.cfg.num_rows), 0, self.cfg.num_rows-1))
+                step_height, step_depth = dimensions[level]
             if choice<self.proportions[2]:
                 step_height *= -1
-            terrain_utils.pyramid_stairs_terrain(terrain, step_width=0.30, step_height=step_height, platform_size=3.)
+            if dimensions is None:
+                terrain_utils.pyramid_stairs_terrain(terrain, step_width=0.30, step_height=step_height, platform_size=3.)
+            else:
+                terrain.stair_dimensions = (step_height, step_depth)
+                terrain.stair_mesh = stair_mesh(self.env_length, step_height, step_depth)
+                xy = np.stack(np.meshgrid(np.arange(terrain.width)*terrain.horizontal_scale,
+                                         np.arange(terrain.length)*terrain.horizontal_scale, indexing='ij'), axis=-1)
+                terrain.height_field_raw[:] = np.rint(stair_height(xy, self.env_length, step_height, step_depth)
+                                                      / terrain.vertical_scale).astype(np.int16)
         elif choice < self.proportions[4]:
             num_rectangles = 20
             rectangle_min_size = 1.
@@ -194,6 +231,12 @@ class Terrain:
         start_y = self.border + j * self.width_per_env_pixels
         end_y = self.border + (j + 1) * self.width_per_env_pixels
         self.height_field_raw[start_x: end_x, start_y:end_y] = terrain.height_field_raw
+        if hasattr(terrain, 'stair_mesh'):
+            vertices, triangles = terrain.stair_mesh
+            vertices = vertices + np.array([self.cfg.border_size+i*self.env_length,
+                                           self.cfg.border_size+j*self.env_width, 0], dtype=np.float32)
+            self.stair_meshes.append((vertices, triangles))
+            self.stair_dimensions[i, j] = terrain.stair_dimensions
 
         env_origin_x = (i + 0.5) * self.env_length
         env_origin_y = (j + 0.5) * self.env_width
