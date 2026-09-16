@@ -9,7 +9,7 @@ class S10RoughCfg(GO2WRoughCfg):
         pebble_horizontal_scale = .025
         pebble_vertical_scale = .001
         pebble_height_range = [.01, .08]
-        pebble_density_range = [2., 5.]
+        pebble_density_range = [8., 15.]
         task_spawn_fraction = .5  # Half start on terrain for turning/sideways/parking coverage.
 
     class commands(GO2WRoughCfg.commands):
