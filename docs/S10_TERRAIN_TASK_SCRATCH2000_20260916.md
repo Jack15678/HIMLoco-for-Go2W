@@ -71,6 +71,22 @@ python legged_gym/scripts/train_s10_curriculum.py --task s10 --headless --num_en
 python legged_gym/scripts/evaluate_s10_follow.py --run /output/training --iteration 2000 --protocol v2 --scene pebbles_6cm --probe left --geometry-seed 701 --output /output/evaluation/pebbles_6cm_left
 ```
 
-评估入口、场景和门槛在训练启动前固定。启动记录将在完成真实预检后追加。
+评估入口、场景和门槛在训练启动前固定。启动记录见下文。
 
 分项诊断入口：`python legged_gym/scripts/report_s10_task_diagnostics.py --run <训练目录> --evaluations <评估目录> --window 200 --output <诊断.json>`。它按最近200轮计数差值输出48个地形×任务单元及每个固定评估初态的不足；尚未评估、未采样和目标接触不足都有独立标签。
+
+## 实际启动与证据
+
+2026-09-16 16:32:14（北京时间）在 `paratera-rl-new` 的 RTX 4090 启动正式训练。容器为 `s10-terrain-task-scratch2000-20260916`；训练源码固定为 `e2181a0096a6334b978366bff8b0d17d64d19fbf`，只读挂载。后续文档提交不改变本次运行源码。
+
+训练输出：`/data/HIMLoco-S10-terrain-task-git-20260916/artifacts/s10-terrain-task-20260916/training`。固定运行镜像：`him-s10-curriculum:20260916`，ID `sha256:10d31a442ab28fb9934f9d23016e339560012a426532fa153e6744e80f4851da`。单次从零运行2000轮，每50轮保存；未设置失败后自动重启。
+
+- 最终源码的真实Gym预检：512环境×600步，共307,200环境步、155次reset、0次学习更新；观测快照误差0，零更新概率比最大偏差 `2.8610e-6`。
+- 正式初始化：4096环境，迭代0、环境步0，两套Adam状态均为空、LR均为.001。22列每列186或187环境，其中37个随机扩展组，比例19.79%–19.89%。实际碰撞网格4,989,841顶点、9,708,882三角形。
+- `model_0.pt` 和对应ONNX已保存。ONNX与零初始化模型在34组输入上的最大绝对输出误差 `8.0094e-8`，校验通过。现有模型的Gym鹅卵石渲染及评估入口短程检查也通过；此检查不作能力成绩。
+- 启动阶段已核验前20轮、3,932,160环境步，损失有限，逐轮数据可被诊断脚本读取。LR随后按原有自适应规则变化，非固定为初始化数值。
+- 本地证据保存在 `artifacts/s10-terrain-task-20260916/` 下的 `preflight-03`、`eval-smoke-03`、`onnx-smoke`、`training-start`。`training-start/metrics.jsonl` 是前20轮快照；其中的诊断明确标记完整评估尚未运行。
+
+阶段提交已推送至 `JackNcodex/s10-terrain-command-scratch2000`：`0260b30` 扩展组覆盖、`c668503` 固定鹅卵石、`e0d2273` 任务课程、`bf40f8a` 评估与训练入口、`5cb3b52` 仿真浮点容差、`3a2669f` 分项诊断、`e2181a0` 排除初始化reset伪证据。
+
+训练启动不代表2000轮完成。500/1000/1500/2000检查点评估按前述协议执行；截至本记录，完整评估尚未运行，也未启动额外对照训练。
