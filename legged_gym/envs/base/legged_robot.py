@@ -877,6 +877,8 @@ class LeggedRobot(BaseTask):
         tm_params.restitution = self.cfg.terrain.restitution
         self.gym.add_triangle_mesh(self.sim, self.terrain.vertices.flatten(order='C'), self.terrain.triangles.flatten(order='C'), tm_params)   
         self.height_samples = torch.tensor(self.terrain.heightsamples).view(self.terrain.tot_rows, self.terrain.tot_cols).to(self.device)
+        if self.terrain.pebble_columns:
+            self.pebble_height_samples = torch.tensor(self.terrain.pebble_height_field, dtype=torch.float, device=self.device)
 
     def _create_envs(self):
         """ Creates environments:
@@ -1114,7 +1116,8 @@ class LeggedRobot(BaseTask):
             points = quat_apply_yaw(self.base_quat.repeat(1, self.num_height_points), self.height_points) + (self.root_states[:, :3]).unsqueeze(1)
 
 
-        points += self.terrain.cfg.border_size
+        query_points = points
+        points = points + self.terrain.cfg.border_size
         points = (points/self.terrain.cfg.horizontal_scale).long()
         px = points[:, :, 0].view(-1)
         py = points[:, :, 1].view(-1)
@@ -1127,7 +1130,8 @@ class LeggedRobot(BaseTask):
         heights = torch.min(heights1, heights2)
         heights = torch.min(heights, heights3)
 
-        return heights.view(self.num_envs, -1) * self.terrain.cfg.vertical_scale
+        heights = heights.view(points.shape[:2]) * self.terrain.cfg.vertical_scale
+        return self._pebble_heights(query_points, heights)
     
     def _get_base_heights(self, env_ids=None):
         """ Samples heights of the terrain at required points around each robot.
@@ -1153,7 +1157,8 @@ class LeggedRobot(BaseTask):
             points = quat_apply_yaw(self.base_quat.repeat(1, self.num_base_height_points), self.base_height_points) + (self.root_states[:, :3]).unsqueeze(1)
 
 
-        points += self.terrain.cfg.border_size
+        query_points = points
+        points = points + self.terrain.cfg.border_size
         points = (points/self.terrain.cfg.horizontal_scale).long()
         px = points[:, :, 0].view(-1)
         py = points[:, :, 1].view(-1)
@@ -1167,7 +1172,7 @@ class LeggedRobot(BaseTask):
         heights = torch.min(heights, heights3)
         # heights = (heights1 + heights2 + heights3) / 3
 
-        base_height =  heights.view(self.num_envs, -1) * self.terrain.cfg.vertical_scale
+        base_height = self._pebble_heights(query_points, heights.view(points.shape[:2]) * self.terrain.cfg.vertical_scale)
         base_height = torch.mean(self.root_states[:, 2].unsqueeze(1) - base_height, dim=1)
 
         return base_height
@@ -1195,7 +1200,8 @@ class LeggedRobot(BaseTask):
         else:
             points = self.feet_pos.clone()
 
-        points += self.terrain.cfg.border_size
+        query_points = points
+        points = points + self.terrain.cfg.border_size
         points = (points/self.terrain.cfg.horizontal_scale).long()
         px = points[:, :, 0].view(-1)
         py = points[:, :, 1].view(-1)
@@ -1209,11 +1215,30 @@ class LeggedRobot(BaseTask):
         # heights = torch.min(heights, heights3)
         heights = (heights1 + heights2 + heights3) / 3
 
-        heights = heights.view(self.num_envs, -1) * self.terrain.cfg.vertical_scale
+        heights = self._pebble_heights(query_points, heights.view(points.shape[:2]) * self.terrain.cfg.vertical_scale)
 
         feet_height =  self.feet_pos[:, :, 2] - heights
 
         return feet_height
+
+    def _pebble_heights(self, points, heights):
+        """Use the exact fine mesh triangles for pebble-region height queries."""
+        if not hasattr(self, 'pebble_height_samples'):
+            return heights
+        start_y = self.terrain.base_columns * self.terrain.env_width
+        mask = ((points[..., 0] >= 0) & (points[..., 0] < self.cfg.terrain.num_rows*self.terrain.env_length)
+            & (points[..., 1] >= start_y) & (points[..., 1] < self.cfg.terrain.num_cols*self.terrain.env_width))
+        xy = points[mask][:, :2] - points.new_tensor([0., start_y])
+        cells = xy / self.cfg.terrain.pebble_horizontal_scale
+        ij = cells.long()
+        i = ij[:, 0].clamp(0, self.pebble_height_samples.shape[0]-2)
+        j = ij[:, 1].clamp(0, self.pebble_height_samples.shape[1]-2)
+        f = (cells - torch.stack((i, j), dim=1)).clamp(0., 1.)
+        h = self.pebble_height_samples
+        a, b, c, d = h[i, j], h[i+1, j], h[i, j+1], h[i+1, j+1]
+        heights[mask] = torch.where(f[:, 1] >= f[:, 0],
+            a+(d-c)*f[:, 0]+(c-a)*f[:, 1], a+(b-a)*f[:, 0]+(d-b)*f[:, 1]) * self.cfg.terrain.pebble_vertical_scale
+        return heights
 
     #------------ reward functions----------------
     def _reward_tracking_lin_vel(self):

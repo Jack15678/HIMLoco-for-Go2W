@@ -3,6 +3,14 @@ from legged_gym.envs.go2w.go2w_config import GO2WRoughCfg, GO2WRoughCfgPPO
 
 
 class S10RoughCfg(GO2WRoughCfg):
+    class terrain(GO2WRoughCfg.terrain):
+        num_cols = 22  # Original 20 columns, plus two pebble columns.
+        pebble_columns = 2
+        pebble_horizontal_scale = .025
+        pebble_vertical_scale = .001
+        pebble_height_range = [.01, .08]
+        pebble_density_range = [2., 5.]
+
     class commands(GO2WRoughCfg.commands):
         extended_speed_fraction = .2  # Random membership within every terrain column.
         heading_command = False  # Sample yaw rate directly; actor input remains vx/vy/yaw rate.

@@ -34,6 +34,7 @@ from scipy import interpolate
 
 from isaacgym import terrain_utils
 from legged_gym.envs.base.legged_robot_config import LeggedRobotCfg
+from legged_gym.utils.pebbles import pebble_heightfield
 
 class Terrain:
     def __init__(self, cfg: LeggedRobotCfg.terrain, num_robots) -> None:
@@ -49,6 +50,14 @@ class Terrain:
 
         self.cfg.num_sub_terrains = cfg.num_rows * cfg.num_cols
         self.env_origins = np.zeros((cfg.num_rows, cfg.num_cols, 3))
+        self.pebble_columns = getattr(cfg, 'pebble_columns', 0)
+        self.base_columns = cfg.num_cols - self.pebble_columns
+        if self.pebble_columns and (not cfg.curriculum or self.base_columns <= 0 or self.type != 'trimesh'):
+            raise ValueError('Pebble columns require a curriculum trimesh with original columns')
+        self.column_categories = np.zeros(cfg.num_cols, dtype=np.int64)
+        if self.pebble_columns:
+            self.pebble_height_field = np.zeros((round(cfg.num_rows * self.env_length / cfg.pebble_horizontal_scale)+1,
+                round(self.pebble_columns * self.env_width / cfg.pebble_horizontal_scale)+1), dtype=np.int16)
 
         self.width_per_env_pixels = int(self.env_width / cfg.horizontal_scale)
         self.length_per_env_pixels = int(self.env_length / cfg.horizontal_scale)
@@ -71,6 +80,19 @@ class Terrain:
                                                                                             self.cfg.horizontal_scale,
                                                                                             self.cfg.vertical_scale,
                                                                                             self.cfg.slope_treshold)
+            if self.pebble_columns:
+                # Replace only pebble cells with a finer mesh; no overlapping coarse surface.
+                rows = (self.triangles // self.tot_cols).min(axis=1)
+                cols = (self.triangles % self.tot_cols).min(axis=1)
+                replace = ((rows >= self.border) & (rows < self.border + cfg.num_rows*self.length_per_env_pixels)
+                    & (cols >= self.border + self.base_columns*self.width_per_env_pixels)
+                    & (cols < self.border + cfg.num_cols*self.width_per_env_pixels))
+                fine_vertices, fine_triangles = terrain_utils.convert_heightfield_to_trimesh(
+                    self.pebble_height_field, cfg.pebble_horizontal_scale, cfg.pebble_vertical_scale, None)
+                fine_vertices[:, 0] += cfg.border_size
+                fine_vertices[:, 1] += cfg.border_size + self.base_columns*self.env_width
+                self.triangles = np.concatenate((self.triangles[~replace], fine_triangles + len(self.vertices)))
+                self.vertices = np.concatenate((self.vertices, fine_vertices))
     
     def randomized_terrain(self):
         for k in range(self.cfg.num_sub_terrains):
@@ -86,9 +108,27 @@ class Terrain:
         for j in range(self.cfg.num_cols):
             for i in range(self.cfg.num_rows):
                 difficulty = i / self.cfg.num_rows
-                choice = j / self.cfg.num_cols + 0.001
-
-                terrain = self.make_terrain(choice, difficulty)
+                choice = j / self.base_columns + 0.001
+                if j < self.base_columns:
+                    terrain = self.make_terrain(choice, difficulty)
+                    self.column_categories[j] = np.searchsorted(self.proportions, choice, side='right')
+                else:
+                    self.column_categories[j] = 5
+                    terrain = terrain_utils.SubTerrain('pebbles', width=self.width_per_env_pixels,
+                        length=self.length_per_env_pixels, vertical_scale=self.cfg.vertical_scale,
+                        horizontal_scale=self.cfg.horizontal_scale)
+                    fraction = i / max(1, self.cfg.num_rows - 1)
+                    height = np.interp(fraction, [0, 1], self.cfg.pebble_height_range)
+                    density = np.interp(fraction, [0, 1], self.cfg.pebble_density_range)
+                    fine = pebble_heightfield(self.env_length, self.env_width, self.cfg.pebble_horizontal_scale,
+                        self.cfg.pebble_vertical_scale, height, density, np.random)
+                    nx, ny = fine.shape[0]-1, fine.shape[1]-1
+                    self.pebble_height_field[i*nx:(i+1)*nx+1, (j-self.base_columns)*ny:(j-self.base_columns+1)*ny+1] = fine
+                    stride = round(self.cfg.horizontal_scale / self.cfg.pebble_horizontal_scale)
+                    if not np.isclose(stride*self.cfg.pebble_horizontal_scale, self.cfg.horizontal_scale):
+                        raise ValueError('Pebble scale must divide the base horizontal scale')
+                    terrain.height_field_raw[:] = np.rint(fine[:-1:stride, :-1:stride]
+                        * self.cfg.pebble_vertical_scale / self.cfg.vertical_scale).astype(np.int16)
                 self.add_terrain_to_map(terrain, i, j)
 
     def selected_terrain(self):
