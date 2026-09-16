@@ -1,0 +1,192 @@
+{
+  "initialization": "full checkpoint + both Adam optimizers",
+  "iteration": 1200,
+  "environment_steps": 235929600,
+  "adam_states": [
+    17,
+    13
+  ],
+  "learning_rates": [
+    0.00038443359375000017,
+    0.00038443359375000017
+  ],
+  "std": [
+    0.25114554166793823,
+    0.1618487536907196,
+    0.13809193670749664,
+    0.36463725566864014,
+    0.24480867385864258,
+    0.1595556139945984,
+    0.14428827166557312,
+    0.36972445249557495,
+    0.24978266656398773,
+    0.16130037605762482,
+    0.14512164890766144,
+    0.36394861340522766,
+    0.25087404251098633,
+    0.1651383340358734,
+    0.14513644576072693,
+    0.3594514727592468
+  ],
+  "terrain_speed_coverage": [
+    {
+      "column": 0,
+      "terrain": 0,
+      "environments": 187,
+      "extended": 37,
+      "fraction": 0.19786096256684493
+    },
+    {
+      "column": 1,
+      "terrain": 0,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 2,
+      "terrain": 1,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 3,
+      "terrain": 1,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 4,
+      "terrain": 2,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 5,
+      "terrain": 2,
+      "environments": 187,
+      "extended": 37,
+      "fraction": 0.19786096256684493
+    },
+    {
+      "column": 6,
+      "terrain": 2,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 7,
+      "terrain": 2,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 8,
+      "terrain": 2,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 9,
+      "terrain": 2,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 10,
+      "terrain": 2,
+      "environments": 187,
+      "extended": 37,
+      "fraction": 0.19786096256684493
+    },
+    {
+      "column": 11,
+      "terrain": 3,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 12,
+      "terrain": 3,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 13,
+      "terrain": 3,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 14,
+      "terrain": 3,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 15,
+      "terrain": 4,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 16,
+      "terrain": 4,
+      "environments": 187,
+      "extended": 37,
+      "fraction": 0.19786096256684493
+    },
+    {
+      "column": 17,
+      "terrain": 4,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 18,
+      "terrain": 4,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 19,
+      "terrain": 4,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 20,
+      "terrain": 5,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    },
+    {
+      "column": 21,
+      "terrain": 5,
+      "environments": 186,
+      "extended": 37,
+      "fraction": 0.1989247311827957
+    }
+  ],
+  "terrain_vertices": 4989841,
+  "terrain_triangles": 9708882,
+  "requested_iterations": 300,
+  "target_iteration": 1500,
+  "preflight_only": false
+}
