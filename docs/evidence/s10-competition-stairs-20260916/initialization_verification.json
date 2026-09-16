@@ -1,0 +1,192 @@
+{
+  "initialization": "scratch",
+  "iteration": 0,
+  "environment_steps": 0,
+  "adam_states": [
+    0,
+    0
+  ],
+  "learning_rates": [
+    0.001,
+    0.001
+  ],
+  "std": [
+    0.30000001192092896,
+    0.30000001192092896,
+    0.30000001192092896,
+    0.6000000238418579,
+    0.30000001192092896,
+    0.30000001192092896,
+    0.30000001192092896,
+    0.6000000238418579,
+    0.30000001192092896,
+    0.30000001192092896,
+    0.30000001192092896,
+    0.6000000238418579,
+    0.30000001192092896,
+    0.30000001192092896,
+    0.30000001192092896,
+    0.6000000238418579
+  ],
+  "terrain_speed_coverage": [
+    {
+      "column": 0,
+      "terrain": 0,
+      "environments": 24,
+      "extended": 5,
+      "fraction": 0.20833333333333334
+    },
+    {
+      "column": 1,
+      "terrain": 0,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 2,
+      "terrain": 1,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 3,
+      "terrain": 1,
+      "environments": 24,
+      "extended": 5,
+      "fraction": 0.20833333333333334
+    },
+    {
+      "column": 4,
+      "terrain": 2,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 5,
+      "terrain": 2,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 6,
+      "terrain": 2,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 7,
+      "terrain": 2,
+      "environments": 24,
+      "extended": 5,
+      "fraction": 0.20833333333333334
+    },
+    {
+      "column": 8,
+      "terrain": 2,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 9,
+      "terrain": 2,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 10,
+      "terrain": 2,
+      "environments": 24,
+      "extended": 5,
+      "fraction": 0.20833333333333334
+    },
+    {
+      "column": 11,
+      "terrain": 3,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 12,
+      "terrain": 3,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 13,
+      "terrain": 3,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 14,
+      "terrain": 3,
+      "environments": 24,
+      "extended": 5,
+      "fraction": 0.20833333333333334
+    },
+    {
+      "column": 15,
+      "terrain": 4,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 16,
+      "terrain": 4,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 17,
+      "terrain": 4,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 18,
+      "terrain": 4,
+      "environments": 24,
+      "extended": 5,
+      "fraction": 0.20833333333333334
+    },
+    {
+      "column": 19,
+      "terrain": 4,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 20,
+      "terrain": 5,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    },
+    {
+      "column": 21,
+      "terrain": 5,
+      "environments": 23,
+      "extended": 5,
+      "fraction": 0.21739130434782608
+    }
+  ],
+  "terrain_vertices": 5011401,
+  "terrain_triangles": 8311662,
+  "requested_iterations": 2000,
+  "target_iteration": 2000,
+  "preflight_only": true
+}
